@@ -12,8 +12,9 @@
             <marker position="[[ newMap.location ]]" icon="assets/img/map/ic-place-2x.png"></marker>
         </ng-map>
     </div>
-    <br/>
-    <div class="col-xs-12 cd-no-padding text-xs-right">
-        <button class="btn btn-block" ng-class="newMap.location ? 'btn-success' : 'btn-info'" ng-click="ok()" ng-disabled="!newMap.lan && !newMap.lon && !newMap.location">Submit</button>
+    
+    <div class="col-xs-12 cd-no-padding" style="margin-top: 10px;">
+        <button class="btn btn-info left" ng-click="cancel()"> Cancel</button>
+        <button class="btn right"  ng-class="newMap.location ? 'btn-success' : 'btn-info'" ng-click="ok()" ng-disabled="!newMap.lan && !newMap.lon && !newMap.location">Set Location</button>
     </div>
 </div>

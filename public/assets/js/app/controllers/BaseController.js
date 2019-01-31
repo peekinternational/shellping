@@ -2277,20 +2277,20 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
     };
 
     $scope.store = function () {
-        var errors = "";
+        var errors = [];
 
         // Check form validation
         if($scope.formData.title == null)
-            errors += "Please enter a valid title, ";
+            errors[0] = {name:"Please enter a valid title,"};
         if($scope.formData.desc == null)
-            errors += "Please enter a valid description, ";
+            errors[1] = {name:"Please enter a valid description, "};
         if($scope.formData.locationName == null)
-            errors += "Please enter a valid location, ";
+            errors[2] = {name:"Please enter a valid location, "};
         if($scope.formData.categories.length == 0)
-            errors += "Please select at least one Category. ";
-
+            errors[3] = {name:"Please select at least one Category. "};
+        console.log(errors);
         if(errors.length > 0) {
-            $rootScope.AlertModal(false, "Project Form Invalid", errors);
+            $rootScope.AlertModal(false, "you should have to be fill the following fields", errors);
             return;
         }
 
@@ -2434,11 +2434,11 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
         // Open relative modal
         $scope.ne = ModalsService.openModal(
             'LocationModalController',  // Controller
-            'Your projects address',                 // Title
+            'Project Area/Location',                 // Title
             'views/modals/map.html',    // Template
             'md',                       // Size
             {
-                subtext: "Enter the address of your project in the textbox below. Google will go and find what you enter and display it as a pin on the map. Once this is done the 'Submit' button will change colour and you can then set your projects location and continue with the other project details.",
+                subtext: "Enter the location of your project in the box below then click the `set location` buttom. This location is then used to allow people to search for your project making it easier find. Projects that are easier to search for will receive more support. ",
                 location: { name: $scope.formData.locationName }
             }                          // Data
         );

@@ -25,13 +25,7 @@
                             Please type a description for your project.
                         </div>
                     </div>
-                    <div class="form-group" ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
-                        <label for="location">Project Location  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Your location will be displayed as a pin on a map so it shows the 'area' your project is in and doesn't give you any address details."></i></label>
-                        <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="formData.locationName" ng-click="getLocation()" readonly required ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'form-control-success' : 'form-control-danger'">
-                        <div class="text-danger form-control-feedback" ng-if="form.createProject.location.$invalid || form.createProject.location.$error.required">
-                            Where will this project take place?
-                        </div>
-                    </div>
+                    
                     <div class="form-group" ng-class="form.createProject.categories.$valid && !form.createProject.categories.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="categories">Project Categories <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Select which category or categories your project fits into from the dropdown list below."></i></label>
                         <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" required >
@@ -47,9 +41,17 @@
                     <label>Project Image</label>
                     <br>
                     <button type="button" class="btn btn-info" ng-click="selectFile()">Add A Project Image</button>
+                    <p>Adding a project image increase the views your project receives</p>
                     <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;" />
                    
-                    
+                    <div class="form-group" ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
+                        <label for="location">Project Location  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Your location will be displayed as a pin on a map so it shows the 'area' your project is in and doesn't give you any address details."></i></label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="formData.locationName" ng-click="getLocation()" readonly>
+                        <!-- <div class="text-danger form-control-feedback" ng-if="form.createProject.location.$invalid || form.createProject.location.$error.required">
+                            Where will this project take place?
+                        </div> -->
+                    </div>
+                    <p>setting a location for your project make it easier to search for and find</p>
                     <div class="form-group" ng-class="form.createProject.tags.$valid && !form.createProject.tags.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="tags">Tags <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Enter the tags that match your project that will help your project be found when people are searching on Shelping.COM."></i></label>
                         <ui-select name="tags" id="tags" multiple tagging tagging-label="" ng-model="formData.tags" theme="bootstrap">
@@ -59,14 +61,17 @@
                             </ui-select-choices>
                         </ui-select>
                     </div>
+                    <p>Adding tags to your project help people to find it </p>
                     <div class="form-group" ng-class="form.createProject.web.$valid && !form.createProject.web.$error.required ? 'has-success' : 'has-danger'">
-                        <label for="web">Web Address <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated website enter that website address here."></i></label>
+                        <label for="web">Project Website <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated website enter that website address here."></i></label>
                         <input type="website" class="form-control" id="web" name="web" placeholder="https://www.yourproject.com" ng-model="formData.web">
                     </div>
+                    <p>If your add a website link it will be displayed on your project page for people to click on</p>
                     <div class="form-group" ng-class="form.createProject.fb.$valid && !form.createProject.fb.$error.required ? 'has-success' : 'has-danger'">
-                        <label for="fb">Facebook link <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated Facebook page/group enter the link to that Facebook page/group here."></i></label>
+                        <label for="fb">Project Facebook link <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated Facebook page/group enter the link to that Facebook page/group here."></i></label>
                         <input type="website" class="form-control" id="fb" name="fb" placeholder="https://www.facebook.com/yourpage" ng-model="formData.fb">
                     </div>
+                    <p>If your add a Facebook link it will be displayed on your project page for people to click on</p>
                     <input type="file" nv-file-select uploader="uploader" style="display: none;" />
                     <div>
                         <center><button style="width: 250px" class="btn btn-info" type="submit" ng-bind="!data.project ? 'Add Project' : 'Update Project'"></button></center>
@@ -102,18 +107,27 @@
 
             <!-- Step 2: Confirmation -->
             <div ng-if="createStep == 2" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <img width="100%" src="../../assets/img/help/cd-fund-2x.png">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 center">
+                    <img width="50%" src="../../assets/img/help/congractulation.png">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
-                    <h4 class="text-capitalize text-info">Your project is ready!</h4>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-check text-info"></i> Your project is ready to raise funds!</li>
-                        <li><i class="fa fa-check text-info"></i> Next we will show you how to share your project.</li>
-                    </ul>
+               <div class="col-xs-12 col-sm-12 col-md-12 congrats-container">
+                   <h4 class="text-capitalize">Congractulation</h4>
+                   <p>Your project has been created.</p>
                 </div>
-                <div class="col-xs-12 text-xs-right">
-                    <button class="btn btn-info" ng-click="nextStep()">Continue</button>
+                <div class="col-xs-12">
+                    <h4>
+                        The next and more important thing you can do for your project is to share it on your social media.
+                    </h4>
+                    <p>
+                        Sharing your project on social media is the best way to get the people you know involved supporting your project
+                    </p>
+                    <p>
+                        The more you share, the more supporters you'll get. The more supporters you have, the more fund your project will generate.
+                    </p>
+                </div>
+                <div class="col-xs-12 center">
+                    <button class="btn btn-info" style="width: 200px;" ng-click="nextStep()">Continue</button>
                 </div>
             </div>
 
@@ -167,18 +181,25 @@
 
             <!-- Step 5: Finish & View -->
             <div ng-if="createStep == 5" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <img width="100%" src="../../assets/img/help/money-2x.png">
+                <div class="col-xs-12 col-sm-12 col-md-12 center">
+                    <img width="50%" src="../../assets/img/help/congractulation.png">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
-                    <h4 class="text-capitalize text-info">
-                        Congratulations!
+               <div class="col-xs-12 col-sm-12 col-md-12 congrats-container">
+                   <h4 class="text-capitalize">Congractulations!</h4>
+                   <p>Your project is ready.</p>
+                </div>
+                <div class="col-xs-12">
+                    <h4>REMEMBER:</h4>
+                    <h4>
+                        Sharing your project on social media is the best way to get your friends involved and supporting your project.
                     </h4>
-                    <p>Your project is all setup and ready to start raising funds, don't forget to keep checking back.</p>
-                    <p>Don't forget, you can share your project anytime from the project page! Share often to increase your support.</p>
+                    <p>
+                        You can share your project at any time in the future and we actively encourage you to do so. If you keep sharing your project you keep reminding your friends to support it.
+                    </p>
+                    
                 </div>
                 <div class="col-xs-12 text-xs-right">
-                    <button class="btn btn-info btn-block" ng-click="shareCheck.twitter == false || shareCheck.facebook == false ? nextStep() : complete()">View Project</button>
+                    <button class="btn btn-info" ng-click="shareCheck.twitter == false || shareCheck.facebook == false ? nextStep() : complete()">View Project</button>
                 </div>
             </div>
 
