@@ -1013,6 +1013,19 @@ Messages
     margin-bottom: 10px!important;
 }
 
+.footer-link .list-inline-item:not(:last-child){
+    margin-right: 11rem;
+}
+.twiiter-caption li{
+    letter-spacing: 1px;
+    line-height: 40px;
+    font-size: 20px;
+}
+.skip-btn{
+    background: transparent !important; 
+    color: #3dafe8 !important; 
+    font-size: 1.75rem;
+}
 /**
 Media Views
  */
@@ -1393,5 +1406,33 @@ Navigation
 
     .cd-profile-header .profile-cover-content {
         padding: 30px 0;
+    }
+    .list-inline-item:not(:last-child) {
+        margin-right: 5px !important;
+    }
+    .btn-font{
+        font-size: 0.75rem !important;
+    }
+    .social-img{
+        width: 100% !important;
+    }
+    .skip-btn{
+        width: 100% !important;
+    }
+    .twitter-btn{
+        padding-left: 15px !important;
+    }
+    .btn-skip{
+        padding-right: 15px !important; 
+    }
+    .btn-sectn{
+        padding-left: 15px !important;
+    }
+    .mbr-small-footer{
+        padding-top: 0 !important;
+        padding-bottom: 0.75rem !important;
+    }
+    .bottom-footer{
+        padding-top: 0.75rem !important;
     }
 }

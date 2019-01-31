@@ -1,4 +1,4 @@
-<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 150px!important; padding-bottom: 20px;">
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 150px!important;">
     <div class="container cd-no-padding" style="overflow: hidden;">
         <div class=""> <!-- row -->
             <!-- Create Form -->
@@ -119,50 +119,62 @@
 
             <!-- Step 3: Share on Facebook -->
             <div ng-if="createStep == 3" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <img width="100%" src="../../assets/img/help/help-people-2x.png">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center"">
+                    <img src="../../assets/img/help/fbHelp.png" class="social-img">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
-                    <h4 class="text-capitalize text-info">
-                        Sharing on Facebook is the <b><u>most important</u></b> thing you can do.
+                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                    <h4 class="text-black" style="color: #000 !important;">
+                        <b>Sharing on Facebook will increase the number of supporters your project has.</b>
                     </h4>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-check text-info"></i> Sharing on Facebook can increase donations.</li>
-                        <li><i class="fa fa-check text-info"></i> It's your personal contacts, not strangers, who will donate.</li>
-                        <li><i class="fa fa-check text-info"></i> Your earliest supporters also help to share your project.</li>
+                    <ul class="list-unstyled  twiiter-caption">
+                        <li>More supporters of your project means more money for your project.</li>
+                        <li>Facebook friends are people you know. Because you are not a stranger to them, they will not just ignore your project when you share it.</li>
+                        <li>Facebook supporters will aslo help share your project further.</li>
                     </ul>
                     <!-- Share Button -->
-                    <a href="" class="btn btn-block btn-facebook" ng-click="facebookShare()">
-                        <i class="fab fa-facebook" aria-hidden="true"></i> Share on Facebook
-                    </a>
+                    
+                    <div class="col-xs-12 text-xs-right" style="padding-left: 0;">
+                        <div class="col-xs-9" style="padding-left: 0;">
+                           <a href="" class="btn btn-block btn-primary btn-font" ng-click="facebookShare()" style="font-size: 1.75rem;">
+                                <i class="fab fa-facebook" aria-hidden="true" style="font-size: 1.75rem;"></i> Share on Facebook
+                            </a> 
+                        </div>
+                        <div class="col-xs-3" style="padding-right: 0;">
+                            <button class="btn btn-font skip-btn" ng-click="nextStep()" ng-class="shareCheck.facebook ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.facebook ? 'Continue' : 'Skip'"></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-12 text-xs-right">
-                    <button class="btn" ng-click="nextStep()" ng-class="shareCheck.facebook ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.facebook ? 'Continue' : 'Skip'"></button>
-                </div>
+                
             </div>
 
             <!-- Step 4: Share on Twitter -->
             <div ng-if="createStep == 4" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                    <img width="100%" src="../../assets/img/help/help-people-2x.png">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center">
+                    <img src="../../assets/img/help/twitterHelp.png" class="social-img">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
-                    <h4 class="text-capitalize text-info">
-                        Sharing on Twitter is just as <b><u>important</u></b>.
+                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                    <h4 class="text-black" style="color: #000 !important;">
+                        <b>Sharing on Twitter is just as important for increasing the number of supporters your project has.</b>
                     </h4>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-check text-info"></i> Sharing on Twitter can also increase donations.</li>
-                        <li><i class="fa fa-check text-info"></i> Increases the social reach of your new project.</li>
-                        <li><i class="fa fa-check text-info"></i> Again, your earliest supporters also help to share your project.</li>
+                    <ul class="list-unstyled twiiter-caption">
+                        <li>More supporters of your project means more money for your project.</li>
+                        <li>Twitter followers are people you know. Because they follow you, they will not just ignore your project when you tweet about it.</li>
+                        <li>Twitter supporters will aslo help share your project further.</li>
                     </ul>
                     <!-- Share Button -->
-                    <a href="#" class="btn btn-block btn-twitter" ng-click="twitterShare()">
-                        <i class="fab fa-twitter" aria-hidden="true"></i> Share on Twitter
-                    </a>
+                    
+                    <div class="col-xs-12 btn-sectn text-xs-right" style="padding-left: 0;">
+                        <div class="col-xs-9" style="padding-left: 0;">
+                            <a href="#" class="btn btn-block btn-twitter btn-font" ng-click="twitterShare()" style="font-size: 1.75rem;">
+                                <i class="fab fa-twitter" aria-hidden="true"></i> Share on Twitter
+                            </a>
+                        </div>
+                        <div class="col-xs-3" style="padding-right: 0;">
+                            <button class="btn btn-font skip-btn" ng-click="nextStep()" ng-class="shareCheck.twitter ? 'btn-info' : 'btn-default'" ng-bind="shareCheck.twitter ? 'Continue' : 'Skip'"></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-12 text-xs-right">
-                    <button class="btn" ng-click="nextStep()" ng-class="shareCheck.twitter ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.twitter ? 'Continue' : 'Skip'"></button>
-                </div>
+                
             </div>
 
             <!-- Step 5: Finish & View -->
@@ -183,17 +195,30 @@
             </div>
 
             <!-- Step 6: No share check -->
-            <div ng-if="createStep == 6" class="col-xs-12 clearfix cd-no-padding animated fadeIn text-xs-center">
-                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
-                    <h4 class="text-capitalize text-info">
+            <div ng-if="createStep == 6" class="col-xs-12 clearfix cd-no-padding animated fadeIn text-xs-center" style="margin-bottom: 10px;">
+                <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center">
+                    <img src="../../assets/img/help/notShare.png" class="social-img">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 text-xs-left" style="margin-bottom: 15px;">
+                    <!-- <h4 class="text-capitalize text-info">
                         Hold your horses!
+                    </h4> -->
+                    <h4 class="text-black" style="color: #000 !important;">
+                        <b>You have not shared your project on </b><span ng-if="!shareCheck.facebook"><b>[Facebook]</b></span> <span ng-if="!shareCheck.twitter"><b>[Twitter]</b></span> <span ng-if="!shareCheck.facebook && !shareCheck.twitter"><b>[Facebook] [Twitter]</b></span> 
                     </h4>
-                    <p>You have <b><u>not shared your project</u></b> on <span ng-if="!shareCheck.facebook">Facebook</span> <span ng-if="!shareCheck.facebook && !shareCheck.twitter">or</span> <span ng-if="!shareCheck.twitter">Twitter</span></p>
-                    <p>Are you sure you would like to continue without sharing?</p>
+                    <ul class="list-unstyled twiiter-caption">
+                        <li>Sharing your project on social media is the best way to get your friends involved and supporting your project.</li>
+                        <li>You can share your project at any time in the future and we actively encourage you to do so. If you keep sharing your project you keep reminding your friends to support it.</li>
+                        <li>You can share your project now by clicking or tapping the 'Share Now' button below. If you want to share it later click or tap the 'View Project' button.</li>
+                    </ul>
                 </div>
                 <div class="col-xs-12">
-                    <button class="btn btn-info" ng-click="reset()">No, I would like to share!</button>
-                    <button class="btn btn-primary" ng-click="complete()">Yes, Continue without sharing.</button>
+                    <div class="col-xs-6" style="padding-left: 0;">
+                        <button class="btn btn-info btn-font" ng-click="reset()" style="font-size: 1.75rem">Share Now</button>
+                    </div>
+                    <div class="col-xs-6" style="padding-left: 0;">
+                        <button class="btn btn-primary skip-btn btn-font" ng-click="complete()">View Project</button>
+                    </div>
                 </div>
             </div>
         </div>
