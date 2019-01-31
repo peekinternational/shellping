@@ -1,0 +1,136 @@
+<div ng-if="signupStep == 0">
+    <h3>Parent/sibling/friend of Member Signup</h3>
+    <p>As a parent/sibling/friend of the member of the group but not the person that runs it you have two options:</p>
+    <ol style="list-style-type: upper-greek">
+        <li>
+            <strong>**RECOMMENDED**</strong> Create your group on Shelping.COM. This involves you putting up the groups
+            name and a brief description so it's not a lot of work. Once you have created your group and your account
+            you are provided with a special link that you can send to the person who actually runs your group. That
+            person can then create their own account on Shelping.COM and take ownership of your group. The point of you
+            creating the group first is that it gives you more to share to the other members and also you and the other
+            members and their friends and families can immediately start helping the group through changing brand to
+            Shelping.COM. To start by creating your group click <a ng-click="setStep(1)">click here</a>.
+        </li>
+        <li>
+            Just create your account on Shelping.COM and not worry about creating the group yet as you can add a group
+            at any time. Once you have your Shelping.COM account, share Shelping.COM on your social media and let the
+            person who runs the group know to come and create the group on Shelping.COM. Once the group is created you
+            and all the other members and their friends and families can select it to be the group you support by
+            changing your brand to Shelping.COM. In the meantime you can still go ahead and buy Shleping.COM products or
+            create Shelping.COM subscriptions that you can build up credit from meaning as soon as your group is created
+            by the person who runs it you already have credit you can give to support your group. To go ahead and join
+            Shelping.COM <a ng-click="setStep(2)">click here</a>.
+        </li>
+    </ol>
+</div>
+
+<div ng-if="signupStep == 1">
+    <h3>Project Member Parent/Sibling/Friend Signup - Create Group First</h3>
+    <p>So you're child/sibling/friend is a member of a group that is run by someone other than you. Your group would
+        benefit from you and its members creating funds for it simply by doing swapping brands to the new range of
+        quality Shelping.COM products.</p>
+    <p>Add the group by filling in the details below. Once you have created your account you will be able to send a link
+        to the person who runs the group so that they can create a Shelping.COM Account and take over ownership of this
+        group.</p>
+</div>
+
+<div ng-if="signupStep == 2">
+    <div ng-if="groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup - create account after project create</h3>
+        <p>Thank you for adding your project details. You will be given a special link that you can send to the person
+            who runs your group. If they then click on that link they will be able to create their own account and will
+            take ownership of your group. </p>
+    </div>
+    <div ng-if="!groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup - create account but not creating project first</h3>
+    </div>
+</div>
+
+<div ng-if="signupStep == 3">
+    <div ng-if="groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup - create account after project create</h3>
+    </div>
+    <div ng-if="!groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup - create account but not creating project first</h3>
+    </div>
+</div>
+
+<div ng-if="signupStep == 4">
+    <div ng-if="groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup Complete - Creating Project</h3>
+        <p>Your project has now been created and you are a member of Shelping.COM. We now recommend you do the
+            following:</p>
+        <ol style="list-style-type: upper-greek">
+            <li>
+                <p>
+                    SSend the following link to the person who runs your group. They can then create their own
+                    Shelping.COM account and take ownership of your group:
+                    special_link_for_group_owner_here.
+                </p>
+                <p>
+                    Put share options here (email/sms/whatsapp/FB/Twitter etc for the person to chare the link
+                </p>
+                <p>
+                    The link to allow somebody to take ownership of the project is available from the project page on
+                    Shelping.COM so you can transfer ownership of any project at any time.
+                </p>
+            </li>
+            <li>
+                Share your Shelping.COM project with the other members of your group. Do this by clicking on the icons
+                below to post your project to FB/Twitter/Google/LinkedIn. The more people that support your group, the
+                more your group can receive.
+                SOCIAL MEDIA ICONS
+            </li>
+            <li>
+                Go to your project and add a description, images and general information. The better you make your
+                project the more likely you are not only to get your members supporting it through buying products from
+                Shelping.COM, but you will also get other people - people who aren't members - supporting your project
+                as well simply because they like it and want to help where possible. <a href="#">Click here</a> to view
+                your project.
+            </li>
+            <li>
+                Once the person who runs your group has created their own Shelping.COM account and taken ownership of
+                your group they will be able to request a sample pack or Shelping.COM products. We will then send out
+                samples of the products that your group members would swap brand to to quality Shelping.COM products.
+                You can then take a look - test the quality of them to ensure you and the other members are happy to buy
+                the Shelping.COM products, then you and the other members members can come and buy or subscribe to the
+                Shelping.COM products which will immediately start helping your group.
+            </li>
+        </ol>
+    </div>
+    <div ng-if="!groupForm.name">
+        <h3>Project Member Parent/Sibling/Friend Signup Complete - Didn't Create Project</h3>
+        <p>You are a member of Shelping.COM but as yet your group doesn't exist. We now recommend you do the
+            following:</p>
+        <ol style="list-style-type: upper-greek">
+            <li>
+                Share Shelping.COM with the other members of your group. Do this by clicking on the icons below to let
+                people know how they can help your group. The more people that support your group, the more your group
+                can receive. **VERY IMPORTANT:** Make sure the person who runs your group is told about Shelping.COM so
+                they can add your group meaning you and the other members of the group can start generating money for
+                your group simply by switching brands to the qualify products on Shelping.COM.
+                ICONS HERE
+            </li>
+            <li>
+                We still recommend you add your group as a project on Shelping.COM now. You will get a lnk you can pass
+                on to the person who runs your group to take ownership, however the sooner your group is added, the
+                sooner you and your members can start brand switching and generating money for your group. When you add
+                your group you can add a description, images and general information. The better you make your project
+                the more likely you are not only to get your members supporting it through buying products from
+                Shelping.COM, but you will also get other people - people who aren't members - supporting your project
+                as well simply because they like it and want to help where possible. <a href="#">Click here</a> to add
+                your project.
+            </li>
+            <li>
+                Once the person who runs your group has created their own Shelping.COM account and added your group,
+                they will be able to request a sample pack or Shelping.COM products. We will then send out samples of
+                the products that you and the other group members would swap brand to to quality Shelping.COM products.
+                You can then take a look - test the quality of them to ensure you and the other members are happy to
+                swap to Shelping.COM products, then you and the other members members can come and buy or subscribe to
+                the Shelping.COM products which will immediately start helping your group. A sample pack comes with more
+                than £23s of Shelping.COM products for you and your group to test and love so you know that swapping
+                brands to Shelping.COM isn't just good for your gropu, but its also good for you!
+            </li>
+        </ol>
+    </div>
+</div>

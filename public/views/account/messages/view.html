@@ -1,0 +1,85 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <!-- List -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <div class="col-xs-12 cd-no-padding" ng-repeat="m in messages | orderBy: 'created':false">
+                    <div class="col-xs-1" ng-if="m.author != account.id">
+                        <div class="cd-avatar cd-avatar-md">
+                            <img ng-src="[[ m._author.photo ? m._author.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ m._author.name ]]">
+                        </div>
+                    </div>
+                    <div class="col-xs-10">
+                        <div class="cd-msg-container col-xs-12" ng-class="m.author != account.id ? 'text-xs-left' : 'text-xs-right'">
+                            <h5 class="mt-0 mb-1">
+                                <span ng-bind="m._author.name"></span>
+                                <small ng-class="m.author != account.id ? 'pull-xs-right' : 'pull-xs-left'" ng-bind="m.created | date:'medium'"></small>
+                            </h5>
+                            <p ng-bind="m.message"></p>
+                        </div>
+                        <div class="cd-msg-attachment col-xs-12 cd-no-padding">
+                            <ul class="list-unstyled list-inline">
+                                <li ng-if="m.profile || m.attachment" class="list-inline-item">
+                                    <i class="fa fa-paperclip"></i>
+                                </li>
+                                <li ng-if="m.profile" class="list-inline-item">
+                                    <a href="users/[[ m.profile ]]" class="btn btn-white btn-white-outline">
+                                        <i class="fa fa-user"></i> Profile
+                                    </a>
+                                </li>
+                                <li ng-if="m.attachment" class="list-inline-item">
+                                    <a href="projects/[[ m.attachment ]]" class="btn btn-white btn-white-outline">
+                                        <i class="fa fa-fire"></i> Project
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-1" ng-if="m.author == account.id">
+                        <div class="cd-avatar cd-avatar-md">
+                            <img check-image src="[[ m._author.photo ]]" alt="[[ m._author.name ]]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="col-xs-12">
+                    <hr/>
+                    <form name="messageForm" id="message-form" ng-submit="sendMsg()" novalidate>
+                        <div class="form-group">
+                            <textarea spellcheck="true" ng-model="msgForm.message" class="form-control" name="message" id="message" rows="5" placeholder="Enter your message..."></textarea>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-xs-12 cd-no-padding">
+                            <div>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item" ng-if="msgForm.profile">
+                                        <span class="badge badge-info">
+                                            <i style="cursor: pointer;" class="fa fa-times" ng-click="msgForm.profile = null"></i> Profile Attached
+                                        </span>
+                                    </li>
+                                    <li class="list-inline-item" ng-if="msgForm.attachment">
+                                        <span class="badge badge-info">
+                                            <i style="cursor: pointer;" class="fa fa-times" ng-click="msgForm.attachment = null"></i> Project Attached
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="text-xs-right">
+                                <a href="" class="btn btn-white btn-white-outline text-uppercase" ng-click="attachment()">
+                                    <i class="fa fa-plus"></i><br/>
+                                    <small>Attachment</small>
+                                </a>
+                                <button type="submit" class="btn btn-white btn-white-outline text-uppercase" ng-disabled="!msgForm.message">
+                                    Send<br/>
+                                    <small>Press Enter</small>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

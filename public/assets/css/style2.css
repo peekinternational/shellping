@@ -1,0 +1,234 @@
+body {
+    background-color: #fff!important;
+}
+
+.mbr-after-navbar {
+
+}
+
+/** Nav */
+#menu-0 .navbar, #menu-0 .nav-dropdown-sm, #menu-0 .nav-dropdown-sm .link[aria-expanded="true"], #menu-0 .nav-dropdown-sm .dropdown-menu {
+    background: #fff!important;
+    border-bottom: 1px solid #ccc!important;
+}
+
+#menu-0 .bg-color.transparent .link {
+    color: #000!important;
+    transition: none;
+}
+
+#menu-0 .navbar-caption {
+    color: #000!important;
+}
+
+#menu-0 .link, #menu-0 .dropdown-item {
+    color: #000!important;
+}
+
+#menu-0 .nav-breadcrumbs {
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ccc;
+}
+
+.btn-white-outline {
+    background: none!important;
+    border-color: #ccc!important;
+    color: #333!important;
+}
+
+#menu-0 .navbar-toggler {
+    color: #000!important;
+}
+
+#menu-0 .close-icon::before, #menu-0 .close-icon::after {
+    background-color: #000;
+}
+
+.btn-white-outline:hover, .btn-white-outline:active {
+    background: none!important;
+    border-color: #000!important;
+    color: #000!important;
+}
+
+#menu-0 .link[aria-expanded="true"], #menu-0 .dropdown-menu {
+    background: #eee!important;
+    color: #000!important;
+}
+
+#menu-0 .dropdown-item:hover, #menu-0 .dropdown-item:focus, #menu-0 .dropdown-item:active {
+    background-color: #eee!important;
+    text-decoration: underline!important;;
+}
+
+/** Btns */
+.btn-info, .btn-primary, .btn-default {
+    background-color: #3dafe8;
+    border-color: #3dafe8;
+    color: #fff;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info.focus, .btn-info:active, .btn-info.active {
+    color: #fff;
+    background-color: #2592d2;
+    border-color: #2592d2;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active {
+    color: #333;
+    background-color: #ccc;
+    border-color: #aaa;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active {
+    color: #333;
+    background-color: #ccc;
+    border-color: #aaa;
+}
+
+.btn-social {
+    border-color: #535353;
+    color: #535353!important;
+    padding: 0!important;
+}
+
+.btn-social:hover {
+    background: #535353;
+    color: #ffffff!important;
+}
+
+.btn-share {
+    padding: 0.75rem 1.1875rem!important;
+}
+
+.btn-success {
+    background-color: #45b649;
+    border-color: #45b649;
+    color: #ffffff;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active {
+    color: #ffffff;
+    background-color: #46cc4a;
+    border-color: #46CC4A;
+}
+.btn-success.disabled,
+.btn-success:disabled {
+    color: #ffffff !important;
+    background-color: #005c48 !important;
+    border-color: #005c48 !important;
+}
+
+.btn-success-outline:hover,
+.btn-success-outline:focus,
+.btn-success-outline.focus,
+.btn-success-outline:active,
+.btn-success-outline.active {
+    color: #ffffff;
+    background-color: #45b649;
+    border-color: #45b649;
+}
+.btn-success-outline.disabled,
+.btn-success-outline:disabled {
+    color: #ffffff !important;
+    background-color: #45b649 !important;
+    border-color: #45b649 !important;
+}
+
+.text-success {
+    color: #45b649 !important;
+}
+
+.alert-success {
+    background-color: #45b649;
+}
+
+/** Messages */
+.cd-msg-container {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px!important;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+/** Views */
+.badge {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 1px solid #535353;
+    color: #333;
+}
+
+.cover-img .cover-overlay {
+    background-color: rgba(238, 238, 238, 0.8);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.cover-img .cover-center img {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.cd-profile-header {
+    display: block;
+    position: relative;
+    max-height: 445px;
+    margin-top: 45px;
+    overflow: hidden;
+}
+
+.cd-profile-nav .cd-nav-avatar {
+    z-index: 1;
+}
+
+@media screen and (min-width: 768px) {
+    .nav-dropdown .nav-item:hover, .nav-dropdown .nav-item:active {
+        background-color: #eee !important;
+        color: #000!important;
+    }
+
+    .nav-dropdown .nav-btn:hover, .nav-dropdown .nav-btn:active {
+        background-color: #fff !important;
+        color: #000!important;
+    }
+
+    #menu-0 .dropdown-item[aria-expanded="true"] {
+        background-color: #eee!important;
+        text-decoration: underline!important;;
+    }
+
+    .dropdown>.dropdown-menu-cols {
+        -moz-column-count: 6;
+        -moz-column-gap: 0px;
+        -webkit-column-count: 6;
+        -webkit-column-gap: 0px;
+        column-count: 6;
+        column-gap: 0px;
+        padding: 1.25rem;
+        top: 100%;
+        min-height: 145px;
+    }
+
+    .navbar-dropdown .mbr-table-cell {
+        height: 3.625rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-toggleable-sm {
+        top: 0 !important;
+        margin-top: 91px !important;
+        overflow-y: scroll !important;
+    }
+}

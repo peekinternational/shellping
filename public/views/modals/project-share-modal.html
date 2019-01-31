@@ -1,0 +1,28 @@
+<div class="col-xs-12">
+    <div class="col-xs-12" style="margin-bottom: 15px;">
+        <h4 class="text-capitalize text-success text-xs-center">
+            A share on Facebook is worth £10 on average*
+        </h4>
+        <div class="member-share-comment">
+            Share my page and help me raise more. Every single share helps.
+        </div>
+        <div class="col-xs-2 cd-no-padding">
+            <div class="cd-avatar cd-avatar-md pull-left">
+                <img data-holder-rendered="true" ng-src="[[ data.project._owner.photo ? data.project._owner.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ data.project._owner.name ]]">
+            </div>
+        </div>
+        <div class="col-xs-10 cd-no-padding member-share-comment-name">
+            <span ng-bind="data.project._owner.name"></span>
+        </div>
+    </div>
+    <div class="col-xs-12 text-xs-center">
+        <div class="col-xs-12">
+            <a href="#" class="btn btn-block btn-facebook" socialshare socialshare-provider="facebook" socialshare-text="Share on facebook" socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ url ]]">
+                <i class="fab fa-facebook" aria-hidden="true"></i> Share on Facebook
+            </a>
+        </div>
+        <div class="col-xs-12">
+            <button class="btn btn-link text-black" ng-click="cancel()">No thanks</button>
+        </div>
+    </div>
+</div>

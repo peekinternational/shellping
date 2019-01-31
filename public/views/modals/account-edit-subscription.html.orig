@@ -1,0 +1,182 @@
+<section ng-if="!cancelSub">
+    <div class="col-xs-12 clearfix">
+        <!-- Items -->
+        <div class="col-xs-12 col-sm-12 col-md-12" ng-repeat="i in data.subscription.items" ng-init="i.newQty = i.quantity" style="border-top: 1px solid #eee; padding: 5px 0!important;">
+            <div>
+                <div class="col-xs-1 col-sm-1 cd-no-padding">
+                    <img width="50px" src="[[ i.item.images[0] ]]" alt="[[ i.item.title ]]"/>
+                </div>
+            </div>
+            <div class="col-xs-11 col-sm-11">
+                <div class="col-xs-12 col-sm-4">
+                    <a class="text-success" href="store/product/[[ i.item.id ]]" ng-bind-html="i.item.name"></a>
+                    <div ng-bind="i.item.price | currency:'£'"></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 cd-no-padding">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="input-group" style="width: 75px;">
+                            <label for="qty">Quantity</label>
+                            <input id="qty" class="form-control" min="1" type="number" value="[[ i.quantity ]]" ng-model="i.newQty" ng-change="qtyChange($index, i.newQty)" ng-readonly="data.subscription.state == 'CANCELLING' || data.subscription.state == 'CANCELLED' || data.subscription.state == 'ENDING' || data.subscription.state == 'FINISHED'"/>
+                        </div>
+                    </div>
+<<<<<<< HEAD
+                </td>
+                <td>
+                    <select ng-model="i.newPlan" ng-options="sub.id as sub.name for sub in subscriptionPlans" ng-init="i.newPlan = plan" class="form-control"></select>
+                </td>
+                <td class="text-success" ng-bind="productContributionQty(i.item.price, i.item.contribution, i.newQty) | currency:'£'"></td>
+                <td class="text-danger">
+                    <button type="button" class="btn btn-xs btn-link text-danger" type="button" ng-click="removeItemSubscription($index)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>
+                    <p>Subtotal</p>
+                    <p>Contribution</p>
+                </th>
+                <th>
+                    <p ng-bind="data.subscription.price > 0 ? data.subscription.price : 'Free' | currency:'£'"></p>
+                    <!--<p ng-bind="data.subscription.contributionValue | currency:'£'"></p>-->
+                    <p ng-bind="subscriptionContribution(data.subscription.price, data.subscription.items) | currency:'£'"></p>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+=======
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <label for="subscription">Subscription Plan</label>
+                        <select id="subscription" ng-model="i.newPlan" ng-options="sub.id as sub.name for sub in subscriptionPlans" ng-init="i.newPlan = plan" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <div class="col-12">
+                        <small>Total Contribution</small>
+                        <div class="text-success" ng-bind="productContributionQty(i.item.price, i.item.contribution, i.newQty) | currency:'£'"></div>
+                        <button class="btn btn-xs btn-link text-danger" type="button" ng-click="removeItemSubscription($index)">
+                            <span class="text-danger">Remove</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+>>>>>>> hotfix/ux_ui_hotfix
+    </div>
+
+    <!-- OLD TABLE -->
+    <!--
+            <table class="table table-striped table-condensed table-hover table-responsive">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Unit Price</th>
+                    <th>Qty</th>
+                    <th>Plan</th>
+                    <th>Contribution</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="i in data.subscription.items" ng-init="i.newQty = i.quantity">
+                    <td>
+                        <img width="50px" src="[[ i.item.images[0] ]]" alt="[[ i.item.title ]]" />
+                    </td>
+                    <td>
+                        <strong>
+                            <a class="text-success" href="store/product/[[ i.item.id ]]" ng-bind-html="i.item.name"></a>
+                        </strong>
+                    </td>
+                    <td class="" ng-bind="i.item.price | currency:'£'"></td>
+                    <td>
+                        <div class="input-group" style="width: 75px;">
+                            <input class="form-control" min="1" type="number" value="[[ i.quantity ]]" ng-model="i.newQty" ng-change="qtyChange($index, i.newQty)" ng-readonly="data.subscription.state == 'CANCELLING' || data.subscription.state == 'CANCELLED' || data.subscription.state == 'ENDING' || data.subscription.state == 'FINISHED'"/>
+                        </div>
+                    </td>
+                    <td>
+                        <select ng-model="i.newPlan" ng-options="sub.id as sub.name for sub in subscriptionPlans" ng-init="i.newPlan = plan" class="form-control"></select>
+                    </td>
+                    <td class="text-success" ng-bind="productContributionQty(i.item.price, i.item.contribution, i.newQty) | currency:'£'"></td>
+                    <td class="text-danger">
+                        <button class="btn btn-xs btn-link text-danger" type="button" ng-click="removeItemSubscription($index)">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>
+                        <p>Subtotal</p>
+                        <p>Contribution</p>
+                    </th>
+                    <th>
+                        <p ng-bind="data.subscription.price > 0 ? data.subscription.price : 'Free' | currency:'£'"></p>
+                        &lt;!&ndash;<p ng-bind="data.subscription.contributionValue | currency:'£'"></p>&ndash;&gt;
+                        <p ng-bind="subscriptionContribution(data.subscription.price, data.subscription.items) | currency:'£'"></p>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    -->
+
+    <div style="text-align: right; padding-right: 15px; padding-bottom: 5px;">
+        <small>Total Price</small>
+        <div ng-bind="totalPrice | currency:'£'">Total Item Postage</div>
+    </div>
+    <!-- Bottom section of form -->
+    <div class="col-xs-12 cd-no-padding clearfix" ng-if="data.subscription.state == 'ACTIVE' && !showPaymentForm">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+            <button type="button" class="btn btn-danger-outline btn-block" ng-click="toggleAlert()">
+                Cancel Subscription
+            </button>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+            <ul class="list-inline list-unstyled text-xs-right">
+                <li class="list-inline-item">
+                    <button type="button" class="btn btn-default btn-block" ng-click="cancel()">
+                        Close
+                    </button>
+                </li>
+                <li class="list-inline-item">
+                    <button type="button" class="btn btn-success btn-block" ng-click="updateSubscription()">
+                        Update
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div ng-if="showPaymentForm">
+        <ng-include src="'views/partials/subscription-payment-form.html'"></ng-include>
+    </div>
+</section>
+
+<section ng-if="cancelSub">
+    <div class="col-xs-12 clearfix text-xs-center">
+        <p>You are about to cancel this subscription, are you sure you want to continue?</p>
+        <ul class="list-unstyled list-inline">
+            <li class="list-inline-item">
+                <button type="button" class="btn btn-xs btn-success-outline" ng-click="toggleAlert()">
+                    <i class="fa fa-arrow-left"></i> Back
+                </button>
+            </li>
+            <li class="list-inline-item">
+<<<<<<< HEAD
+                <button type="button" class="btn btn-xs btn-danger-outline" ng-click="cancelSubscription()">Cancel Subscription</button>
+=======
+                <button class="btn btn-xs btn-danger-outline" ng-click="cancelSubscription()">Cancel Subscription
+                </button>
+>>>>>>> hotfix/ux_ui_hotfix
+            </li>
+        </ul>
+    </div>
+</section>
+

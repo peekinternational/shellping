@@ -1,0 +1,232 @@
+<section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1" style="background-image: url('assets/img/hero/big-hero-1.png'); position: relative; background-attachment: scroll; background-position-y: bottom;">
+    <!--<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 0, 0);"></div>-->
+
+    <div class="mbr-table-cell">
+        <!-- Divider -->
+        <div class="shelping-divider-wrap" data-front data-style="clouds" data-position="bottom">
+            <svg class="shelping-shape-divider" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                <path d="M 1014 264 v 122 h -808 l -172 -86 s 310.42 -22.84 402 -79 c 106 -65 154 -61 268 -12 c 107 46 195.11 5.94 275 137 z"></path>
+                <path d="M -302 55 s 235.27 208.25 352 159 c 128 -54 233 -98 303 -73 c 92.68 33.1 181.28 115.19 235 108 c 104.9 -14 176.52 -173.06 267 -118 c 85.61 52.09 145 123 145 123 v 74 l -1306 10 z"></path>
+                <path d="M -286 255 s 214 -103 338 -129 s 203 29 384 101 c 145.57 57.91 178.7 50.79 272 0 c 79 -43 301 -224 385 -63 c 53 101.63 -62 129 -62 129 l -107 84 l -1212 12 z"></path>
+                <path d="M -24 69 s 299.68 301.66 413 245 c 8 -4 233 2 284 42 c 17.47 13.7 172 -132 217 -174 c 54.8 -51.15 128 -90 188 -39 c 76.12 64.7 118 99 118 99 l -12 132 l -1212 12 z"></path>
+                <path d="M -12 201 s 70 83 194 57 s 160.29 -36.77 274 6 c 109 41 184.82 24.36 265 -15 c 55 -27 116.5 -57.69 214 4 c 49 31 95 26 95 26 l -6 151 l -1036 10 z"></path>
+            </svg>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center" style="padding-bottom: 60px">
+                    <slick class="slider single-item" current-index="index" slides-to-show="1" slides-to-scroll="1" init-onload=true data="introTextArray" infinite="true" autoplay="true" autoplay-speed="10000" arrows="false">
+                        <div ng-repeat="i in introTextArray track by $index">
+                            <h1 class="mbr-section-title display-1 text-capitalize text-black" ng-bind="i"></h1>
+                        </div>
+                    </slick>
+                    <p class="mbr-section-lead lead text-black" style="margin-top: 1em;">
+                        Change brand - Change Lives. <img width="20" src="assets/img/logo-ico.svg"/>
+                    </p>
+                    <div class="mbr-section-btn">
+                        <a ng-if="!account.token" class="btn btn-lg btn-primary" href="" ng-click="auth.getLogin()">SIGN IN TO GET STARTED</a>
+                        <a ng-if="account.token" class="btn btn-lg btn-info" href="" ng-click="createProject()">
+                            <strong>CREATE A PROJECT</strong>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-xs-12" style="margin-bottom: 120px">
+                    <!-- Carousel -->
+                    <slick init-onload=true data="categories" infinite="true" slides-to-scroll="3" responsive="breakpoints" mobileFirst="true">
+                        <div ng-repeat="c in categories" ng-if="!c.disabled">
+                            <a class="text-xs-center text-white carousel-link" href="projects?category=[[c.id]]">
+                                <div class="carousel-ico">
+                                    <img src="assets/img/icons/grey/[[ c.name ]]_ico.png"/>
+                                </div>
+                                <div class="text-black">
+                                    <h6><strong>[[ c.name ]]</strong></h6>
+                                </div>
+                            </a>
+                        </div>
+                    </slick>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-2" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <h3 class="content-heading">
+                    Projects
+                    <a class="pull-right btn btn-white btn-white-outline" href="/projects">
+                        View more
+                    </a>
+                </h3>
+                <!-- Random Projects -->
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 project-card" ng-repeat="p in projects">
+                    <div class="col-xs-12 cd-no-padding cd-shadow card-holder">
+                        <div class="card">
+                            <div class="project-link" style="background-image: url([[ p.logo ? p.logo : '/assets/img/missing-project.png' ]])">
+                                <div class="card-img-overlay text-white">
+                                    <div class="col-xs-12 small-details">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 clearfix card-footer text-muted project-footer">
+                                <div class="col-xs-12 cd-no-padding">
+                                    <h4 class="card-title text-black">[[ p.title | limitTo:32]]<span ng-if="p.title.length > 32">...</span></h4>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    by [[ p._owner.name ]]
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    Funds raised: <span ng-bind="p.fund.totalIncome ? p.fund.totalIncome : '0.00' | currency:'£'"></span>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    <span data-toggle="tooltip" data-placement="top" title="[[ p.backersCount ]] Supporters">
+                                        <i class="fa fa-users"></i> [[ p.backersCount ]] supporters
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    <i class="fa fa-calendar"></i> <span ng-bind="p.createdDate | date:'longDate' : timezone:'GMT'"></span>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding text-xs-center">
+                                    <strong>Share this project</strong>
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                                <button class="btn btn-social twitter" socialshare
+                                                        socialshare-provider="twitter"
+                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                        socialshare-hashtags="Shelping.COM" socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]"
+                                                        socialshare-media="[[ p.logo ]]">
+                                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                                <button class="btn btn-social facebook" socialshare
+                                                        socialshare-provider="facebook" socialshare-text="Share on facebook"
+                                                        socialshare-type="share" socialshare-via="274676456259523"
+                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                                <button class="btn btn-social plusone" socialshare
+                                                        socialshare-provider="google"
+                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                                <button class="btn btn-social plusone" socialshare
+                                                        socialshare-provider="linkedin"
+                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on others">
+                                                <button class="btn btn-social plusone" ng-click="ShareModel()">
+                                                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                                <button class="btn btn-social plusone" socialshare
+                                                        socialshare-provider="email"
+                                                        socialshare-subject="Support my project on Shelping.COM."
+                                                        socialshare-body="I have added a new project, [[ p.title ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <a class="btn btn-white-outline btn-block" href="projects/[[ p.id ]]">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section mbr-parallax-background text-xs-center text-white" id="content5-6" style="background-image: url('assets/img/hero/cloud-hero-3.jpg'); padding-top: 120px; padding-bottom: 120px; position: relative; background-attachment: scroll; background-size: cover;">
+
+    <!--<div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 0, 0);"></div>-->
+
+    <div class="container" ng-bind-html="para1">
+        <h3 class="mbr-section-title display-2">Content</h3>
+        <div class="lead text-black">
+            <p class="">Content</p>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section article mbr-section__container" id="content1-7" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <p ng-bind-html="para2"></p><br/>
+                <p ng-bind-html="para3"></p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!--
+<section class="mbr-section mbr-section-md-padding text-black" id="social-buttons3-8" style="background-color: #eee; padding-top: 90px; padding-bottom: 90px;">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">SHARE THIS PAGE!</h3>
+                <div>
+
+                    <div class="mbr-social-likes social-likes social-likes_visible" data-counters="false">
+                        <span class="btn btn-social facebook" title="Share link on Facebook" socialshare socialshare-provider="facebook" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ sharableUrl ]]">
+                            <i class="fab fa-facebook-f"></i>
+                        </span>
+                        <span class="btn btn-social twitter" title="Share link on Twitter" socialshare socialshare-provider="twitter" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-hashtags="Shelping.COM" socialshare-url="[[ sharableUrl ]]" socialshare-media="assets/img/logo-ico.png">
+                            <i class="fab fa-twitter"></i>
+                        </span>
+                        <span class="btn btn-social plusone" title="Share link on Google+" socialshare socialshare-provider="google" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
+                            <i class="fab fa-google-plus-g"></i>
+                        </span>
+                        <span class="btn btn-social plusone" title="Share link on Linkedin" socialshare socialshare-provider="linkedin" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
+                            <i class="fab fa-linkedin-in"></i>
+                        </span>
+                        <span class="btn btn-social plusone" title="Share on others" ng-click="ShareModel()">
+                            <i class="fa fa-share-alt"></i>
+                        </span>
+                        <span class="btn btn-social plusone" title="Share link via Email" socialshare socialshare-provider="email" socialshare-subject="Shelping.COM" socialshare-body="Sky rocket your project on Shelping.COM. [[ sharableUrl ]]">
+                            <i class="fa fa-envelope"></i>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->

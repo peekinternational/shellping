@@ -1,0 +1,8 @@
+<div class="col-xs-12">
+    <!-- Carousel -->
+    <slick init-onload=true data="screenHelp" infinite="false" slides-to-scroll="1" responsive="breakpoints" arrows="false" mobileFirst="true" dots=true>
+        <div ng-repeat="s in screenHelp.slides" ng-if="!c.disabled">
+            <div class="" ng-bind-html="s"></div>
+        </div>
+    </slick>
+</div>

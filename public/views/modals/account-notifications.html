@@ -1,0 +1,23 @@
+<section class="notification-container">
+    <div class="col-xs-12 cd-no-padding">
+        <ul class="list-unstyled" ng-scrollbars ng-scrollbars-config="scrollerSettings">
+            <li class="notification" ng-repeat="n in account.notifications" ng-class="n.unread == true ? 'unread' : ''" ng-if="!n.deleted">
+                <div><h6><strong ng-bind-html="n.payload.data.notificationTitle"></strong></h6></div>
+                <div><p ng-bind-html="n.payload.data.notificationText"></p></div>
+                <!-- Options -->
+                <div class="options">
+                    <div class="pull-left"><p><span ng-bind="n.created | date:'longDate' : timezone:'GMT'"></span></p></div>
+                    <ul class="list-unstyled list-inline text-xs-right">
+                        <li ng-if="canView(n)" class="list-inline-item" ng-click="viewNotification(n)">
+                            <i class="fa fa-eye"></i> View
+                        </li>
+                        <li class="list-inline-item" ng-click="deleteNotification(n.id)">
+                            <i class="fa fa-trash"></i> Delete
+                        </li>
+                    </ul>
+                </div>
+                <!-- End -->
+            </li>
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,6 @@
+<div ng-repeat="c in c.children" ng-if="!c.disabled" ng-class="c.children ? 'dropdown' : ''" >
+    <a ng-class="c.children.length > 0 ? 'dropdown-item dropdown-toggle' : 'dropdown-item'" ng-href="[[ c.children.length > 0 ? '' : 'shops?category=' + c.id ]]" data-toggle="dropdown-submenu" aria-expanded="false">[[ c.name ]]</a>
+    <div class="dropdown-menu dropdown-submenu">
+        <ng-include src="'views/partials/mob-shop-sub-cats.html'"></ng-include>
+    </div>
+</div>

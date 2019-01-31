@@ -1,0 +1,18 @@
+<!-- Feedback View -->
+<div class="col-xs-12">
+    <p>Information here, can link this to info from admin area.</p>
+
+    <form name="cartForm" novalidate ng-submit="postFeedback()">
+        <!-- Email Address -->
+        <div class="form-group" ng-class="cartForm.email.$valid && !cartForm.email.$error.required ? 'has-success' : 'has-danger'">
+            <input class="form-control" name="email" id="email" type="email" ng-model="cartForm.email" placeholder="Email" required ng-class="cartForm.email.$valid && !cartForm.email.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="cartForm.email.$invalid || cartForm.email.$error.required">
+                Please enter a valid email address.
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-info" type="submit">Submit & Continue</button>
+            <button class="btn btn-info" type="button" ng-click="cancel()">Skip & Continue</button>
+        </div>
+    </form>
+</div>

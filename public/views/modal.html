@@ -1,0 +1,23 @@
+<div class="modal-content bg-dark text-light clearfix">
+    <div class="cd-modal-loader" ng-if="modal.loader">
+        <div class="spinner">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div ng-if="title" class="modal-header">
+        <button ng-if="!hideClose" type="button" class="close" aria-label="Close" ng-click="cancel()">
+            <i class="fa fa-times"></i>
+        </button>
+        <h3 class="modal-title">[[ title ]]</h3>
+    </div>
+
+    <div class="modal-body">
+        <div ng-if="!title" class="col-xs-12 cd-no-padding">
+            <button ng-if="!hideClose" type="button" class="close" aria-label="Close" ng-click="cancel()">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <ng-include src="templateView"></ng-include>
+    </div>
+</div>

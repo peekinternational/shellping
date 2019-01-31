@@ -1,0 +1,36 @@
+<div class="col-xs-12 lead">
+    <div class="col-xs-12">
+        <ul class="list-group">
+            <a href="" class="list-group-item clearfix" ng-click="ok('profile', account.id)">
+                <div class="col-xs-2">
+                    <div class="cd-avatar pull-left">
+                        <img data-holder-rendered="true" check-image src="[[ account.photo ? account.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ account.name ]]">
+                    </div>
+                </div>
+                <div class="col-xs-9">
+                    <div>
+                        <strong>[[account.name]]</strong>
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <i class="fa fa-plus pull-right fa-2x cd-arrow-ico"></i>
+                </div>
+            </a>
+        </ul>
+    </div>
+    <div class="col-xs-12 text-xs-center">OR</div>
+    <div class="col-xs-12 project-card" ng-repeat="p in projects" ng-if="p.status == 'APPROVED'">
+        <a href="" ng-click="ok('project', p.id)">
+            <div class="card">
+                <div class="project-link">
+                    <img class="card-img img-fluid" data-holder-rendered="true" check-image src="[[ p.logo ]]" alt="[[ p.title ]]">
+                    <div class="card-img-overlay text-white">
+                        <div class="col-xs-8">
+                            <h4 class="card-title">[[ p.title ]]</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

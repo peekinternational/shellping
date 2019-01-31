@@ -1,0 +1,27 @@
+<!-- Withdraw -->
+<section class="col-xs-12 cd-no-padding"> <!-- todo account id compare -->
+    <div class="text-xs-center">
+        <h3 class="text-primary">
+            <span ng-bind="data.funds.directCredit | currency:'£'"></span> Available
+        </h3>
+    </div>
+    <form name="withdrawForm" novalidate ng-submit="withdrawRequest()" ng-if="data.funds.directCredit > 0">
+        <div class="form-group">
+            <label for="amount">Withdrawal amount</label>
+            <div class="input-group">
+                <span class="input-group-addon">£</span>
+                <input name="amount" id="amount" ng-model="withdraw.amount" type="number" class="form-control" aria-label="amount" min="0.01" max="[[ data.funds.directCredit ]]" required>
+                <span class="input-group-addon">GBP</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="comment">Optional comment</label>
+            <textarea id="comment" name="comment" class="form-control" rows="5" placeholder="Your comment..." ng-model="withdraw.comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info btn-block" ng-disabled="withdrawForm.$invalid || withdrawForm.$error.required">Request withdrawal</button>
+    </form>
+
+    <div class="text-xs-center" ng-if="data.funds.directCredit <= 0">
+    No Funds Available!
+    </div>
+</section>

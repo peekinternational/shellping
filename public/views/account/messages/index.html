@@ -1,0 +1,40 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <!-- List -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead cd-no-padding">
+                <div class="card cd-shadow inbox">
+                    <div class="card-block clearfix">
+
+                        <!-- Messages List -->
+                        <div class="col-xs-12 col-sm-12 col-md-12 messages">
+                            <div class="">
+                                <h4 class="content-heading">
+                                    Inbox
+                                </h4>
+                            </div>
+                            <ul class="list-unstyled" ng-if="messages.length > 0" ng-scrollbars ng-scrollbars-config="scrollerSettings">
+                                <li ng-class="message.unread ? 'current' : ''" ng-repeat="message in messages" ng-click="viewContent('message', message.id)">
+                                    <a href="/account/[[ account.id ]]/messages/[[ message.id ]]">
+                                        <div class="cd-avatar cd-avatar-sm pull-left">
+                                            <img data-holder-rendered="true" src="[[ message._participant.photo ? message._participant.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ message._participant.name ]]">
+                                        </div>
+                                        <div>
+                                            <strong ng-bind="message._participant.name"></strong>
+                                            <small class="pull-right" ng-bind="message.lastMessageSubmitted | date:'d MMM y'"></small>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- No Messages -->
+                            <div class="text-xs-center" ng-if="messages.length == 0">
+                                No Messages
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

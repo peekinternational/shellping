@@ -1,0 +1,14 @@
+<!-- Delete Project View -->
+<div class="col-xs-12">
+    <div class="col-xs-12 cd-no-padding">
+        <p>Please enter your reason for deleting this project. This will be shown to its backers.</p>
+    </div>
+    <form name="delForm" novalidate ng-submit="confirm()">
+        <div class="form-group" ng-class="delForm.reason.$valid && !delForm.reason.$error.required ? 'has-success' : 'has-danger'">
+            <textarea class="form-control" name="reason" id="reason" ng-model="msg.reason" rows="3" placeholder="Leave message for backers" required ng-class="delForm.reason.$valid && !delForm.reason.$error.required ? 'form-control-success' : 'form-control-danger'"></textarea>
+        </div>
+        <div>
+            <button class="btn btn-danger btn-block" type="submit" ng-disabled="delForm.$invalid || delForm.$error.required">Submit</button>
+        </div>
+    </form>
+</div>

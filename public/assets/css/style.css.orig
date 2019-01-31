@@ -1,0 +1,416 @@
+/**
+Global
+ */
+.cd-loading {
+    background: #ffffff;
+    color: #1a1a1a;
+    position: fixed;
+    text-align: center;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: 999;
+}
+
+.cd-loading .centered {
+    position: fixed;
+    z-index: 9;
+    height: 8em;
+    width: 20em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.cd-loading .centered .spinner {
+
+}
+
+.cd-loading .centered .text {
+
+}
+
+.cd-after-nav {
+    margin-top: 95px;
+}
+
+.cd-filter-container {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    background: #eee;
+    padding: 20px;
+}
+
+.cd-no-padding {
+    padding: 0!important;
+}
+
+.cd-line-devider {
+    line-height: 0.5;
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px 0;
+    color: #818a91;
+}
+.cd-line-devider span {
+    display: inline-block;
+    position: relative;
+}
+.cd-line-devider span:before,
+.cd-line-devider span:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    border-bottom: 1px solid #818a91;
+    border-top: 1px solid #818a91;
+    top: 0;
+    width: 65%;
+}
+.cd-line-devider span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+.cd-line-devider span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.cd-modal-loader {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(238, 238, 238, 0.80);
+    z-index: 999;
+}
+
+.cd-modal-loader .spinner {
+    position: absolute;
+    left: 45%;
+    top: 300px;
+}
+
+.btn-facebook {
+    background-color: #1da1f2!important;
+    color: #fff!important;
+}
+
+.btn-twitter {
+    background-color: #3b5998!important;
+    color: #fff!important;
+}
+
+.btn-google {
+    background-color: #dd4b39!important;
+    color: #fff!important;
+}
+
+.btn-linkedin {
+    background-color: #0077b5!important;
+    color: #fff!important;
+}
+
+.cd-avatar {
+    position: relative;
+    overflow: hidden;
+    border-radius: 150px;
+    height: 80px;
+    width: 80px;
+}
+
+.cd-avatar img {
+    width: 150%;
+    position: absolute;
+    left: -25%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.cd-avatar-sm {
+    width: 25px!important;
+    height: 25px!important;
+}
+
+.cd-avatar-md {
+    width: 50px!important;
+    height: 50px!important;
+}
+
+.cd-avatar-lg {
+    width: 85px!important;
+    height: 85px!important;
+}
+
+.cd-avatar-xl {
+    width: 300px!important;
+    height: 300px!important;
+}
+
+.badge {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #8800DE;
+    color: #fff;
+}
+
+.notification-count {
+    padding: 5px;
+    border-radius: 100%;
+    background-color: #8800DE;
+    color: #fff;
+}
+
+/* Notifications */
+.growl {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    z-index: 999999;
+    min-width: 430px;
+    max-width: 430px;
+}
+
+.alert {
+    transition: all .2s ease 0s;
+}
+
+/**
+Navigation
+ */
+.nav-dropdown .nav-item:hover, .nav-dropdown .nav-item:active {
+    background-color: #8800DE !important;
+}
+
+.nav-dropdown .nav-btn:hover, .nav-dropdown .nav-btn:active {
+    background-color: transparent!important;
+}
+
+.nav-dropdown .link {
+    margin: 0!important;
+    padding: 1.667em!important;
+    padding-right: 40px!important;
+}
+
+.nav-dropdown .sm-link {
+    margin: 0!important;
+    padding: 1.667em!important;
+}
+
+.nav-dropdown .single-link {
+    margin: 0!important;
+    padding: 1.667em!important;
+}
+
+#menu-0 .link[aria-expanded="true"]{
+    background-color: #8800DE !important;
+}
+
+/**
+Home Page
+ */
+#header1-1 .bottom-bar-responsive {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1d2425;
+    color: #fff;
+    z-index: 12;
+    padding: 13px 0 5px 0;
+}
+
+/**
+Project Index
+ */
+
+.project-card {
+    margin-bottom: 25px;
+}
+
+.project-link {
+    display: block;
+    position: relative;
+    min-height: 250px;
+    max-height: 250px;
+    overflow: hidden;
+}
+
+
+.project-link img {
+    min-width: 200%!important;
+    position: relative;
+    right: 50%;
+    bottom: 50%;
+}
+
+.project-link .card-img-overlay {
+    background-color: rgba(51,51,51,0.7);
+    transition: all 0.45s ease;
+}
+
+.project-link:hover .card-img-overlay {
+    background-color: rgba(51,51,51,0)
+}
+
+.project-link .project-footer {
+    padding: 10px 5px;
+}
+
+/**
+Project View
+ */
+
+.cover-holder {
+
+}
+
+.cover-holder .cover-img {
+
+}
+.cd-project-title {
+    margin-top: 25px;
+}
+
+.cd-project-title small {
+    font-size: 20px;
+}
+
+.cd-project-title .cd-tags {
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.cd-project-title .cd-rating {
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.cd-project-heading-user {
+    display: flex;
+    align-items: flex-start;
+}
+
+.cd-project-heading-user img .nav-account.account-photo {
+    width: 45px!important;
+    height: 45px!important;
+}
+
+.cd-project-heading-user .user-info {
+    margin-left: 10px;
+    margin-right: 5px;
+    white-space: normal;
+}
+
+.cd-project-heading-fund {
+    margin-top: 25px;
+}
+
+.cd-project-heading-share, .cd-project-body {
+    margin-top: 15px;
+}
+
+/**
+User list view
+ */
+.cd-arrow-ico {
+    padding-top: 20px;
+}
+
+/**
+Profile View
+ */
+.cd-profile-header {
+    display: block;
+    position: relative;
+    height: 445px;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.cd-profile-header .profile-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 150px;
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.cd-profile-header .profile-image img {
+    width: 150%;
+    position: absolute;
+    left: -25%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.cd-profile-header .cover-container {
+    width: 100%;
+    height: 100%;
+}
+
+.cd-profile-header .cover-container .cover-img {
+    min-height: 100%;
+    min-width: 100%;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: 8;
+}
+
+.cd-profile-header .cover-container .cover-color {
+    background: rgba(226, 80, 65, 0.6);
+}
+
+.cd-profile-header .cover-content {
+    position: absolute;
+    top: 85px;
+    left:0;
+    right: 0;
+    bottom: 0;
+    z-index: 9;
+}
+
+.content-heading {
+    margin-top: 25px;
+    border-bottom: 1px solid #000000;
+    padding: 10px 0;
+}
+
+<<<<<<< HEAD
+.cd-funds-manager {
+    margin-top: 5px;
+    border-bottom: 0.5px solid #000000;
+    padding: 10px 0;
+}
+=======
+.project-donate-image{
+    height: 150px;
+    background-size: cover;
+    padding-top: 50px;
+    background-color: #333;
+}
+.project-donate-image h3 {
+    text-align: center;
+    color: #fff;
+
+}
+
+>>>>>>> feature/stripe_payment_gateway
+
+/**
+Media Views
+ */
+
+/** Mid */
+@media screen and (min-width: 768px) {
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+}

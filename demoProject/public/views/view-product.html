@@ -1,0 +1,95 @@
+<div ng-controller="dashController">
+	<!-- navbar starts from here -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Demo</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#!products">Products</a></li>
+					<li><a href="#!projects">Projects</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="javascript:void(0)" ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- navbar end-->
+	<div class="container  container-main" style="background: #fff;">
+		<div class="row thumbnail-row" id="featureItem" style="border-bottom: 1px solid lightgray;">
+			<div class="col-xs-12 col-sm-6 col-md-6 slider-section">
+				<div class="thumbnail">
+					<!-- main product image show here -->
+					<img src="images/no-project.png">
+					<div class="caption">
+						<div id="itemSlider" class="wow fadeInUp hidden-xs">
+							<div class="col-md-12">
+								<!-- other product images show in the slider -->
+								<div class="owl-carousel product-carousel">
+									<img src="images/no-project.png">
+								</div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 product-desc">
+				<!-- add to cart area  -->
+				<h3>Apple & Tea Tree Conditioner</h3>
+				
+				<div class="descrption">
+					<p>400 ml</p>
+					<span>SIZES:</span>
+					<input type="radio" name="" checked=""> <span style="color: #0368ff;">400 ml - <i class="fa fa-won"></i>. 1000 $</span><br>
+					<input type="radio" name=""> <span>600 ml - <i class="fa fa-won"></i> 1500 won</span>
+				</div>
+				<h4 class="text-center"><span style="font-size: 14px;">Price:</span> <i class="fa fa-usd"></i> 350 </h4>
+				<form method="post" class="product_form">
+					<div class="text-center">
+						<button type="button" class="btn btn-success btn-xs add-btn addToCartBtnDailyNeeds" style="width: 28%">ADD</button>
+					</div>
+					<div class="text-center" style="padding-top: 10px;">
+						<div class="number-input">
+							<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+							<input class="quantity" min="0" name="quantity" value="1" type="number">
+							<button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- description of the product -->
+			<div class="col-md-10 product-cate">
+				<h4>Description :</h4>
+				<ul style="padding-left: 0;">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var owl = $('.product-carousel');
+		owl.owlCarousel({
+	items:4,
+	loop:true,
+	margin:0,
+	autoplay:false,
+	autoplayTimeout:1000,
+	autoplayHoverPause:true
+		});
+	$('.play').on('click',function(){
+	owl.trigger('play.owl.autoplay',[1000])
+	})
+	$('.stop').on('click',function(){
+	owl.trigger('stop.owl.autoplay')
+})
+</script>

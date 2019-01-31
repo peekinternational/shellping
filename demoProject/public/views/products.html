@@ -1,0 +1,50 @@
+<div ng-controller="dashController">
+  <!-- nav bar starts  -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Demo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#!products">Products</a></li>
+          <li><a href="#!projects">Projects</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="javascript:void(0)" ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar ends -->
+  <div class="container container-main"> <!-- main container hold all products -->
+  <div class="row" style="margin: 0;">
+    <h1 class="color-white heading">My Products</h1>
+    <!-- products area start -->
+    <div class="col-md-3" ng-repeat="product in products">
+      <div class="thumbnail card">
+        <div>
+          <a href="#!view-product">
+            <img ng-if="!product.images[0]" src="images/no-project.png" class="img-responsive product-img" alt="" />
+            <img ng-if="product.images[0]" ng-src="{{product.images[0]}}" class="img-responsive product-img">
+          </a>
+        </div>
+        <div class="caption card-body">
+          <h4 class="group card-title product-title inner list-group-item-heading wrap">
+          {{product.name}}</h4>
+          <p class="group inner list-group-item-text wrap text-center product-price"> {{product.price | currency:'£'}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- end products area -->
+  </div>
+</div>
+
+</div>
+</div>

@@ -1,0 +1,325 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;" ng-show="project.title.length > 0">
+    <!-- Profile Header -->
+    <div class="container-fluid cd-no-padding" style="overflow: hidden;">
+        <div class="row">
+            <div class="cd-profile-header">
+                <!-- Cover Img -->
+                <div class="cover-container">
+                    <div class="cover-img" style="background: url([[ project.logo ? project.logo : '/assets/img/missing-project.png' ]])">
+                        <!-- Mob -->
+                        <div class="hidden-md-up" style="position: relative;z-index:2;">
+                            <div class="cd-nav-avatar">
+                                <a class="text-primary" href="users/[[ project._owner.id ]]">
+                                    <div class="cd-avatar-lg" style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
+                                </a>
+                            </div>
+                            <h3 class="text-white cd-project-title text-sm-center text-xs-center">
+                                <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header content-->
+                <div class="container hidden-sm-down">
+                    <div class="cover-content text-xs-center">
+                        <h1 class="text-white cd-project-title" style="margin-left: 115px;">
+                            <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Navigation -->
+    <div class="cd-profile-nav cd-shadow" hl-sticky="" offset-top="113" media-query="min-width: 768px">
+        <div class="container">
+            <!-- User profile pic -->
+            <div class="col-xs-12 col-sm-12 col-md-9 cd-no-padding">
+                <div class="cd-nav-avatar hidden-sm-down pull-left">
+                    <a class="text-primary" href="users/[[ project._owner.id ]]">
+                        <div class="cd-avatar-lg" style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
+                    </a>
+                </div>
+                <h5 class="text-black cd-nav-title animated fadeInDown">
+                    <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                </h5>
+            </div>
+            <!-- Fund Project Button -->
+            <div class="col-xs-12 col-sm-12 col-md-3">
+                <button class="btn btn-primary btn-block" ng-click="auth.payment(project.id)">Donate Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View -->
+    <div class="container" id="projectContent">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <!-- Left Content -->
+                <div class="col-xs-12 col-sm-12 col-md-3 cd-project-body cd-no-padding">
+                    <!-- Fund Info -->
+                    <div class="card cd-shadow" hl-sticky="" offset-top="15" media-query="min-width: 768px" container="projectContent">
+                        <div class="card-block clearfix">
+                            <!-- Backers -->
+                            <h4 class="card-title">
+                                <span ng-bind="project.backersCount"></span><br/>
+                                <small>Backers</small>
+                            </h4>
+                            <!-- Funds -->
+                            <h4 class="card-title">
+                                <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span><br/>
+                                <small>Funds Raised</small>
+                            </h4>
+
+                            <!-- Categories -->
+                            <div class="hidden-sm-down cd-project-categories" ng-if="project._categories.length > 0">
+                                <h4 class="content-heading">Categories</h4>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item" ng-repeat="cat in project._categories">
+                                        <span class="badge badge-primary" ng-bind="cat.name"></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="hidden-sm-down cd-tags" ng-if="project.tags.length > 0">
+                                <h4 class="content-heading">Tags</h4>
+                                <ul class="list-unstyled list-inline text-muted">
+                                    <li class="list-inline-item" ng-repeat="tag in project.tags" ng-bind="'#'+tag+','"></li>
+                                </ul>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="cd-rating">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <strong>
+                                        <small class="text-warning">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <span ng-if="project.rating.rating" ng-bind="project.rating.rating"></span>
+                                            <span ng-if="!project.rating.rating">0</span>
+                                        </small>
+                                    </strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <span ng-if="project.web.length">
+                                        <a href="[[ project.web ]]" target="_blank">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <span ng-if="project.fb.length">
+                                        <a href="[[ project.fb ]]" target="_blank">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Content -->
+                <div class="col-xs-12 col-sm-12 col-md-6 cd-project-body cd-mob-no-padding">
+                    <!-- Main Content -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <div ng-show="project.youtube">
+                                <youtube-video video-id="project.youtube" player-width="'100%'"></youtube-video>
+                            </div>
+
+                            <div>
+                                <article ng-bind-html="project.desc ? project.desc : 'No Description'"></article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backers -->
+                    <div class="card cd-shadow" ng-if="project._backers.length > 0">
+                        <div class="card-block clearfix cd-backers">
+                            <h4 class="content-heading">
+                                Backers
+                                <button class="btn btn-link pull-xs-right" ng-click="backersSortOrder()" ng-bind="backersSortDate == true ? 'Sort by Name' : 'Sort by Date'"></button>
+                            </h4>
+                            <div class="col-xs-12 cd-no-padding cd-backer" ng-repeat="b in project._backers | orderBy:backersSortBy:backersSortDesc">
+                                <div class="col-xs-2">
+                                    <div class="cd-avatar cd-avatar-md">
+                                        <img ng-src="[[ b.photo ? b.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ b.name ]]">
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h5 ng-bind="b.name"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews -->
+                    <div class="card cd-shadow" ng-if="isBacking || reviews.length > 0">
+                        <div class="card-block clearfix">
+                            <div class="cd-reviews">
+                                <h4 class="content-heading">Reviews</h4>
+                                <div class="col-xs-12 cd-no-padding cd-review-form" ng-if="isBacking && !hasReview">
+                                    <form name="reviewForm" id="review-form" ng-submit="postReview()">
+                                        <div class="form-group">
+                                            <textarea class="form-control" id="review-text" name="review-text" ng-model="revForm.comment" placeholder="Write a review..." rows="5"></textarea>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-info pull-right" ng-disabled="!revForm.comment">Submit</button>
+                                            <!-- Star Rating -->
+                                            <ul class="list-unstyled list-inline pull-xs-right cd-review-starts">
+                                                <li class="list-inline-item" ng-click="reviewForm.vote = 0; starHover = 0;" ng-if="revForm.vote > 0">
+                                                    <i class="text-danger fa fa-minus"></i>
+                                                </li>
+                                                <li class="list-inline-item" ng-mouseenter="starHover = 1" ng-mouseleave="revForm.vote == 0 ? starHover = 0 : starHover = revForm.vote" ng-click="revForm.vote = 1">
+                                                    <i class="fa" ng-class="starHover > 0 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                </li>
+                                                <li class="list-inline-item" ng-mouseenter="starHover = 2" ng-mouseleave="revForm.vote == 0 ? starHover = 0 : starHover = revForm.vote" ng-click="revForm.vote = 2">
+                                                    <i class="fa" ng-class="starHover > 1 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                </li>
+                                                <li class="list-inline-item" ng-mouseenter="starHover = 3" ng-mouseleave="revForm.vote == 0 ? starHover = 0 : starHover = revForm.vote" ng-click="revForm.vote = 3">
+                                                    <i class="fa" ng-class="starHover > 2 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                </li>
+                                                <li class="list-inline-item" ng-mouseenter="starHover = 4" ng-mouseleave="revForm.vote == 0 ? starHover = 0 : starHover = reviewForm.vote" ng-click="revForm.vote = 4">
+                                                    <i class="fa" ng-class="starHover > 3 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                </li>
+                                                <li class="list-inline-item" ng-mouseenter="starHover = 5" ng-mouseleave="revForm.vote == 0 ? starHover = 0 : starHover = revForm.vote" ng-click="revForm.vote = 5">
+                                                    <i class="fa" ng-class="starHover > 4 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding cd-review" ng-repeat="r in reviews" ng-if="r.comment">
+                                    <div class="col-xs-2">
+                                        <div class="cd-avatar cd-avatar-md">
+                                            <img ng-src="[[ r._user.photo ? r._user.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ r._user.name ]]">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <div class="media-body">
+                                            <h5 class="mt-0 mb-1">
+                                                <span ng-bind="r._user.name"></span>
+                                                <!-- Todo star rating here -->
+                                                <!-- Star Rating -->
+                                                <ul class="list-unstyled list-inline pull-xs-right cd-review-starts">
+                                                    <li class="list-inline-item">
+                                                        <i class="fa" ng-class="r.vote > 0 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa" ng-class="r.vote > 1 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa" ng-class="r.vote > 2 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa" ng-class="r.vote > 3 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <i class="fa" ng-class="r.vote > 4 ? 'fa-star text-warning' : 'fa-star-o'"></i>
+                                                    </li>
+                                                </ul>
+                                            </h5>
+                                            <p ng-bind="r.comment"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <div>
+                                <h4 class="content-heading">Contact Information</h4>
+                                <!-- Mini Map -->
+                                <div ng-if="project.location.latitude" map-lazy-load="[[googleMapsUrl]]">
+                                    <ng-map center="[[ project.location.latitude ]], [[ project.location.longitude ]]">
+                                        <marker position="[[ project.location.latitude ]], [[ project.location.longitude ]]" icon="assets/img/map/ic-place-2x.png"></marker>
+                                    </ng-map>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content -->
+                <div class="col-xs-12 col-sm-12 col-md-3 cd-project-body cd-no-padding">
+                    <!-- Back Project Button -->
+                    <div class="card cd-shadow" ng-show="account.id">
+                        <div class="card-block clearfix">
+                            <!-- Title -->
+                            <div class="cd-project-heading-share">
+                                <!-- Back it Btn -->
+                                <div class="col-xs-12 cd-no-padding">
+                                    <button class="btn btn-info btn-block" ng-click="backProject()" ng-bind="isBacking ? 'Unback this project' : 'Back this project'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Manage Project -->
+                    <div class="card cd-shadow" ng-if="account.id && isMine">
+                        <div class="card-block clearfix">
+                            <div class="col-xs-12 cd-no-padding">
+                                <div class="dropdown">
+                                    <button class="btn btn-warning btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Manage project
+                                    </button>
+                                    <div class="dropdown-menu col-xs-12 cd-no-padding" aria-labelledby="dropdownMenuButton" style="margin:0!important;">
+                                        <a class="dropdown-item" href="" ng-if="project.status == 'APPROVED' || project.status == 'PAUSED'" ng-click="pauseProject()">
+                                            <i class="fa" ng-class="project.status == 'PAUSED' ? 'fa-play' : 'fa-pause'"></i> <span ng-bind="project.status == 'PAUSED' ? 'Resume project' : 'Pause project'"></span>
+                                        </a>
+                                        <a class="dropdown-item" href="" ng-click="requestWithdraw()">
+                                            <i class="fa fa-gbp"></i> Request Funds
+                                        </a>
+                                        <a class="dropdown-item" href="" ng-click="editProject()">
+                                            <i class="fa fa-pencil"></i> Edit project
+                                        </a>
+                                        <a class="dropdown-item" href="" ng-click="deleteProject()">
+                                            <i class="fa fa-danger"></i> Delete project
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                <a href="#" class="btn btn-block btn-twitter" socialshare socialshare-provider="twitter" socialshare-text="Show your support for [[ project.title ]] on CompleteDoddle." socialshare-hashtags="CompleteDoddleUK" socialshare-url="[[ url ]]" socialshare-media="[[ project.logo ]]">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i> TWEET
+                                </a>
+                            </div>
+                            <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                <a href="#" class="btn btn-block btn-facebook" socialshare socialshare-provider="facebook" socialshare-text="Share on facebook" socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ url ]]">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i> SHARE
+                                </a>
+                            </div>
+                            <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                <a href="#" class="btn btn-block btn-google" socialshare socialshare-provider="google" socialshare-text="Show your support for [[ project.title ]] on CompleteDoddle." socialshare-url="[[ url ]]">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i> SHARE
+                                </a>
+                            </div>
+                            <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                <a href="#" class="btn btn-block btn-linkedin" socialshare socialshare-provider="linkedin" socialshare-text="Show your support for [[ project.title ]] on CompleteDoddle." socialshare-url="[[ url ]]">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i> SHARE
+                                </a>
+                            </div>
+                            <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                <a href="#" class="btn btn-block btn-primary text-white" socialshare socialshare-provider="email" socialshare-subject="Support my project on CompleteDoddle." socialshare-body="I have added a new project, [[ project.title ]] onto the unique crowdfunding site, CompleteDoddle. Please take a moment to visit my project page and please offer your support. Thank you. [[ url ]]">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i> EMAIL
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

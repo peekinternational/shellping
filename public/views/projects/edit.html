@@ -1,0 +1,50 @@
+<div class="col-xs-12">
+    <div class="cols-xs-12 project-donate-image cd-no-padding" style="background-image: url('[[ project.logo ? project.logo : '/assets/img/missing-project.png' ]]')">
+        <button class="btn btn-info" ng-click="selectFile()">Upload Cover Image</button>
+        <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;" />
+    </div>
+    <br/>
+    <form name="createProject" id="createProject" novalidate>
+        <div class="form-group" ng-class="createProject.title.$valid && !createProject.title.$error.required ? 'has-success' : 'has-danger'">
+            <label for="title">Project Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Project Title" ng-model="project.title" required ng-class="createProject.title.$valid && !createProject.title.$error.required ? 'form-control-success' : 'form-control-danger'">
+        </div>
+        <div class="form-group" ng-class="createProject.desc.$valid && !createProject.desc.$error.required ? 'has-success' : 'has-danger'">
+            <label for="desc">Description</label>
+            <textarea class="form-control" id="desc" name="desc" placeholder="Description" ng-model="project.desc" required rows="5" ng-class="createProject.desc.$valid && !createProject.desc.$error.required ? 'form-control-success' : 'form-control-danger'"></textarea >
+        </div>
+        <div class="form-group" ng-class="createProject.location.$valid && !createProject.location.$error.required ? 'has-success' : 'has-danger'">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="project.locationName" ng-click="getLocation()" readonly required ng-class="createProject.location.$valid && !createProject.location.$error.required ? 'form-control-success' : 'form-control-danger'">
+        </div>
+        <div class="form-group" ng-class="createProject.categories.$valid && !createProject.categories.$error.required ? 'has-success' : 'has-danger'">
+            <label for="categories">Categories</label>
+            <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" required >
+                <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
+                <ui-select-choices repeat="c in categories | filter: $select.search">
+                    <div ng-bind-html-unsafe="c.id | highlight: $select.search">[[ c.name ]]</div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group" ng-class="createProject.tags.$valid && !createProject.tags.$error.required ? 'has-success' : 'has-danger'">
+            <label for="tags">Tags</label>
+            <ui-select name="tags" id="tags" multiple tagging tagging-label="" ng-model="formData.tags" theme="bootstrap">
+                <ui-select-match placeholder="Add tags...">#[[ $item ]]</ui-select-match>
+                <ui-select-choices repeat="t in availableTags | filter: $select.search">
+                    [[ t ]]
+                </ui-select-choices>
+            </ui-select>
+        </div>
+        <div class="form-group" ng-class="createProject.web.$valid && !createProject.web.$error.required ? 'has-success' : 'has-danger'">
+            <label for="web">Web Address</label>
+            <input type="text" class="form-control" id="web" name="web" placeholder="website" ng-model="project.web">
+        </div>
+        <div class="form-group" ng-class="createProject.fb.$valid && !createProject.fb.$error.required ? 'has-success' : 'has-danger'">
+            <label for="fb">Facebook Link</label>
+            <input type="text" class="form-control" id="fb" name="fb" placeholder="Facebook link" ng-model="project.fb">
+        </div>
+        <div>
+            <button class="btn btn-success btn-block" ng-click="store()" ng-disabled="createProject.$invalid || createProject.$error.required">Submit Project</button>
+        </div>
+    </form>
+</div>

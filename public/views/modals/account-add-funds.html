@@ -1,0 +1,141 @@
+<!-- Card Donation -->
+<section class="col-xs-12 cd-no-padding">
+    <form name="paymentForm" novalidate ng-submit="charge()">
+
+        <!-- If logged in -->
+        <div class="col-xs-12 bg-info" style="padding-top: 20px; padding-bottom: 20px;" ng-if="account.token">
+            <img class="img-thumbnail cd-avatar-md" ng-src="[[ account.photo ? account.photo : '/assets/img/missing-avatar.png' ]]" /> Logged in as <i class="text-primary">[[ account.name ]]</i>
+            <div class="small text-muted pull-right">
+                <i>Not you? <a href="" ng-click="auth.logout()">Login to your account!</a></i>
+            </div>
+        </div>
+
+        <!-- Left Column -->
+        <div class="col-xs-12 col-sm-6" style="border-right: 1px solid #eee;">
+            <!-- If not logged in -->
+            <div ng-if="!account.token">
+                <div class="form-group" ng-class="paymentForm.name.$valid && !paymentForm.name.$error.required ? 'has-success' : 'has-danger'">
+                    <label for="name">Full Name</label>
+                    <input ng-model="payment.fullName" type="text" class="form-control" name="name" id="name" placeholder="Full Name" ng-minlength="3" ng-required="true" ng-class="paymentForm.name.$valid && !paymentForm.name.$error.required ? 'form-control-success' : 'form-control-danger'">
+                </div>
+                <div class="form-group" ng-class="paymentForm.email.$valid && !paymentForm.email.$error.required ? 'has-success' : 'has-danger'">
+                    <label for="email">Email</label>
+                    <input ng-model="payment.email" type="text" class="form-control" name="email" id="email" placeholder="email address" ng-required="true" ng-class="paymentForm.email.$valid && !paymentForm.email.$error.required ? 'form-control-success' : 'form-control-danger'">
+                </div>
+                <!--div class="form-group" ng-class="paymentForm.anonymous.$valid ? 'has-success' : 'has-danger'">
+                    <label for="anonymous">Anonymous Donation?</label>
+                    <input ng-model="payment.anonymous" type="checkbox" id="anonymous" name="anonymous" ng-class="paymentForm.anonymous.$valid ? 'form-control-success' : 'form-control-danger'">
+                </div-->
+            </div>
+            <p class="cd-line-devider">
+                <span>Credit or Debit</span>
+            </p>
+            <!-- Card Holders Name -->
+            <div class="form-group" ng-class="paymentForm.cardName.$valid && !paymentForm.cardName.$error.required ? 'has-success' : 'has-danger'">
+                <label class="col-xs-12 cd-no-padding" for="cardName">
+                    Card Holders Name  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the name as it appears on your card."></i>
+                </label>
+                <input type="text" class="form-control" id="cardName" name="cardName" placeholder="Name on card" ng-model="card.name" ng-minlength="3" ng-required="true" ng-class="paymentForm.cardName.$valid && !paymentForm.cardName.$error.required ? 'form-control-success' : 'form-control-danger'">
+                <div class="text-danger form-control-feedback" ng-if="paymentForm.cardName.$invalid || paymentForm.cardName.$error.required">
+                    Please enter a valid name.
+                </div>
+            </div>
+            <!-- Card Number -->
+            <div class="form-group" ng-class="paymentForm.number.$valid && !paymentForm.number.$error.required ? 'has-success' : 'has-danger'">
+                <label class="col-xs-12 cd-no-padding" for="number">
+                    Card Number <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the long 16 digit number as it appears on the front of your card."></i>
+                </label>
+                <input type="text" class="form-control" id="number" name="number" placeholder="Card Number" cc-number cc-format cc-eager-type cc-type="cardTypes" ng-model="card.number" required ng-minlength="16"  ng-class="paymentForm.number.$valid && !paymentForm.number.$error.required ? 'form-control-success' : 'form-control-danger'" max="16">
+                <ul class="list-unstyled list-inline col-xs-12 cd-no-padding" style="margin-top: 10px;">
+                    <li class="list-inline-item">
+                        <i class="fab fa-cc-visa fa-2x" ng-class="paymentForm.number.$ccEagerType == 'Visa' ? 'text-info' : 'text-muted'"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fab fa-cc-mastercard fa-2x" ng-class="paymentForm.number.$ccEagerType == 'MasterCard' ? 'text-info' : 'text-muted'"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fab fa-cc-amex fa-2x" ng-class="paymentForm.number.$ccEagerType == 'American Express' ? 'text-info' : 'text-muted'"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fab fa-cc-discover fa-2x" ng-class="paymentForm.number.$ccEagerType == 'Descover' ? 'text-info' : 'text-muted'"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fab fa-cc-jcb fa-2x" ng-class="paymentForm.number.$ccEagerType == 'JCB' ? 'text-info' : 'text-muted'"></i>
+                    </li>
+                </ul>
+                <div class="text-danger form-control-feedback" ng-if="paymentForm.number.$invalid || paymentForm.number.$error.required">
+                    Please enter a valid card number.
+                </div>
+            </div>
+            <!-- Card Expiration Date -->
+            <div class="form-group" ng-class="paymentForm.expMonth.$valid && !paymentForm.expMonth.$error.required && paymentForm.expYear.$valid && !paymentForm.expYear.$error.required ? 'has-success' : 'has-danger'">
+                <label class="col-xs-12 cd-no-padding">
+                    Expiration date <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the expiry date as it appears on your card."></i>
+                </label>
+                <div class="row" cc-exp>
+                    <div class="col-xs-6">
+                        <input placeholder="MM" type="text" class="form-control" cc-exp-month name="expMonth" ng-model="card.exp_month" required ng-class="paymentForm.expMonth.$valid && !paymentForm.expMonth.$error.required ? 'form-control-success' : 'form-control-danger'">
+                    </div>
+                    <div class="col-xs-6">
+                        <input placeholder="YY" type="text" class="form-control" cc-exp-year name="expYear" ng-model="card.exp_year" required ng-class="paymentForm.expYear.$valid && !paymentForm.expYear.$error.required ? 'form-control-success' : 'form-control-danger'">
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="text-danger form-control-feedback" ng-if="paymentForm.expMonth.$invalid || paymentForm.expYear.$invalid || paymentForm.expMonth.$error.required || paymentForm.expYear.$error.required">
+                            Please enter a valid expiration date.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CVC -->
+            <div class="form-group" ng-class="paymentForm.cvc.$valid && !paymentForm.cvc.$error.required && paymentForm.number.$valid && !paymentForm.number.$error.required ? 'has-success' : 'has-danger'">
+                <label class="col-xs-12 cd-no-padding" for="cvc">
+                    Security Code (CVC) <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the last 3 or 4 digits found on the signature strip on the reverse of your card."></i>
+                </label>
+                <input type="password" class="form-control" id="cvc" name="cvc" placeholder="3 digit code" cc-cvc cc-type="paymentForm.cvc.$ccType" ng-model="card.cvc" ng-class="paymentForm.cvc.$valid && !paymentForm.cvc.$error.required && paymentForm.number.$valid && !paymentForm.number.$error.required ? 'form-control-success' : 'form-control-danger'">
+                <div class="text-danger form-control-feedback" ng-if="paymentForm.cvc.$invalid || paymentForm.cvc.$error.required || paymentForm.number.$invalid || paymentForm.number.$error.required">
+                    Please enter a valid security code.
+                </div>
+            </div>
+            <!-- Postcode area -->
+            <div class="form-group" ng-class="paymentForm.postCode.$valid && !paymentForm.postCode.$error.required ? 'has-success' : 'has-danger'">
+                <label class="col-xs-12 cd-no-padding" for="postCode">
+                    Billing post code  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the billing address postal code."></i>
+                </label>
+                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Post Code" ng-model="card.address_zip" ng-pattern="/^[a-z]{1,2}[0-9][a-z0-9]?\s?[0-9][a-z]{2}$/i" required ng-minlength="5" ng-maxlength="8" ng-class="paymentForm.postCode.$valid && !paymentForm.postCode.$error.required ? 'form-control-success' : 'form-control-danger'">
+                <div class="text-danger form-control-feedback" ng-if="paymentForm.postCode.$invalid || paymentForm.postCode.$error.required">
+                    Please enter a valid UK postcode.
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-xs-12 col-sm-6">
+            <p class="cd-line-devider">
+                <span>Review & Pay</span>
+            </p>
+            <div>
+                <p class="text-muted">
+                    <i>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </i><!-- todo terms and conditions -->
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="amount">Funds to add</label>
+                <div class="input-group">
+                    <span class="input-group-addon">£</span>
+                    <input name="amount" id="amount" ng-model="payment.amount" type="number" class="form-control" aria-label="amount" min="1.00" required>
+                    <span class="input-group-addon">GBP</span>
+                </div>
+            </div>
+            <hr/>
+            <p class="card-text">
+                Total: <span class="pull-right" ng-bind="payment.amount | currency:'£'"></span>
+            </p>
+            <button type="submit" class="btn btn-info btn-block" ng-disabled="paymentForm.$invalid || paymentForm.$error.required">Submit Payment</button>
+        </div>
+    </form>
+</section>

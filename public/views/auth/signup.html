@@ -1,0 +1,97 @@
+<section class="col-xs-12" ng-if="!signedUp">
+    <form name="signupFrm" id="signupFrm" ng-submit="auth.signup(signupFrm)" novalidate>
+        <!-- Full Name -->
+        <div class="form-group" ng-class="signupFrm.fullName.$valid && !signupFrm.fullName.$error.required ? 'has-success' : 'has-danger'">
+            <label for="fullName">Full Name</label>
+            <input class="form-control" name="fullName" id="fullName" type="text" ng-model="signupForm.full_name" placeholder="Full name" min="3" required ng-class="signupFrm.fullName.$valid && !signupFrm.fullName.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.fullName.$invalid || signupFrm.fullName.$error.required">
+                Please enter your full name.
+            </div>
+        </div>
+        <!-- Gender -->
+        <div class="form-group" ng-class="signupFrm.gender.$valid && !signupFrm.gender.$error.required ? 'has-success' : 'has-danger'">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender" ng-model="signupForm.gender" ng-class="signupFrm.gender.$valid && !signupFrm.gender.$error.required && signupForm.gender != 'NONE' ? 'form-control-success' : 'form-control-danger'">
+                <option value="NONE" disabled selected>Choose an option</option>
+                <option value="MALE">Male</option>
+                <option value="FEMALE">Female</option>
+            </select>
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.gender.$invalid || signupFrm.gender.$error.required">
+                Please enter your gender.
+            </div>
+        </div>
+        <!-- Birthday -->
+        <div class="form-group" ng-class="signupFrm.birthday.$valid && !signupFrm.birthday.$error.required ? 'has-success' : 'has-danger'">
+            <label for="birthday">Date of Birth</label>
+            <input class="form-control" name="birthday" id="birthday" type="date" ng-model="signupForm.birthday" ng-change="ageCheck()" placeholder="Birthday" required ng-class="signupFrm.birthday.$valid && !signupFrm.birthday.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.birthday.$invalid || signupFrm.birthday.$error.required">
+                Please enter your birthday.
+            </div>
+        </div>
+        <!-- username -->
+        <div class="form-group" ng-class="signupFrm.username.$valid && !signupFrm.username.$error.required ? 'has-success' : 'has-danger'">
+            <label for="username">Username</label>
+            <input class="form-control" name="username" id="username" type="text" ng-model="signupForm.username" placeholder="Username..." min="3" required ng-class="signupFrm.username.$valid && !signupFrm.username.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.username.$invalid || signupFrm.username.$error.required">
+                Please enter a username.
+            </div>
+        </div>
+        <!-- Email Address -->
+        <div class="form-group" ng-class="signupFrm.email.$valid && !signupFrm.email.$error.required ? 'has-success' : 'has-danger'">
+            <label for="email">Email Address</label>
+            <input class="form-control" name="email" id="email" type="email" ng-model="signupForm.email" placeholder="Email" required ng-class="signupFrm.email.$valid && !signupFrm.email.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.email.$invalid || signupFrm.email.$error.required">
+                Please enter a valid email address.
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="form-group" ng-class="signupFrm.password.$valid && !signupFrm.password.$error.required ? 'has-success' : 'has-danger'">
+            <label for="password">Password</label>
+            <input class="form-control" name="password" id="password" type="password" ng-model="signupForm.password" placeholder="Password" required min="6" ng-class="signupFrm.password.$valid && !signupFrm.password.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.password.$invalid || signupFrm.password.$error.required">
+                Please enter a valid password.
+            </div>
+        </div>
+        <!-- Password Match -->
+        <div class="form-group" ng-class="!signupFrm.passwordMatch.$error.pwmatch && !signupFrm.passwordMatch.$error.required ? 'has-success' : 'has-danger'">
+            <label for="passwordMatch">Password Match</label>
+            <input class="form-control" name="passwordMatch" id="passwordMatch" type="password" ng-model="signupForm.password_match" placeholder="Repeat password" pw-check='password' required ng-class="!signupFrm.passwordMatch.$error.pwmatch && !signupFrm.passwordMatch.$error.required ? 'form-control-success' : 'form-control-danger'">
+            <div class="text-danger form-control-feedback" ng-if="signupFrm.passwordMatch.$error.pwmatch || signupForm.passwordMatch.$error.required">
+                Please enter a matching password.
+            </div>
+        </div>
+        <!-- Address -->
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" name="address" id="address" type="text" ng-model="signupForm.location.name" placeholder="Address" readonly ng-click="getLocation()">
+        </div>
+        <!-- Age agreement -->
+        <div class="form-check">
+            <label class="form-check-label">
+                <input disabled readonly name="ageAgreement" id="ageAgreement" ng-model="signupForm.ageAgreement" required type="checkbox" class="form-check-input" ng-class="signupFrm.ageAgreement.$valid && !signupFrm.ageAgreement.$error.required ? 'form-control-success' : 'form-control-danger'">
+                I confirm I am over 16 years old.<span ng-show="false">[[ calculateAge(signupForm.birthday) ]]</span>
+            </label>
+        </div>
+        <!-- Terms of service -->
+        <div class="form-check">
+            <label class="form-check-label">
+                <input name="tosAgreement" id="tosAgreement" ng-model="signupForm.tosAgreement" required type="checkbox" class="form-check-input" ng-class="signupFrm.tosAgreement.$valid && !signupFrm.tosAgreement.$error.required ? 'form-control-success' : 'form-control-danger'">
+                I confirm I have read and understood Shelping.COM's <a href="/terms-of-service">Terms of Service</a>
+            </label>
+        </div>
+        <!-- Todo T&C checkbox -->
+        <div>
+            <button type="submit" class="btn btn-primary btn-block">
+                Create Account
+            </button>
+        </div>
+
+        <div class="alert alert-info col-xs-12">
+            You must be at least 16 years old to create an account on Shelping.COM.
+        </div>
+    </form>
+</section>
+
+<section class="col-xs-12" ng-if="signedUp">
+    <p>Your account has been created and we have emailed <span ng-bind="$scope.auth.email"></span> with an activation link, please check your email to activate your new account and sign in.</p>
+</section>

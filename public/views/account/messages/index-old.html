@@ -1,0 +1,28 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <!-- List -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <ul class="list-group">
+                    <a ng-repeat="message in messages" href="account/[[account.id]]/messages/[[ message.id ]]" class="list-group-item clearfix text-black">
+                        <div class="col-xs-2">
+                            <div class="cd-avatar pull-left">
+                                <img data-holder-rendered="true" check-image src="[[ message._participant.photo ? message._participant.photo : '/assets/img/missing-avatar.png' ]]" alt="[[ message._participant.name ]]">
+                            </div>
+                        </div>
+                        <div class="col-xs-9">
+                            <div>
+                                <strong>[[message._participant.name]]</strong>
+                                <span class="pull-xs-right" ng-bind="message.created | date:'medium'"></span>
+                            </div>
+                            <div>[[ message._lastMessage.message ]]</div>
+                        </div>
+                        <div class="col-xs-1">
+                            <i class="fa fa-angle-right pull-right fa-2x cd-arrow-ico"></i>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

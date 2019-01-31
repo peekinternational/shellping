@@ -1,0 +1,57 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+
+    <!-- Filters -->
+    <ng-include src="'views/partials/filters-shops.html'"></ng-include>
+
+    <!-- Title -->
+    <div class="container" ng-if="shops.length > 0 && titleCats.length > 0">
+        <div class="col-xs-12">
+            <ul class="list-unstyled list-inline">
+                <li class="list-inline-item" ng-repeat="c in titleCats">
+                    <span class="badge badge-primary ng-binding" ng-bind="c"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- List -->
+    <div class="container" infinite-scroll="nextPage()" infinite-scroll-disabled='busy' infinite-scroll-distance="0">
+        <div class="row" ng-if="shops.length > 0">
+            <div class="col-xs-12 lead">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" ng-repeat="s in shops | filter: filters.name">
+                    <a class="col-xs-12 cd-no-padding" href="" ng-click="shopLink(s)">
+                        <div class="card cd-shadow">
+                            <div class="project-link">
+                                <img class="card-img img-fluid shop-img" data-holder-rendered="true" check-image src="[[ s.image ]]" alt="[[ s.name ]]">
+                                <div class="card-img-overlay text-white"></div>
+                            </div>
+                            <div class="clearfix card-footer project-footer text-xs-center">
+                                <h5 class="card-title text-black" ng-bind="s.name | limitTo:24"></h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div ng-show="busy" class="text-xs-center">
+                    <img class="fa-spin" src="assets/img/spinner.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Shops -->
+    <div ng-show="shops.length == 0 && !loading && !firstLoad" class="container">
+        <div class="row">
+            <div class="col-xs-12 text-xs-center">
+                <h4 class="text-muted">
+                    No shops found in<br/>
+                    <span class="text-info" ng-repeat="c in titleCats" ng-bind="$last ? (titleCats.length > 1 ? '& ' + c : c) : ($index == projects.length-1 ? c : c + ', ')"></span>
+                </h4>
+                <div>
+                    <img src="../../assets/img/help/shopping-2x.png" width="400px" style="margin: 40px auto">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,49 @@
+<div ng-controller="dashController" >
+  <!-- navbar start from here -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Demo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#!products">Products</a></li>
+          <li><a href="#!projects">Projects</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="javascript:void(0)" ng-click="logout()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar ends -->
+  <div class="container container-main">
+    <div class="row" style="margin: 0;">
+      <h1 class="color-white heading">My Projects</h1>
+      <!-- projects area start  -->
+      <div class="col-md-3" ng-repeat="project in projects">
+        <div class="thumbnail card">
+          <div class="img-event">
+            <img ng-if="project.logo == ''" src="images/no-project.png" class="img-responsive" alt="" />
+            <img ng-if="project.logo != ''" ng-src="{{project.logo}}" class="img-responsive">
+          </div>
+          <div class="caption card-body">
+            <h4 class="group card-title inner list-group-item-heading wrap">
+            {{project.title}}</h4>
+            <p class="group inner list-group-item-text wrap">
+            {{project.desc}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- end products area -->
+    </div>
+  </div>
+  
+</div>
+</div>

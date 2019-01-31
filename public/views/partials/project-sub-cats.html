@@ -1,0 +1,12 @@
+<!-- Back Link -->
+<div class="dropdown">
+    <a class="dropdown-item" ng-class="" ng-click="selectedProjectCat.lastParent != null ? setSubCats(selectedProjectCat.lastParent, selectedProjectCat.lastParent.children, null, 'projects') : resetSubCats('projects')" data-toggle="dropdown-submenu" aria-expanded="false">< Back</a>
+</div>
+<!-- View all in Parent -->
+<div class="dropdown">
+    <a class="dropdown-item" ng-class="" ng-click="resetNavDropdown()" ng-href="projects?category=[[ selectedProjectCat.parent.id ]]" data-toggle="dropdown-submenu" aria-expanded="false">View all in [[ selectedProjectCat.parent.name ]]</a>
+</div>
+<!-- Parent sub-categories -->
+<div ng-if="selectedProjectCat.categories.length > 0" class="dropdown" ng-repeat="c in selectedProjectCat.categories">
+    <a class="dropdown-item" ng-class="c.children ? 'dropdown-toggle' : ''" ng-click="c.children ? setSubCats(c, c.children, selectedProjectCat.parent, 'projects') : resetSubCats('projects');" ng-href="[[ c.children ? '' : 'projects?category=' + c.id ]]" data-toggle="dropdown-submenu" aria-expanded="false">[[ c.name ]]</a>
+</div>

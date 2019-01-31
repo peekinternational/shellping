@@ -1,0 +1,300 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" ng-show="project.title.length > 0">
+    <!-- Profile Header -->
+    <div class="container-fluid cd-no-padding" style="overflow: hidden;">
+        <div class="row">
+            <div class="cd-profile-header">
+                <!-- Cover Img -->
+                <div class="cover-container">
+                    <div class="cover-img"
+                         style="background: url([[ project.logo ? project.logo : '/assets/img/missing-project.png' ]])">
+                        <!-- Overlay -->
+                        <div class="cover-overlay"></div>
+                        <!-- Center Cover -->
+                        <div class="container cover-center hidden-sm-down">
+                            <img src="[[ project.logo ? project.logo : '/assets/img/missing-project.png' ]]"/>
+                        </div>
+                        <!-- Mob -->
+                        <div class="hidden-md-up" style="position: relative;z-index:2;">
+                            <div class="cd-nav-avatar">
+                                <a class="text-primary" href="users/[[ project._owner.id ]]">
+                                    <div class="cd-avatar-lg"
+                                         style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
+                                </a>
+                            </div>
+                            <h3 class="text-white cd-project-title text-sm-center text-xs-center">
+                                <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header content-->
+                <div class="container hidden-sm-down">
+                    <div class="cover-content text-xs-center">
+                        <h1 class="text-white cd-project-title" style="margin-left: 115px;">
+                            <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Navigation -->
+    <div class="cd-profile-nav cd-shadow" hl-sticky="" offset-top="113" media-query="min-width: 768px">
+        <div class="container">
+            <!-- User profile pic -->
+            <div class="col-xs-12 col-sm-12 col-md-9 cd-no-padding">
+                <div class="cd-nav-avatar hidden-sm-down pull-left">
+                    <a class="text-primary" href="users/[[ project._owner.id ]]">
+                        <div class="cd-avatar-lg"
+                             style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
+                    </a>
+                </div>
+                <h5 class="text-black cd-nav-title animated fadeInDown">
+                    <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                </h5>
+            </div>
+            <!-- Back it Btn -->
+            <div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <button type="button" class="btn btn-info btn-block" ng-click="backProject()" ng-bind="isBacking ? 'Stop Supporting' : 'Support this project'"></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- View -->
+    <div class="container" id="projectContent">
+        <div class="row">
+            <div class="col-xs-12 lead">
+
+                <!-- Left Content -->
+                <aside style="padding-left: 0;" class="col-xs-12 col-sm-12 col-md-9 cd-project-body cd-mob-no-padding">
+                    <!-- Manage Content -->
+                    <div class="row" ng-if="account.id && isMine">
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="card cd-shadow">
+                                <div class="card-block clearfix text-xs-center">
+                                    <button class="btn btn-xs btn-link cd-no-padding text-black" type="button" ng-if="project.status == 'APPROVED' || project.status == 'PAUSED'" ng-click="pauseProject()">
+                                        <i class="fas fa-pause" ng-class="project.status == 'PAUSED' ? 'fa-play' : 'fa-pause'"></i>
+                                        <p ng-bind="project.status == 'PAUSED' ? 'Resume project' : 'Pause project'"></p>
+                                    </button>
+                                    <div class="text-black" ng-if="project.status != 'APPROVED' && project.status != 'PAUSED'">
+                                        <i class="fas fa-info-circle"></i>
+                                        <p class="text-uppercase">[[ project.status ]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="card cd-shadow">
+                                <div class="card-block clearfix text-xs-center">
+                                    <button class="btn btn-xs btn-link cd-no-padding text-black" type="button" ng-click="requestWithdraw()">
+                                        <i class="fa fa-money-bill-wave"></i>
+                                        <p>Request Funds</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <div class="card cd-shadow">
+                                <div class="card-block clearfix text-xs-center">
+                                    <a class="btn btn-xs btn-link cd-no-padding text-black" href="projects/[[ project.id ]]/edit">
+                                        <i class="far fa-edit"></i>
+                                        <p>Edit Project</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Content -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <!-- Share Story -->
+                            <h4 class="content-heading">Share this project</h4>
+                            <div class="row text-xs-center">
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                        <a href="#" class="btn btn-social twitter" socialshare
+                                           socialshare-provider="twitter"
+                                           socialshare-text="Show your support for [[ project.title ]] on Shelping.COM."
+                                           socialshare-hashtags="Shelping.COM" socialshare-url="[[ url ]]"
+                                           socialshare-media="[[ project.logo ]]">
+                                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                        <a href="#" class="btn btn-social facebook" socialshare
+                                           socialshare-provider="facebook" socialshare-text="Share on facebook"
+                                           socialshare-type="share" socialshare-via="274676456259523"
+                                           socialshare-url="[[ url ]]">
+                                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                        <a href="#" class="btn btn-social plusone" socialshare
+                                           socialshare-provider="google"
+                                           socialshare-text="Show your support for [[ project.title ]] on Shelping.COM."
+                                           socialshare-url="[[ url ]]">
+                                            <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                        <a href="#" class="btn btn-social plusone" socialshare
+                                           socialshare-provider="linkedin"
+                                           socialshare-text="Show your support for [[ project.title ]] on Shelping.COM."
+                                           socialshare-url="[[ url ]]">
+                                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share on others">
+                                        <a href="#" class="btn btn-social plusone" ng-click="ShareModel()">
+                                            <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2">
+                                    <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                        <a href="#" class="btn btn-social plusone" socialshare
+                                           socialshare-provider="email"
+                                           socialshare-subject="Support my project on Shelping.COM."
+                                           socialshare-body="I have added a new project, [[ project.title ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ url ]]">
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="content-heading">
+                                About this project...
+                            </h4>
+
+                            <div>
+                                <article ng-bind-html="project.desc ? project.desc : 'No Description'"></article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <!-- Tags -->
+                            <h4 class="content-heading">Project Tags</h4>
+                            <div class="cd-tags" ng-if="project.tags.length > 0">
+                                <ul class="list-unstyled list-inline text-muted">
+                                    <li class="list-inline-item" ng-repeat="tag in project.tags"
+                                        ng-bind="'#'+tag+','"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <div>
+                                <!-- Mini Map -->
+                                <div ng-if="project.location.latitude && !hideMap">
+                                    <ng-map center="[[ project.location.latitude ]], [[ project.location.longitude ]]">
+                                        <marker position="[[ project.location.latitude ]], [[ project.location.longitude ]]"
+                                                icon="assets/img/map/ic-place-2x.png"></marker>
+                                    </ng-map>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backers -->
+                    <div class="card cd-shadow" ng-if="project._backers.length > 0">
+                        <div class="card-block clearfix cd-backers">
+                            <h4 class="content-heading">
+                                Backers
+                                <button class="btn btn-link pull-xs-right" ng-click="backersSortOrder()"
+                                        ng-bind="backersSortDate == true ? 'Sort by Name' : 'Sort by Date'"></button>
+                            </h4>
+                            <div class="col-xs-12 cd-no-padding cd-backer"
+                                 ng-repeat="b in project._backers | orderBy:backersSortBy:backersSortDesc">
+                                <div class="col-xs-2">
+                                    <div class="cd-avatar cd-avatar-md">
+                                        <img ng-src="[[ b.photo ? b.photo : '/assets/img/missing-avatar.png' ]]"
+                                             alt="[[ b.name ]]">
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <h5 ng-bind="b.name"></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Right Content -->
+                <aside class="col-xs-12 col-sm-12 col-md-3 cd-project-body cd-no-padding">
+                    <div hl-sticky="" offset-top="15" media-query="min-width: 768px" container="projectContent">
+                        <!-- Report Project Button -->
+                        <div class="card cd-shadow" ng-show="account.id">
+                            <div class="card-block clearfix cd-no-padding">
+                                <button type="button" class="btn btn-block btn-link cd-no-padding text-black" ng-click="reportProject(project)">
+                                    <i class="fas fa-flag"></i>
+                                    <p>Report Project</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fund Info -->
+                        <div class="card cd-shadow">
+                            <div class="card-block clearfix">
+                                <!-- Backers -->
+                                <h4 class="card-title">
+                                    <span ng-bind="project.backersCount"></span><br/>
+                                    <small>Backers</small>
+                                </h4>
+                                <!-- Funds -->
+                                <h4 class="card-title">
+                                    <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span><br/>
+                                    <small>Funds Raised</small>
+                                </h4>
+
+                                <!-- Web Info -->
+                                <div class="cd-rating">
+                                    <div ng-if="project.web.length">
+                                        <a class="text-black" href="[[ project.web ]]" target="_blank">
+                                            <i class="fa fa-link"></i> Website
+                                        </a>
+                                    </div>
+                                    <div ng-if="project.fb.length">
+                                        <a class="text-black" href="[[ project.fb ]]" target="_blank">
+                                            <i class="fab fa-facebook"></i> Facebook
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Categories -->
+                                <div class="hidden-sm-down cd-project-categories"
+                                     ng-if="project._categories.length > 0">
+                                    <h4 class="content-heading">Categories</h4>
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="list-inline-item" ng-repeat="cat in project._categories">
+                                            <span class="badge badge-primary" ng-bind="cat.name"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+</section>

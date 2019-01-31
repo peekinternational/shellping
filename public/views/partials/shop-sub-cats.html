@@ -1,0 +1,8 @@
+<!-- View all in Parent -->
+<div class="dropdown">
+    <a class="dropdown-item" ng-class="" ng-click="desktopNavBg = false" ng-href="shops?category=[[ selectedShopCat.parent.id ]]" data-toggle="dropdown-submenu" aria-expanded="false">View all in [[ selectedShopCat.parent.name ]]</a>
+</div>
+<!-- Parent sub-categories -->
+<div ng-if="selectedShopCat.categories.length > 0" class="dropdown" ng-repeat="c in selectedShopCat.categories">
+    <a class="dropdown-item" ng-class="c.children ? 'dropdown-toggle' : ''" ng-click="c.children ? setSubCats(c, c.children, selectedShopCat.parent, 'shops') : $('.nav-dropdown').trigger('mouseleave');" ng-href="[[ c.children ? '' : 'shops?category=' + c.id ]]" data-toggle="dropdown-submenu" aria-expanded="false">[[ c.name ]]</a>
+</div>

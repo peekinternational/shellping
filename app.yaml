@@ -1,0 +1,32 @@
+runtime: php
+env: flex
+api_version: 1
+
+runtime_config:
+  document_root: public
+
+handlers:
+- url: /favicon\.ico
+  static_files: public/favicon.ico
+  upload: public/favicon\.ico
+
+- url: /.*
+  script: public/index.php
+
+env_variables:
+  APP_ENV: local
+  APP_DEBUG: true
+  APP_KEY: 5JJzTaBo_Ol#6#zeLhaD8kQ&TY#m7Q@L
+  APP_TIMEZONE: GMT
+  APP_LOCALE: en
+  APP_FALLBACK_LOCALE: en
+
+  DB_CONNECTION: mysql
+  DB_HOST: 127.0.0.1
+  DB_PORT: 3306
+  DB_DATABASE: doddle
+  DB_USERNAME: root
+
+  CACHE_DRIVER: memcached
+  QUEUE_DRIVER: sync
+  SESSION_DRIVER: file

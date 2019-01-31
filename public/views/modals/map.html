@@ -1,0 +1,19 @@
+<!-- Map View -->
+<div class="col-xs-12 clearfix">
+    <div class="col-xs-12 cd-no-padding" ng-bind="data.subtext"></div>
+    <div class="col-xs-12 cd-no-padding">
+        <div class="form-group">
+            <input class="form-control" name="address" placeholder="Enter location..." ng-model="newMap.location" ng-change="updateLocation()" ng-model-options='{ debounce: 1000 }'>
+            [[ newMap.fullAddress ]]
+        </div>
+    </div>
+    <div class="col-xs-12 cd-no-padding" map-lazy-load="[[googleMapsUrl]]">
+        <ng-map center="[[ newMap.lat ]], [[ newMap.lon ]]" zoom="[[ mapZoom ]]">
+            <marker position="[[ newMap.location ]]" icon="assets/img/map/ic-place-2x.png"></marker>
+        </ng-map>
+    </div>
+    <br/>
+    <div class="col-xs-12 cd-no-padding text-xs-right">
+        <button class="btn btn-block" ng-class="newMap.location ? 'btn-success' : 'btn-info'" ng-click="ok()" ng-disabled="!newMap.lan && !newMap.lon && !newMap.location">Submit</button>
+    </div>
+</div>

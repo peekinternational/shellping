@@ -1,0 +1,117 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <h2 class="content-heading">
+                Purchase History
+            </h2>
+            <!-- view select -->
+            <select class="form-control float-right" ng-model="currentView">
+                <option value="purchases">Purchases</option>
+                <option value="invoices">Invoices</option>
+            </select>
+            <hr/>
+            <section id="purchases" ng-if="currentView == 'purchases'">
+                <!-- Headers -->
+                <div class="col-xs-12 cd-no-padding">
+                    <div class="col-xs-4 col-sm-4 col-md-3">
+                        <strong>Order Date</strong>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9 cd-no-padding">
+                        <div class="col-xs-12 col-sm-12 col-md-6"><strong>Transaction Id</strong></div>
+                        <div class="col-xs-12 col-sm-12 col-md-3"><strong>State</strong></div>
+                        <div class="col-xs-12 col-sm-12 col-md-3"><strong>Order Total</strong></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 cd-no-padding">
+                    <div class="list-group col-xs-12 cd-no-padding">
+                        <div class="list-group-item col-xs-12 cd-no-padding" ng-repeat="p in purchases.data | orderBy:'-purchaseDate'">
+                            <div class="col-xs-4 col-sm-4 col-md-3">
+                                <strong ng-bind="p.purchaseDate | date:'medium'"></strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-9 cd-no-padding">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <strong ng-bind="p.chargeId"></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <strong ng-bind="p.state"></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <strong ng-bind="p.price | currency:'£'"></strong>
+                                </div>
+                            </div>
+                            <div class="list-group-item col-xs-12 cd-no-padding bg-muted" style="border-left: 0; border-right: 0" ng-repeat="i in p.items">
+                                <div class="col-xs-4 col-sm-4 col-md-3" ng-bind="i.item.name"></div>
+                                <div class="col-xs-8 col-sm-8 col-md-9 cd-no-padding">
+                                    <div class="col-xs-12 col-sm-12 col-md-9" ng-bind="'Quantity: ' + i.quantity"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-3" ng-bind="i.item.price | currency:'£'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="list-group-item" ng-repeat="p in purchases.data">
+                            <div><strong>Purchase Date:</strong> [[ p.purchaseDate ]]</div>
+                            <div><strong>Qty:</strong> [[ p.quantity ]]</div>
+                            <div><strong>Price</strong> £[[ p.price ]]</div>
+                            <div>
+                                <strong>Purchased Items:</strong>
+                                <ul>
+                                    <li ng-repeat="i in p.items">
+                                        <strong><i>Item</i></strong>: [[ i.item.name ]] - <strong><i>Qty</i></strong>: [[ i.quantity ]]
+                                    </li>
+                                </ul>
+                            </div>
+                            <div><strong>State:</strong> [[ p.state ]]</div>
+                            <div><strong>Transaction Id:</strong> [[ p.chargeId ]]</div>
+                        </div>-->
+                    </div>
+                </div>
+                <div class="text-xs-center" ng-if="purchases.data.length == 0">
+                    <h3 style="margin-top: 25px;">No Recent Purchases</h3>
+                </div>
+            </section>
+            <section id="invoices" ng-if="currentView == 'invoices'">
+                <!-- Headers -->
+                <div class="col-xs-12 cd-no-padding">
+                    <div class="col-xs-4 col-sm-4 col-md-3">
+                        <strong>Order Date</strong>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-9">
+                        <div class="col-xs-12 col-sm-12 col-md-6"><strong>Invoices Id</strong></div>
+                        <div class="col-xs-12 col-sm-12 col-md-3"><strong>State</strong></div>
+                        <div class="col-xs-12 col-sm-12 col-md-3"><strong>Order Total</strong></div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 cd-no-padding">
+                    <div class="list-group col-xs-12 cd-no-padding">
+                        <div class="list-group-item col-xs-12" ng-repeat="p in invoices.data | orderBy:'-periodEnd'">
+                            <div class="col-xs-4 col-sm-4 col-md-3">
+                                <strong ng-bind="p.periodEnd | date:'medium'"></strong>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-9 cd-no-padding">
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <strong ng-bind="p.id"></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3" >
+                                    <strong ng-bind="p.state"></strong>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3">
+                                    <strong ng-bind="p.total | currency:'£'"></strong>
+                                </div>
+                            </div>
+                            <div class="list-group-item col-xs-12 cd-no-padding bg-muted" style="border-left: 0; border-right: 0" ng-repeat="i in p.items">
+                                <div class="col-xs-4 col-sm-4 col-md-3" ng-bind="i.item.name"></div>
+                                <div class="col-xs-8 col-sm-8 col-md-9 cd-no-padding">
+                                    <div class="col-xs-12 col-sm-12 col-md-9" ng-bind="'Quantity: ' + i.quantity"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-3" ng-bind="i.item.price | currency:'£'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-xs-center" ng-if="invoices.data.length == 0">
+                    <h3 style='margin-top: 25px;'>No Recent Invoices</h3>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,18 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #fff; padding-top: 160px!important; padding-bottom: 20px;">
+    <div class="container text-xs-center">
+        <div ng-if="activationDone">
+            <h3>Congratulations</h3>
+            <p>Your account is activated & you can now login!</p>
+        </div>
+
+        <div ng-if="activationFail">
+            <h3>Oop's</h3>
+            <p>Unable to activate the account, the token is invalid or had been already used to activate an account.</p>
+        </div>
+
+        <div ng-if="noToken">
+            <h3>No Token Available</h3>
+            <p>There is no activation token, please follow a link to this page with a valid token.</p>
+        </div>
+    </div>
+</section>

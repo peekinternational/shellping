@@ -1,0 +1,100 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2"
+         style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-xs-center">
+                <div class="">
+                    <div class="cd-avatar cd-avatar-lg">
+                        <img ng-src="[[ croppedImage ]]" alt="[[user.name]]">
+                    </div>
+                    <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;"/>
+                </div>
+                <div class="col-xs-12 cd-no-padding project-crop-area" ng-show="uploader.queue.length > 0">
+                    <ui-cropper class="fixed-height" image="user.photo" result-image="croppedImage"
+                                result-blob="blobImage"></ui-cropper>
+                </div>
+                <button type="button" class="btn btn-sm btn-info" ng-click="selectFile()">Upload Photo</button>
+                <button ng-show="uploader.queue.length > 0" type="button" class="btn btn-sm btn-info"
+                        ng-click="storeAvatar()">Save Photo
+                </button>
+                <h5 ng-bind="user.name"></h5>
+            </div>
+            <div class="col-xs-12">
+                <form name="profile" id="profile" ng-submit="storeProfile()">
+                    <div class="form-group">
+                        <label for="username"><strong>Username</strong> <i class="fa fa-info-circle"
+                                                                           data-toggle="tooltip" data-placement="right"
+                                                                           title="This is your username as you will be seen on the site."></i></label>
+                        <input type="text" class="form-control" id="username" ng-model="user.username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="about-me"><strong>About me</strong> <i class="fa fa-info-circle"
+                                                                           data-toggle="tooltip" data-placement="right"
+                                                                           title="This is a little about for you to write about yourself to let others learn a little about you."></i></label>
+                        <textarea spellcheck="true" class="form-control" id="about-me" ng-model="user.about"
+                                  rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address"><strong>My Location</strong> <i class="fa fa-info-circle"
+                                                                             data-toggle="tooltip"
+                                                                             data-placement="right"
+                                                                             title="This is the town or city where you live."></i></label>
+                        <input type="text" class="form-control" id="address" ng-model="user.locationName"
+                               ng-click="getLocation()" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone"><strong>Mobile Number</strong> <i class="fa fa-info-circle"
+                                                                             data-toggle="tooltip"
+                                                                             data-placement="right"
+                                                                             title="This is your mobile you can be contacted on."></i></label>
+                        <input type="tel" class="form-control" id="phone" ng-model="user.phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><strong>Email Address</strong> <i class="fa fa-info-circle"
+                                                                             data-toggle="tooltip"
+                                                                             data-placement="right"
+                                                                             title="This is the email address you can be contacted on."></i></label>
+                        <input type="email" class="form-control" id="email" ng-model="user.email" required>
+                    </div>
+
+                    <!-- Password -->
+<!--
+                    <div class="form-group">
+                        <label for="password"><strong>Enter a new password</strong> <i class="fa fa-info-circle"
+                                                                                       data-toggle="tooltip"
+                                                                                       data-placement="right"
+                                                                                       title="Enter a new password here. Try to avoid obvious ones other people may be able to guess."></i></label>
+                        <input class="form-control" name="password" id="password" type="password"
+                               ng-model="newPassword.password" placeholder="Password" min="6"
+                               ng-class="profile.password.$valid && !profile.password.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback"
+                             ng-if="signupFrm.password.$invalid || signupFrm.password.$error.required">
+                            Please enter a valid password.
+                        </div>
+                    </div>
+                    &lt;!&ndash; Password Match &ndash;&gt;
+                    <div ng-if="newPassword.password.length > 0" class="form-group"
+                         ng-class="!signupFrm.passwordMatch.$error.pwmatch && !signupFrm.passwordMatch.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="passwordMatch"><strong>Confirm your new password</strong> <i
+                                class="fa fa-info-circle" data-toggle="tooltip" data-placement="right"
+                                title="Please confirm your password."></i></label>
+                        <input class="form-control" name="passwordMatch" id="passwordMatch" type="password"
+                               ng-model="newPassword.password_match" placeholder="Repeat password" pw-check='password'
+                               ng-class="!profile.passwordMatch.$error.pwmatch && !profile.passwordMatch.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback"
+                             ng-if="profile.passwordMatch.$error.pwmatch || profile.passwordMatch.$error.required">
+                            Please enter a matching password.
+                        </div>
+                    </div>
+-->
+                    <!--Password Reset and Submit Button-->
+                    <div>
+                        <a href="/account/[[user.id]]/edit/password" class="btn btn-info">Change Password</a>
+                        <button type="submit" class="btn btn-info pull-right">Submit changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

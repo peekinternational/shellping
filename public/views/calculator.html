@@ -1,0 +1,45 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <!-- Calculator -->
+                <div class="card cd-shadow">
+                    <div class="card-block clearfix">
+                        <h5 id="calculator"><strong>See How Much Your Project Could Raise</strong></h5>
+
+                        <table>
+                            <tbody><tr>
+                                <td><strong>How many households are directly linked to your project?</strong> <br>(E.g. if your project was an under 10’s youth football team this would represent 12 households. This is because on average each player in the team would represent 1 household. )</td>
+                                <td><input value="15" type="text" ng-model="calc.households" ng-change="calculate()"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>How many other people - friends and family - could the directly linked households above also get to support your project?</strong><br>
+                                    Think about all the people that you and the directly linked households above can reach by simply sharing your project on Faceboook, Twitter, Instagram, LinkedIn etc. Sharing your project will reach a lot of people. It could literally be 100s if not 1000s if your project is good enough and appeals to enough people.
+                                </td>
+                                <td><input value="60" type="text" ng-model="calc.families" ng-change="calculate()"></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>Average monthly amount spent by each household on Shelping.COM products?</strong><br>
+                                    (On average households spend between £30-£40* a month on the everyday items Shelping.COM sell. We therefore advise that you enter £30)
+                                </td>
+                                <td><input type="text" value="40.00" ng-model="calc.cost" ng-change="calculate()"></td>
+                            </tr>
+                            </tbody></table>
+
+                        <hr/>
+
+                        <h5><strong>Total generated for your group:</strong></h5>
+
+                        <div class="totals callout">
+                            <p>Per month: <strong id="group-month-total">£[[ calc.totalMonth | number : 2 ]]</strong></p>
+                            <p>Per year: <strong id="group-year-total">£[[ calc.totalYear | number : 2 ]]</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

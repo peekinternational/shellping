@@ -1,0 +1,201 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 150px!important; padding-bottom: 20px;">
+    <div class="container cd-no-padding" style="overflow: hidden;">
+        <div class=""> <!-- row -->
+            <!-- Create Form -->
+            <div ng-if="createStep == 1" class="col-xs-12">
+                <!-- Cropper -->
+                <h5>Add your project by filling in the information below then tapping the 'Add Project button'.</h5>
+                <h5>Boxes with a red border need to be completed other boxes are optional. We recommend you enter as much information about your project as possible.</h5>
+                <h5>After adding the project information we will guide you thought sharing your project.</h5>
+                <h5>The more you share, the more support your project will receive.</h5>
+                <!-- End -->
+                <br/>
+                <form name="form.createProject" id="createProject" ng-submit="tryStore()" novalidate>
+                    <div class="form-group" ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="title">Project Name <small>(<span ng-bind="formData.title.length > 0 ? formData.title.length : '0'"></span> / 50)</small>  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is what is displayed when people view your project."></i></label>
+                        <input maxlength="50" spellcheck="true" type="text" class="form-control" id="title" name="title" placeholder="Project Title" ng-model="formData.title" required ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="form.createProject.title.$invalid || form.createProject.title.$error.required">
+                            Please enter a project title.
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="form.createProject.desc.$valid && !form.createProject.desc.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="desc">Project Description <small>(<span ng-bind="formData.desc.length > 0 ? formData.desc.length : '0'"></span> / 1000)</small> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is where you get to explain what your project is all about. Make the description as good as possible so that somebody who doesn't know you can understand what it's all about just by reading this."></i></label>
+                        <textarea maxlength="1000" spellcheck="true" class="form-control" id="desc" name="desc" placeholder="Description" ng-model="formData.desc" required rows="5" ng-class="form.createProject.desc.$valid && !form.createProject.desc.$error.required ? 'form-control-success' : 'form-control-danger'"></textarea >
+                        <div class="text-danger form-control-feedback" ng-if="form.createProject.desc.$invalid || form.createProject.desc.$error.required">
+                            Please type a description for your project.
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
+                        <label for="location">Project Location  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Your location will be displayed as a pin on a map so it shows the 'area' your project is in and doesn't give you any address details."></i></label>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="formData.locationName" ng-click="getLocation()" readonly required ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="form.createProject.location.$invalid || form.createProject.location.$error.required">
+                            Where will this project take place?
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="form.createProject.categories.$valid && !form.createProject.categories.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
+                        <label for="categories">Project Categories <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Select which category or categories your project fits into from the dropdown list below."></i></label>
+                        <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" required >
+                            <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
+                            <ui-select-choices repeat="c in flatCats | filter: $select.search">
+                                <div ng-bind-html-unsafe="c.id | highlight: $select.search">[[ c.name ]]</div>
+                            </ui-select-choices>
+                        </ui-select>
+                        <div class="text-danger form-control-feedback" ng-if="form.createProject.categories.$invalid || form.createProject.categories.$error.required">
+                            Please select at least 1 category.
+                        </div>
+                    </div>
+                    <label>Project Image</label>
+                    <br>
+                    <button type="button" class="btn btn-info" ng-click="selectFile()">Add A Project Image</button>
+                    <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;" />
+                   
+                    
+                    <div class="form-group" ng-class="form.createProject.tags.$valid && !form.createProject.tags.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
+                        <label for="tags">Tags <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Enter the tags that match your project that will help your project be found when people are searching on Shelping.COM."></i></label>
+                        <ui-select name="tags" id="tags" multiple tagging tagging-label="" ng-model="formData.tags" theme="bootstrap">
+                            <ui-select-match placeholder="Add tags...">#[[ $item ]]</ui-select-match>
+                            <ui-select-choices repeat="t in availableTags | filter: $select.search">
+                                [[ t ]]
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="form-group" ng-class="form.createProject.web.$valid && !form.createProject.web.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="web">Web Address <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated website enter that website address here."></i></label>
+                        <input type="website" class="form-control" id="web" name="web" placeholder="https://www.yourproject.com" ng-model="formData.web">
+                    </div>
+                    <div class="form-group" ng-class="form.createProject.fb.$valid && !form.createProject.fb.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="fb">Facebook link <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="If your project has an associated Facebook page/group enter the link to that Facebook page/group here."></i></label>
+                        <input type="website" class="form-control" id="fb" name="fb" placeholder="https://www.facebook.com/yourpage" ng-model="formData.fb">
+                    </div>
+                    <input type="file" nv-file-select uploader="uploader" style="display: none;" />
+                    <div>
+                        <center><button style="width: 250px" class="btn btn-info" type="submit" ng-bind="!data.project ? 'Add Project' : 'Update Project'"></button></center>
+                    </div>
+                </form>
+
+                <div class="col-xs-12 cd-no-padding" ng-if="isEdit">
+                    <h4 class="content-heading">Project Management</h4>
+
+                    <div>
+                        <h6 class="content-heading">Transfer Ownership</h6>
+                        <p>
+                            Owners can generate a transfer token which, when claimed, can transfer the ownership of a specific project to other people.
+                            Only one token can be active at a time for each project, if new token is generated, all other tokens are invalidated. Tokens expire after 48 hours.
+                        </p>
+
+                        <div class="input-group" ng-if="data.project._transferToken">
+                            <input id="projectToken" class="form-control" type="text" readonly value="[[ absUrl ]]/projects/56010001/claim?token=[[ data.project._transferToken ]]">
+                            <span class="input-group-btn">
+                                <button class="btn btn-white-outline btn-secondary" type="button" ng-click="copyToClipboard('projectToken')">Copy</button>
+                            </span>
+                        </div>
+
+                        <button class="btn btn-block btn-sm btn-white-outline" type="button" ng-click="transferToken()" ng-bind="data.project._transferToken != null ? 'Regenerate Token' : 'Generate Token'"></button>
+                    </div>
+
+                    <div>
+                        <h6 class="content-heading">Delete Project</h6>
+                        <button class="btn btn-block btn-sm btn-danger" type="button" ng-click="deleteProject()">Delete Project</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Confirmation -->
+            <div ng-if="createStep == 2" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <img width="100%" src="../../assets/img/help/cd-fund-2x.png">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
+                    <h4 class="text-capitalize text-info">Your project is ready!</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-check text-info"></i> Your project is ready to raise funds!</li>
+                        <li><i class="fa fa-check text-info"></i> Next we will show you how to share your project.</li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 text-xs-right">
+                    <button class="btn btn-info" ng-click="nextStep()">Continue</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Share on Facebook -->
+            <div ng-if="createStep == 3" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <img width="100%" src="../../assets/img/help/help-people-2x.png">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
+                    <h4 class="text-capitalize text-info">
+                        Sharing on Facebook is the <b><u>most important</u></b> thing you can do.
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-check text-info"></i> Sharing on Facebook can increase donations.</li>
+                        <li><i class="fa fa-check text-info"></i> It's your personal contacts, not strangers, who will donate.</li>
+                        <li><i class="fa fa-check text-info"></i> Your earliest supporters also help to share your project.</li>
+                    </ul>
+                    <!-- Share Button -->
+                    <a href="" class="btn btn-block btn-facebook" ng-click="facebookShare()">
+                        <i class="fab fa-facebook" aria-hidden="true"></i> Share on Facebook
+                    </a>
+                </div>
+                <div class="col-xs-12 text-xs-right">
+                    <button class="btn" ng-click="nextStep()" ng-class="shareCheck.facebook ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.facebook ? 'Continue' : 'Skip'"></button>
+                </div>
+            </div>
+
+            <!-- Step 4: Share on Twitter -->
+            <div ng-if="createStep == 4" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <img width="100%" src="../../assets/img/help/help-people-2x.png">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
+                    <h4 class="text-capitalize text-info">
+                        Sharing on Twitter is just as <b><u>important</u></b>.
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-check text-info"></i> Sharing on Twitter can also increase donations.</li>
+                        <li><i class="fa fa-check text-info"></i> Increases the social reach of your new project.</li>
+                        <li><i class="fa fa-check text-info"></i> Again, your earliest supporters also help to share your project.</li>
+                    </ul>
+                    <!-- Share Button -->
+                    <a href="#" class="btn btn-block btn-twitter" ng-click="twitterShare()">
+                        <i class="fab fa-twitter" aria-hidden="true"></i> Share on Twitter
+                    </a>
+                </div>
+                <div class="col-xs-12 text-xs-right">
+                    <button class="btn" ng-click="nextStep()" ng-class="shareCheck.twitter ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.twitter ? 'Continue' : 'Skip'"></button>
+                </div>
+            </div>
+
+            <!-- Step 5: Finish & View -->
+            <div ng-if="createStep == 5" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <img width="100%" src="../../assets/img/help/money-2x.png">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6" style="margin-bottom: 15px;">
+                    <h4 class="text-capitalize text-info">
+                        Congratulations!
+                    </h4>
+                    <p>Your project is all setup and ready to start raising funds, don't forget to keep checking back.</p>
+                    <p>Don't forget, you can share your project anytime from the project page! Share often to increase your support.</p>
+                </div>
+                <div class="col-xs-12 text-xs-right">
+                    <button class="btn btn-info btn-block" ng-click="shareCheck.twitter == false || shareCheck.facebook == false ? nextStep() : complete()">View Project</button>
+                </div>
+            </div>
+
+            <!-- Step 6: No share check -->
+            <div ng-if="createStep == 6" class="col-xs-12 clearfix cd-no-padding animated fadeIn text-xs-center">
+                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                    <h4 class="text-capitalize text-info">
+                        Hold your horses!
+                    </h4>
+                    <p>You have <b><u>not shared your project</u></b> on <span ng-if="!shareCheck.facebook">Facebook</span> <span ng-if="!shareCheck.facebook && !shareCheck.twitter">or</span> <span ng-if="!shareCheck.twitter">Twitter</span></p>
+                    <p>Are you sure you would like to continue without sharing?</p>
+                </div>
+                <div class="col-xs-12">
+                    <button class="btn btn-info" ng-click="reset()">No, I would like to share!</button>
+                    <button class="btn btn-primary" ng-click="complete()">Yes, Continue without sharing.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

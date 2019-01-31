@@ -1,0 +1,40 @@
+<!-- Checkout Form -->
+<section class="col-xs-12 cd-no-padding" ng-init="getCartProjects()">
+    <h4 class="content-heading">
+        Select a project below that will receive funding from your purchase.
+    </h4>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 project-card" ng-repeat="p in cartProjects">
+        <div class="col-xs-12 cd-no-padding cd-shadow card-holder">
+            <div class="card">
+                <div class="project-link" style="background-image: url([[ p.logo ? p.logo : '/assets/img/missing-project.png' ]])">
+                    <div class="card-img-overlay text-white">
+                        <div class="col-xs-12 small-details">
+                            <div class="project-funds text-xs-right">
+                                Funds raised: <span ng-bind="p.fund.totalIncome ? p.fund.totalIncome : '0.00' | currency:'£'"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 clearfix card-footer text-muted project-footer">
+                    <div class="col-xs-12 cd-no-padding">
+                        <h5 class="card-title text-black">[[ p.title | limitTo:32]]<span ng-if="p.title.length > 32">...</span></h5>
+                    </div>
+                    <div class="col-xs-12 cd-no-padding">
+                        by [[ p._owner.name ]]
+                    </div>
+                    <div class="col-xs-12 cd-no-padding">
+                        <span data-toggle="tooltip" data-placement="top" title="[[ p.backersCount ]] Supporters">
+                            <i class="fa fa-users"></i> [[ p.backersCount ]] supporters
+                        </span>
+                    </div>
+                    <div class="col-xs-12 cd-no-padding">
+                        <i class="fa fa-calendar"></i> <span ng-bind="p.createdDate | date:'longDate' : timezone:'GMT'"></span>
+                    </div>
+                    <div class="col-xs-12 cd-no-padding">
+                        <button type="button" class="btn btn-block btn-white-outline" ng-click="selectProject(p)">Select this project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

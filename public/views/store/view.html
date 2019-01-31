@@ -1,0 +1,310 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 160px!important; padding-bottom: 20px;" ng-show="product.name.length > 0">
+
+    <!-- View -->
+    <div class="container" id="productContent" itemscope itemtype="http://schema.org/Product">
+        <div class="row">
+            <div class="col-xs-12 lead">
+                <!-- Left Content -->
+                <div class="col-xs-12 col-sm-12 col-md-7 cd-product-body cd-mob-no-padding">
+                    <!-- Main Content -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h2 ng-bind="product.name" itemprop="name"></h2>
+                            <div ng-show="product.images.length > 0">
+                                <!-- Image Gallery -->
+                                <div id="productImageIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#productImageIndicators" ng-repeat="img in product.images" data-slide-to="$index +1" ng-class="img == product.images[0] ? 'active' : ''"></li>
+                                    </ol>
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="carousel-item" ng-repeat="img in product.images" ng-class="img == product.images[0] ? 'active' : ''">
+                                            <img style="height: 365px!important;" class="d-block product-image" src="[[ img ]]" itemprop="image" />
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#productImageIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#productImageIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <!-- Order Form -->
+                    <div class="card cd-shadow hidden-md-up">
+                        <div class="card-block clearfix">
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="GBP"/>
+                                <h5>
+                                    <span ng-bind="product.price ? product.price : 'Free' | currency:'£'" itemprop="price"></span><br/>
+                                    <small class="text-success">
+                                        <strong>
+                                            <i>
+                                                <span ng-bind="productContribution(product.price, product.contribution) | currency:'£'"></span> project contribution.
+                                            </i>
+                                        </strong>
+                                    </small>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card cd-shadow hidden-md-up">
+                        <!-- Tabs -->
+                        <div class="col-xs-12 cd-no-padding">
+                            <div class="col-xs-6 cd-no-padding" ng-if="account.token">
+                                <button class="btn btn-xs btn-block" ng-class="order.subscribe ? 'btn-success-outline' : 'btn-white-outline'" ng-click="order.subscribe = true" type="button">
+                                    Subscribe <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Shelping.COM offer all products through a subscription service. Select the products you want and how often you want them and let Shelping.COM do the rest. You will automatically receive your products exactly when you want them without having to remember to buy them. The easy way to Change Brand and Change Lives."></i>
+                                </button>
+                            </div>
+                            <div class="col-xs-6 cd-no-padding" ng-class="account.token ? 'col-xs-6' : 'col-xs-12'">
+                                <button class="btn btn-xs btn-block" ng-class="!order.subscribe ? 'btn-success-outline' : 'btn-white-outline'" ng-click="order.subscribe = false" type="button">
+                                    Buy <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="If you prefer just to buy as you want products that's no problem. Just remember that each product you buy can help change lives so make sure you come back and buy again."></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-block clearfix">
+                            <div>
+                                <div ng-if="!isSubscribed || isSubscribed && !order.subscribe">
+                                    <form name="orderForm" id="orderFormMob" ng-submit="addToCart()" novalidate>
+                                        <!-- Quantity -->
+                                        <div class="form-group">
+                                            <label for="qty">Quantity</label>
+                                            <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-white-outline btn-secondary" type="button" ng-click="order.qty > 1 ? order.qty = order.qty-1 : ''">
+                                                        <i class="fas fa-minus-square"></i>
+                                                    </button>
+                                                </span>
+                                                <input class="form-control" type="number" id="qty" ng-model="order.qty" min="1">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-white-outline btn-secondary" type="button" ng-click="order.qty = order.qty+1">
+                                                        <i class="fas fa-plus-square"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Subscription Period -->
+                                        <div class="form-group" ng-if="order.subscribe && account.token">
+                                            <label for="subRange">Subscription plan</label>
+                                            <select class="form-control" id="subRange" name="subRange" ng-model="order.subRange" ng-options="sub.id as sub.name for sub in subscriptionPlans" ng-change="checkSubscription()" ng-init="checkSubscription()"></select>
+                                        </div>
+
+                                        <button ng-if="!hasSubscription  || !order.subscribe" class="btn btn-block" ng-class="cart.getItemById(product.id) ? 'btn-success-outline' : 'btn-success'" type="submit">
+                                            <i class="fa fa-cart-plus"></i> <span ng-bind="cart.getItemById(product.id) ? 'Update cart' : 'Add to cart'"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div ng-if="!isSubscribed && hasSubscription && order.subscribe">
+                                    <button class="btn btn-xs btn-success-outline btn-block" ng-click="addToSubscription()">
+                                        Add item to subscription
+                                    </button>
+                                </div>
+
+                                <div ng-if="isSubscribed && order.subscribe">
+                                    <button class="btn btn-xs btn-success-outline btn-block" ng-click="editSubscription(itemSub)">
+                                        Subscribed<br/>
+                                        <small>Edit Subscription</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Share -->
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">Share this product</h4>
+                            <ul class="list-unstyled list-inline text-xs-center">
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                    <a href="#" class="btn btn-social twitter" socialshare socialshare-provider="twitter" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-hashtags="Shelping.COM" socialshare-url="[[ url ]]" socialshare-media="[[ project.logo ]]">
+                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                    <a href="#" class="btn btn-social facebook" socialshare socialshare-provider="facebook" socialshare-text="Share on facebook" socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ url ]]">
+                                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="google" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-url="[[ url ]]">
+                                        <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="linkedin" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-url="[[ url ]]">
+                                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on others">
+                                    <a href="#" class="btn btn-social plusone" title="Share on others" ng-click="ShareModel()">
+                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="email" socialshare-subject="Support my project on Shelping.COM." socialshare-body="I have added a new project, [[ project.name ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ url ]]">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- About -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">About this product</h4>
+                            <article ng-bind-html="product.desc ? product.desc : 'No Description'" itemprop="description"></article>
+                        </div>
+                    </div>
+
+                    <!-- Related Products -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">You may also like</h4>
+                            <!-- Carousel -->
+                            <slick init-onload=true data="products" infinite="true" slides-to-scroll="2" responsive="breakpoints" mobileFirst="true">
+                                <div ng-repeat="p in products" ng-hide="p.id === product.id">
+                                    <a class="text-xs-center text-white carousel-link" href="store/product/[[p.id]]">
+                                        <div class="carousel-ico">
+                                            <img src="[[ p.images[0] ]]" alt="[[ p.name ]]"/>
+                                        </div>
+                                        <div class="text-black">
+                                            <h6><strong>[[ p.name ]]</strong></h6>
+                                        </div>
+                                    </a>
+                                </div>
+                            </slick>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content -->
+                <div class="hidden-sm-down col-sm-12 col-md-4 cd-product-body cd-no-padding">
+                    <!-- Order Form -->
+                    <div class="card cd-shadow" hl-sticky="" offset-top="130" media-query="min-width: 768px" container="productContent">
+                        <!-- Tabs -->
+                        <div class="col-xs-12 cd-no-padding">
+                            <div class="col-xs-6 cd-no-padding" ng-if="account.token">
+                                <button class="btn btn-xs btn-block" ng-class="order.subscribe ? 'btn-success-outline' : 'btn-white-outline'" ng-click="order.subscribe = true" type="button">
+                                    Subscribe <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Shelping.COM offer all products through a subscription service. Select the products you want and how often you want them and let Shelping.COM do the rest. You will automatically receive your products exactly when you want them without having to remember to buy them. The easy way to Change Brand and Change Lives."></i>
+                                </button>
+                            </div>
+                            <div class="col-xs-6 cd-no-padding" ng-class="account.token ? 'col-xs-6' : 'col-xs-12'">
+                                <button class="btn btn-xs btn-block" ng-class="!order.subscribe ? 'btn-success-outline' : 'btn-white-outline'" ng-click="order.subscribe = false" type="button">
+                                    Buy <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="If you prefer just to buy as you want products that's no problem. Just remember that each product you buy can help change lives so make sure you come back and buy again."></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card-block clearfix">
+                            <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                <meta itemprop="priceCurrency" content="GBP"/>
+                                <h4 class="content-heading">
+                                    <span ng-bind="product.price ? product.price : 'Free' | currency:'£'" itemprop="price"></span><br/>
+                                    <small class="text-success">
+                                        <strong>
+                                            <i>
+                                                <span ng-bind="productContribution(product.price, product.contribution) | currency:'£'"></span> project contribution.
+                                            </i>
+                                        </strong>
+                                    </small>
+                                </h4>
+                            </div>
+
+                            <div>
+                                <div ng-if="!isSubscribed || isSubscribed && !order.subscribe">
+                                    <form name="orderForm" id="orderForm" ng-submit="addToCart()" novalidate>
+                                        <!-- Quantity -->
+                                        <div class="form-group">
+                                            <label for="qty">Quantity <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is the quantity you would like to add to your order."></i></label>
+                                            <input class="form-control" type="number" id="qty" ng-model="order.qty" min="1">
+                                        </div>
+
+                                        <!-- Set Subscription -->
+                                        <!--<div class="form-group" ng-if="account.token">
+                                            <label>Setup subscription? <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Would you like to set up a subscription for this product?"></i></label>
+                                            <div>
+                                                <button type="button" ng-click="order.subscribe = !order.subscribe" class="btn btn-xs" ng-class="order.subscribe ? 'btn-success' : 'btn-default'" ng-bind="order.subscribe ? 'Yes' : 'No'"></button>
+                                            </div>
+                                        </div>-->
+
+                                        <!-- Subscription Period -->
+                                        <div class="form-group" ng-if="!isSubscribed && order.subscribe && account.token">
+                                            <label for="subRange">Subscription plan <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is how long you would like the subscription to occur."></i></label>
+                                            <select class="form-control" id="subRange" name="subRange" ng-model="order.subRange" ng-options="sub.id as sub.name for sub in subscriptionPlans" ng-change="checkSubscription()" ng-init="checkSubscription()"></select>
+                                        </div>
+
+                                        <button ng-if="!hasSubscription || !order.subscribe" class="btn btn-block" ng-class="cart.getItemById(product.id) ? 'btn-success-outline' : 'btn-success'" type="submit">
+                                            <i class="fa fa-cart-plus"></i> <span ng-bind="cart.getItemById(product.id) ? 'Update cart' : 'Add to cart'"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div ng-if="!isSubscribed && hasSubscription && order.subscribe">
+                                    <button class="btn btn-xs btn-success-outline btn-block" ng-click="addToSubscription()">
+                                        Add item to subscription
+                                    </button>
+                                </div>
+
+                                <div ng-if="isSubscribed && order.subscribe">
+                                    <button class="btn btn-xs btn-success-outline btn-block" ng-click="editSubscription(itemSub)">
+                                        Subscribed<br/>
+                                        <small>Edit Subscription</small>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!--<div ng-if="!account.token">
+                                <button class="btn btn-success btn-block" ng-click="auth.getLogin()">
+                                    <i class="fa fa-signin"></i> Login to subscribe
+                                </button>
+                            </div>-->
+                        </div>
+
+                        <!-- Social Share -->
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">Share this product</h4>
+                            <ul class="list-unstyled list-inline text-xs-center">
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                    <a href="#" class="btn btn-social twitter" socialshare socialshare-provider="twitter" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-hashtags="Shelping.COM" socialshare-url="[[ url ]]" socialshare-media="[[ project.logo ]]">
+                                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                    <a href="#" class="btn btn-social facebook" socialshare socialshare-provider="facebook" socialshare-text="Share on facebook" socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ url ]]">
+                                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="google" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-url="[[ url ]]">
+                                        <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="linkedin" socialshare-text="Show your support for [[ project.name ]] on Shelping.COM." socialshare-url="[[ url ]]">
+                                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share on others">
+                                    <a href="#" class="btn btn-social plusone" title="Share on others" ng-click="ShareModel()">
+                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                    <a href="#" class="btn btn-social plusone" socialshare socialshare-provider="email" socialshare-subject="Support my project on Shelping.COM." socialshare-body="I have added a new project, [[ project.name ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ url ]]">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

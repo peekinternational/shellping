@@ -1,0 +1,116 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <form class="text-capitalize">
+                <h4 class="content-heading">Fund information <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></h4>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="showIncome">information of how much funds has been generatied so far</label>
+                        <input type="checkbox" class="pull-xs-right" id="showIncome" ng-model="settings.showIncome">
+                    </div>
+                </div>
+
+                <h4 class="content-heading">Anonymous <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></h4>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="anonymous">possibilty to be anonymous in the list of backers of the project</label>
+                        <input type="checkbox" class="pull-xs-right" id="anonymous" ng-model="settings.anonymousBacker">
+                    </div>
+                </div>
+
+                <h4 class="content-heading">Projects <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></h4>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="backedProjects">show projects im backing on my profile</label>
+                        <input type="checkbox" class="pull-xs-right" id="backedProjects" ng-model="settings.showBackedProjects">
+                    </div>
+                </div>
+
+                <!--NOTIFICATION Settings -->
+                <h4 class="content-heading">Notification setting <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></h4>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myProjectReceivedFunds">Allow desktop notifications <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <button type="button" class="btn btn-xs pull-xs-right" ng-click="requestDesktopNotification()" ng-class="checkDesktopNotification() ? 'btn-success' : 'btn-success-outline'" ng-bind="checkDesktopNotification() ? 'Disable' : 'Enable'"></button>
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myProjectReceivedFunds">my Project received a donation <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myProjectReceivedFunds" ng-model="settings.notifications.myProjectReceivedFunds">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="newInterestingProject"> New Project <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" data-toggle="toggle" class="pull-xs-right" id="newInterestingProject" ng-model="settings.notifications.newInterestingProject">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="backedProjectReceivedFunds"> backed project received fund <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" data-toggle="toggle" class="pull-xs-right" id="backedProjectReceivedFunds" ng-model="settings.notifications.backedProjectReceivedFunds">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="newMessage"> new messages <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" data-toggle="toggle" class="pull-xs-right" id="newMessage" ng-model="settings.notifications.newMessage">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="newShop"> new shop <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" data-toggle="toggle" class="pull-xs-right" id="newShop" ng-model="settings.notifications.newShop">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="backedProjectChanged"> project edited <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="backedProjectChanged" ng-model="settings.notifications.backedProjectChanged">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myProjectApproved"> project Approved <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myProjectApproved" ng-model="settings.notifications.myProjectApproved">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myProjectGotNewBacker">My Project received a Backer <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myProjectGotNewBacker" ng-model="settings.notifications.myProjectGotNewBacker">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myProjectDeleted">Project Removed <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myProjectDeleted" ng-model="settings.notifications.myProjectDeleted">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myFundsDeposited">Project Deposited <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myFundsDeposited" ng-model="settings.notifications.myFundsDeposited">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myFundsWithdrawn">Project withdrawn <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myFundsWithdrawn" ng-model="settings.notifications.myFundsWithdrawn">
+                    </div>
+                </div>
+                <div class="form-group card">
+                    <div class="card-block">
+                        <label for="myFundsCleared">Project Cleared <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Info here"></i></label>
+                        <input type="checkbox" class="pull-xs-right" id="myFundsCleared" ng-model="settings.notifications.myFundsCleared">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-12">
+                <button class="btn btn-success pull-xs-right" ng-click="update()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+</section>

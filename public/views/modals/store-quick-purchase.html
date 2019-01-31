@@ -1,0 +1,48 @@
+<!-- Quick Checkout -->
+<div class="text-center">
+    <div ng-if="!isSubscribed">
+        <form name="orderForm" id="orderForm" ng-submit="addToCart()" novalidate>
+            <!-- Quantity -->
+            <div class="form-group">
+                <label for="qty">Quantity</label>
+                <input class="form-control" type="number" id="qty" ng-model="order.qty" min="1">
+            </div>
+
+            <!-- Set Subscription -->
+            <div class="form-group" ng-if="account.token && !hideSub">
+                <label>Setup subscription?</label>
+                <div>
+                    <button type="button" ng-click="order.subscribe = !order.subscribe" class="btn btn-xs" ng-class="order.subscribe ? 'btn-success' : 'btn-default'" ng-bind="order.subscribe ? 'Yes' : 'No'"></button>
+                </div>
+            </div>
+
+            <!-- Subscription Period -->
+            <div class="form-group" ng-if="order.subscribe && account.token">
+                <label for="subRange">Subscription plan</label>
+                <select class="form-control" id="subRange" name="subRange" ng-model="order.subRange">
+                    <option ng-repeat="s in subscriptionPlans" value="[[ s.id ]]">[[ s.name ]]</option>
+                </select>
+            </div>
+
+            <button class="btn btn-success btn-block" type="submit">
+                <i class="fa fa-cart-plus"></i> <span ng-bind="cart.getItemById(product.id) ? 'Update cart' : 'Add to cart'"></span>
+            </button>
+        </form>
+    </div>
+    <div ng-if="account.token && isSubscribed">
+        <p class="text-center">You are already subscribed to this item, you can edit your current subscription or add this item to the cart as a single purchase.</p>
+        <button class="btn btn-xs btn-success-outline" ng-click="editSubscription(itemSub)">
+            Subscribed<br/>
+            <small>Edit Subscription</small>
+        </button>
+        <button class="btn btn-xs btn-info-outline">
+            Add to cart
+        </button>
+    </div>
+</div>
+
+<div ng-if="!account.token">
+    <button class="btn btn-success btn-block" ng-click="auth.getLogin()">
+        <i class="fa fa-signin"></i> Login to subscribe
+    </button>
+</div>

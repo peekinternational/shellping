@@ -1,0 +1,36 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+      <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!--CD funds go here-->
+                <div class="text-xs-center">
+                    <h3>
+                        <strong class="text-success">CD fund</strong>
+                        <span class="text-success" ng-bind="funds.currentBalance ? funds.currentBalance : '0.00' | currency:'£'"></span><br/>
+                        <p class="text-muted">
+                            <small>Pending: <span ng-bind="funds.totalAwaiting ? funds.totalAwaiting : '0.00' | currency:'£'"></span></small>
+                        </p>
+                    </h3>
+                    <button class="btn btn-info" ng-click="requestWithdraw()">Request Withdraw</button>
+                    <button class="btn btn-info" ng-click="addFunds()">Add more funds</button>
+                </div>
+                <!--what has been donated-->
+                <div class="cd-funds-manager col-xs-12">
+                    <table class="stats-short-info-table col-xs-12">
+                        <tbody>
+                        <tr>
+                            <td><h4>Donated:</h4></td>
+                            <td class="text-success pull-xs-right">
+                                <h4>
+                                    <span ng-bind="funds.totalOutcome ? funds.totalOutcome : '0.00' | currency:'£'"></span>
+                                </h4>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <small class="text-muted">Total funds you have donated to projects so far</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

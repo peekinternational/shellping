@@ -1,0 +1,75 @@
+<div class="cd-filter-container clearfix" ng-controller="FiltersController" ng-if="!loading && !firstLoad">
+    <div class="container">
+        <div class="col-xs-12">
+            <div class="card cd-shadow">
+                <div class="card-block clearfix">
+                    <div class="filter-search col-xs-12 col-sm-12 col-md-6 cd-mob-no-padding" style="margin-bottom: 15px">
+                        <form ng-submit="searchUsers()">
+                            <div class="input-group">
+                                <input ng-model="filters.name" type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary btn-info cd-no-margin" type="submit" ng-click="searchUsers()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 cd-mob-no-padding" ng-show="!filters.show">
+                        <button type="button" class="btn btn-info btn-link pull-md-right btn-block" ng-click="filters.show = true">
+                            <i class="fa fa-filter"></i> MORE FILTERS
+                        </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 cd-mob-no-padding" ng-show="filters.show">
+                        <button type="button" class="btn btn-success btn-link pull-right" ng-click="applyFilters(false,true,true,false,false);">
+                            <i class="fa fa-check"></i> APPLY
+                        </button>
+                        <button type="button" class="btn btn-link pull-right text-danger" ng-click="filters.show = false">
+                            CLOSE
+                        </button>
+                    </div>
+                    <!-- TODO Filter Form -->
+                    <div class="col-xs-12 cd-mob-no-padding" ng-show="filters.show">
+                        <hr/>
+                        <!-- Interests -->
+                        <div class="col-xs-12 col-sm-12 col-md-6 cd-no-padding">
+                            <label for="interests">Interests</label>
+                            <a href="" class="pull-right text-xs-right text-info" ng-if="account.id" ng-click="addFilterMyInterests()">
+                                <i class="fa fa-plus"></i> Add my interests
+                            </a>
+                            <ui-select id="interests" multiple ng-model="filters.interests" theme="bootstrap" ng-disabled="!categories">
+                                <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
+                                <ui-select-choices repeat="c in flatCats | filter: $select.search">
+                                    <div ng-bind-html-unsafe="c.id | highlight: $select.search">
+                                        <i class="fa fa-angle-right" ng-if="c.depth > 1"></i> [[ c.name ]]
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <!-- Skills -->
+                        <div class="col-xs-12 col-sm-12 col-md-6 cd-no-padding">
+                            <label for="skills">Skills</label>
+                            <a href="" class="pull-right text-xs-right text-info" ng-if="account.id" ng-click="addFilterMySkills()">
+                                <i class="fa fa-plus"></i> Add my skills
+                            </a>
+                            <ui-select id="skills" multiple ng-model="filters.skills" theme="bootstrap" ng-disabled="!categories">
+                                <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
+                                <ui-select-choices repeat="c in flatCats | filter: $select.search">
+                                    <div ng-bind-html-unsafe="c.id | highlight: $select.search">
+                                        <i class="fa fa-angle-right" ng-if="c.depth > 1"></i> [[ c.name ]]
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <hr/>
+                        <div class="col-xs-12 col-sm-12" ng-if="filters.interests.length > 0 || filters.skills.length > 0">
+                            <a type="button" class="btn btn-link pull-right text-danger" ng-click="clearFilters()" href="/users">
+                                <i class="fa fa-times"></i> REMOVE ALL FILTERS
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

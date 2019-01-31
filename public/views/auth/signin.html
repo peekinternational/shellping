@@ -1,0 +1,58 @@
+<section class="col-xs-12" ng-if="acceptedCookies">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <form name="loginFrm" id="loginForm" ng-submit="auth.login(loginFrm)" novalidate>
+                <!-- Email Address -->
+                <div class="form-group" ng-class="loginFrm.email.$valid && !loginFrm.email.$error.required ? 'has-success' : 'has-danger'">
+                    <label for="email">Email Address</label>
+                    <input class="form-control" name="email" id="email" type="email" ng-model="auth.email" placeholder="Email" required ng-class="loginFrm.email.$valid && !loginFrm.email.$error.required ? 'form-control-success' : 'form-control-danger'">
+                    <div class="text-danger form-control-feedback" ng-if="loginFrm.email.$invalid || loginFrm.email.$error.required">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <!-- Password -->
+                <div class="form-group" ng-class="loginFrm.password.$valid && !loginFrm.password.$error.required ? 'has-success' : 'has-danger'">
+                    <label for="password">Password</label>
+                    <input class="form-control" name="password" id="password" type="password" ng-model="auth.password" placeholder="Password" required ng-class="loginFrm.password.$valid && !loginFrm.password.$error.required ? 'form-control-success' : 'form-control-danger'">
+                    <div class="text-danger form-control-feedback" ng-if="loginFrm.password.$invalid || loginFrm.password.$error.required">
+                        Please enter a valid password.
+                    </div>
+                </div>
+                <!-- Remember -->
+                <div class="form-group">
+                    <label for="remember-me">Remember Me</label>
+                    <input type="checkbox" name="remember-me" id="remember-me" ng-model="auth.remember" >
+                </div>
+
+                <button class="btn btn-white btn-white-outline btn-block btn-link" type="submit">
+                    Sign In
+                </button>
+                <div>
+
+                    <a class="btn btn-block btn-link text-black" href="" ng-click="auth.forgotPassword()">
+                        <span>Forgotten Password?</span>
+                    </a>
+
+                    <p class="text-muted">
+                        We treat your personal data with care; please find our <a class="text-muted" href="privacy-policy"><u>privacy policy</u></a> here.
+                    </p>
+                </div>
+
+            </form>
+
+            <hr/>
+
+            <div class="text-xs-center">
+                <h5 class="py-2">Don't have an account?</h5>
+                <a href="" ng-click="auth.getSignup()" class="btn btn-info btn-block">Create an account</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="col-xs-12 text-xs-center" ng-if="!acceptedCookies">
+    <p>We use <a href="privacy-policy">cookies</a> to ensure that we give you the best experience on our website. By continuing to use our website, we will assume that you are happy to receive cookies.</p>
+    <p class="text-danger" ng-if="!cookieEnabled"><strong>Please enable cookies on your browser!</strong></p>
+    <button ng-if="cookieEnabled" class="btn btn-info" ng-click="acceptCookiePolicy()">Accept & Continue</button>
+</section>

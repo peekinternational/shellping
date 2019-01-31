@@ -1,0 +1,116 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="content-heading">My Projects</h2>
+            </div>
+
+            <section class="col-xs-12 cd-no-padding">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 project-card" ng-repeat="p in userProjects">
+                    <div class="col-xs-12 cd-no-padding cd-shadow">
+                        <div class="card">
+                            <a ng-href="projects/[[ p.id ]]" class="project-link" style="background-image: url([[ p.logo ? p.logo : '/assets/img/missing-project.png' ]])">
+                                <!--<img class="card-img img-fluid" data-holder-rendered="true" ng-src="[[ p.logo ? p.logo : '/assets/img/missing-project.png' ]]" alt="[[ p.title ]]">-->
+                                <div class="card-img-overlay text-white">
+                                    <div class="col-xs-12 small-details">
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Todo fix for mobile view -->
+                            <div class="col-xs-12 clearfix card-footer text-muted project-footer">
+                                <div class="col-xs-12 cd-no-padding">
+                                    <h4 class="card-title text-black"><a href="projects/[[p.id]]" class="text-black">[[ p.title | limitTo:32]]<span ng-if="p.title.length > 32">...</span></a></h4>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    Funds raised: <span ng-bind="p.fund.totalIncome ? p.fund.totalIncome : '0.00' | currency:'£'"></span>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    <i class="fa fa-users"></i> [[ p.backersCount ]] Supporters<span ng-if="p.backersCount > 1">'s</span>
+                                </div>
+                                <div class="col-xs-12 cd-no-padding">
+                                    Creation date: <span ng-bind="p.createdDate | date:'longDate' : timezone:'GMT'"></span>
+                                </div>
+                                <!--<div class="col-xs-12 cd-no-padding text-xs-center">
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                                <button class="btn btn-social twitter" socialshare
+                                                   socialshare-provider="twitter"
+                                                   socialshare-text="Show your support for [[ p.title ]] on CompleteDoddle."
+                                                   socialshare-hashtags="CompleteDoddleUK" socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]"
+                                                   socialshare-media="[[ p.logo ]]">
+                                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                                <button class="btn btn-social facebook" socialshare
+                                                   socialshare-provider="facebook" socialshare-text="Share on facebook"
+                                                   socialshare-type="share" socialshare-via="274676456259523"
+                                                   socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                                <button class="btn btn-social plusone" socialshare
+                                                   socialshare-provider="google"
+                                                   socialshare-text="Show your support for [[ p.title ]] on CompleteDoddle."
+                                                   socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                                <button class="btn btn-social plusone" socialshare
+                                                   socialshare-provider="linkedin"
+                                                   socialshare-text="Show your support for [[ p.title ]] on CompleteDoddle."
+                                                   socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                                <button class="btn btn-social plusone" socialshare
+                                                   socialshare-provider="email"
+                                                   socialshare-subject="Support my project on CompleteDoddle."
+                                                   socialshare-body="I have added a new project, [[ p.title ]] onto the unique crowdfunding site, CompleteDoddle. Please take a moment to visit my project page and please offer your support. Thank you. [[ absUrl ]]/projects/[[ p.id ]]">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>-->
+                                <div class="col-xs-12 cd-no-padding text-xs-center">
+                                    <hr/>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <button type="button" class="btn btn-block btn-white-outline" ng-click="editProject($index)">Edit Project</button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn btn-block btn-white-outline" ng-click="requestWithdraw($index)">Withdraw Funds</button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn btn-block btn-white-outline" ng-bind="p.status == 'PAUSED' ? 'Resume Project' : 'Pause Project'" ng-click="pauseProject($index)"></button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="btn btn-block btn-white-outline" ng-click="deleteProject(p.id)">Delete Project</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-xs-center" ng-if="userProjects.length == 0">
+                    <h3 style='margin-top: 25px;'>No Projects</h3>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

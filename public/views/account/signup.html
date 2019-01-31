@@ -1,0 +1,168 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar cd-after-nav" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container">
+        <div class="row">
+            <ul class="list list-inline">
+                <li class="list-inline-item"><button type="button" ng-click="signupType = 1">Type 1</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="signupType = 2">Type 2</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="signupType = 3">Type 3</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="signupType = 4">Type 4</button></li>
+
+                <li class="list-inline-item"><button type="button" ng-click="setStep(0)">Step 0</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="setStep(1)">Step 1</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="setStep(2)">Step 2</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="setStep(3)">Step 3</button></li>
+                <li class="list-inline-item"><button type="button" ng-click="setStep(4)">Step 4</button></li>
+            </ul>
+
+            <form name="signupFrm" id="signupFrm">
+                <section>
+                    <ng-include ng-if="signupType == 1" src="'views/account/signups/signup-type-1.html'"></ng-include>
+                    <ng-include ng-if="signupType == 2" src="'views/account/signups/signup-type-2.html'"></ng-include>
+                    <ng-include ng-if="signupType == 3" src="'views/account/signups/signup-type-3.html'"></ng-include>
+                    <ng-include ng-if="signupType == 4" src="'views/account/signups/signup-type-4.html'"></ng-include>
+                </section>
+
+                <section ng-if="signupStep == 1">
+                    <!-- Group Name -->
+                    <div class="form-group" ng-class="signupFrm.groupName.$valid && !signupFrm.groupName.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="groupName"><strong>What is the name of your group?</strong></label>
+                        <input class="form-control" name="groupName" id="groupName" type="text" ng-model="groupForm.title" placeholder="Group name" min="3" required ng-class="signupFrm.groupName.$valid && !signupFrm.groupName.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.groupName.$invalid || signupFrm.groupName.$error.required">
+                            Please enter your group's name.
+                        </div>
+                    </div>
+                    <!-- Group Description -->
+                    <div class="form-group" ng-class="signupFrm.groupDesc.$valid && !signupFrm.groupDesc.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="groupDesc"><strong>Enter a brief description of your group</strong></label>
+                        <input class="form-control" name="groupDesc" id="groupDesc" type="text" ng-model="groupForm.desc" placeholder="Group description" min="3" required ng-class="signupFrm.groupDesc.$valid && !signupFrm.groupDesc.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.groupDesc.$invalid || signupFrm.groupDesc.$error.required">
+                            Please enter a short description for your group.
+                        </div>
+                    </div>
+                    <!-- Group Members -->
+                    <div class="form-group" ng-class="signupFrm.groupMembers.$valid && !signupFrm.groupMembers.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="groupMembers"><strong>How many members are in your group?</strong></label>
+                        <input class="form-control" name="groupMembers" id="groupMembers" type="number" ng-model="groupForm.membersCount" placeholder="Group members" min="1" required ng-class="signupFrm.groupMembers.$valid && !signupFrm.groupMembers.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.groupMembers.$invalid || signupFrm.groupMembers.$error.required">
+                            Please enter how many members your group has.
+                        </div>
+                    </div>
+
+                    <!-- Calculator -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h2 id="calculator">See How Much Your Project Could Raise</h2>
+
+                            <table>
+                                <tbody><tr>
+                                    <td><strong>How many households are directly linked to your project?</strong> <br>(E.g. if your project was an under 10’s youth football team this would represent 12 households. This is because on average each player in the team would represent 1 household. )</td>
+                                    <td><input value="15" type="text" ng-model="calc.households" ng-change="calculate()"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>How many other people - friends and family - could the directly linked households above also get to support your project?</strong><br>
+                                        Think about all the people that you and the directly linked households above can reach by simply sharing your project on Faceboook, Twitter, Instagram, LinkedIn etc. Sharing your project will reach a lot of people. It could literally be 100s if not 1000s if your project is good enough and appeals to enough people.
+                                    </td>
+                                    <td><input value="60" type="text" ng-model="calc.families" ng-change="calculate()"></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Average monthly amount spent by each household on Shelping.COM products?</strong><br>
+                                        (On average households spend between £30-£40* a month on the everyday items Shelping.COM sell. We therefore advise that you enter £30)
+                                    </td>
+                                    <td><input type="text" value="40.00" ng-model="calc.cost" ng-change="calculate()"></td>
+                                </tr>
+                                </tbody></table>
+
+                            <!-- button id="calc-recalculate" class="submit button">Recalculate</button -->
+                            <h2>Total generated for your group:</h2>
+
+                            <div class="totals callout">
+                                <p>Per month: <strong id="group-month-total">£[[ calc.totalMonth | number : 2 ]]</strong></p>
+                                <p>Per year: <strong id="group-year-total">£[[ calc.totalYear | number : 2 ]]</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-white btn-white-outline" ng-click="setStep(2)">Next</button>
+                </section>
+
+                <section ng-if="signupStep == 2">
+                    <!-- Full Name -->
+                    <div class="form-group" ng-class="signupFrm.fullName.$valid && !signupFrm.fullName.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="fullName"><strong>What is your name?</strong></label>
+                        <input class="form-control" name="fullName" id="fullName" type="text" ng-model="signupForm.full_name" placeholder="Full name" min="3" required ng-class="signupFrm.fullName.$valid && !signupFrm.fullName.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.fullName.$invalid || signupFrm.fullName.$error.required">
+                            Please enter your full name.
+                        </div>
+                    </div>
+                    <!-- Email Address -->
+                    <div class="form-group" ng-class="signupFrm.email.$valid && !signupFrm.email.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="email"><strong>What is your email?</strong></label>
+                        <input class="form-control" name="email" id="email" type="email" ng-model="signupForm.email" placeholder="Email" required ng-class="signupFrm.email.$valid && !signupFrm.email.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.email.$invalid || signupFrm.email.$error.required">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                    <!-- Birthday -->
+                    <div class="form-group" ng-class="signupFrm.birthday.$valid && !signupFrm.birthday.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="email"><strong>What is your DOB*?</strong></label>
+                        <input class="form-control" name="birthday" id="birthday" type="date" ng-model="signupForm.birthday" ng-change="ageCheck()" placeholder="Birthday" required ng-class="signupFrm.birthday.$valid && !signupFrm.birthday.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div><small>*Members of Shelping.COM need to be at least 16 years old.</small></div>
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.birthday.$invalid || signupFrm.birthday.$error.required">
+                            Please enter your birthday.
+                        </div>
+                    </div>
+                    <!-- Username -->
+                    <div class="form-group" ng-class="signupFrm.userName.$valid && !signupFrm.userName.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="userName"><strong>Enter your chosen username</strong></label>
+                        <input class="form-control" name="userName" id="userName" type="text" ng-model="signupForm.username" placeholder="Username" min="3" required ng-class="signupFrm.userName.$valid && !signupFrm.userName.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.userName.$invalid || signupFrm.userName.$error.required">
+                            Please enter a username.
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group" ng-class="signupFrm.password.$valid && !signupFrm.password.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="password"><strong>Enter your chosen password</strong></label>
+                        <input class="form-control" name="password" id="password" type="password" ng-model="signupForm.password" placeholder="Password" required min="6" ng-class="signupFrm.password.$valid && !signupFrm.password.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.password.$invalid || signupFrm.password.$error.required">
+                            Please enter a valid password.
+                        </div>
+                    </div>
+                    <!-- Password Match -->
+                    <div class="form-group" ng-class="!signupFrm.passwordMatch.$error.pwmatch && !signupFrm.passwordMatch.$error.required ? 'has-success' : 'has-danger'">
+                        <label for="passwordMatch"><strong>Confirm your chosen password</strong></label>
+                        <input class="form-control" name="passwordMatch" id="passwordMatch" type="password" ng-model="signupForm.password_match" placeholder="Repeat password" pw-check='password' required ng-class="!signupFrm.passwordMatch.$error.pwmatch && !signupFrm.passwordMatch.$error.required ? 'form-control-success' : 'form-control-danger'">
+                        <div class="text-danger form-control-feedback" ng-if="signupFrm.passwordMatch.$error.pwmatch || signupForm.passwordMatch.$error.required">
+                            Please enter a matching password.
+                        </div>
+                    </div>
+                    <!-- Age agreement -->
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input disabled readonly name="ageAgreement" id="ageAgreement" ng-model="signupForm.ageAgreement" required type="checkbox" class="form-check-input" ng-class="signupFrm.ageAgreement.$valid && !signupFrm.ageAgreement.$error.required ? 'form-control-success' : 'form-control-danger'">
+                            I confirm I am 16 years old or over.<span ng-show="false">[[ calculateAge(signupForm.birthday) ]]</span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="btn btn-white btn-white-outline" ng-click="setStep(3)">Next</button>
+                </section>
+
+                <section ng-if="signupStep == 3">
+                    <div class="form-group" ng-class="signupFrm.about.$valid ? 'has-success' : 'has-danger'">
+                        <label for="about"><strong>About you</strong></label>
+                        <p>Enter what you want to say about yourself below. This will be visible for people to see if they are looking at any projects you have created.</p>
+                        <textarea class="form-control" name="about" id="about" type="text" ng-model="signupForm.about" placeholder="About you..." ng-class="signupFrm.userName.$valid ? 'form-control-success' : 'form-control-danger'"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-white btn-white-outline" ng-click="storeProfile()">Skip for now</button>
+                    <button type="button" class="btn btn-white btn-white-outline" ng-click="storeProfile()">Next</button>
+                </section>
+
+                <section ng-if="signupStep == 4">
+                    Signup complete, request group sample pack
+                </section>
+            </form>
+        </div>
+    </div>
+</section>

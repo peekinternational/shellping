@@ -1,0 +1,297 @@
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 20px; padding-bottom: 20px;" ng-show="user.name.length > 0">
+    <!-- Profile Header -->
+    <div class="container-fluid cd-no-padding" style="overflow: hidden;">
+        <div class="row">
+            <div class="cd-profile-header">
+                <!-- Cover Img -->
+                <div class="cover-container">
+                    <div class="cover-img" style="background: url([[ user.photo ? user.photo : '/assets/img/missing-avatar.png' ]])">
+                        <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 0, 0);"></div>
+                    </div>
+                </div>
+                <!-- Header content-->
+                <div class="profile-cover-content text-xs-center">
+                    <!-- User profile pic -->
+                    <div class="profile-image" style="background-image: url([[ user.photo ? user.photo : '/assets/img/missing-avatar.png' ]])"></div>
+                    <h3 class="text-white">
+                        <strong ng-bind="user.name"></strong>
+                    </h3>
+                    <h4 ng-bind="user.locationAddress.city.country(', ', user.locationAddress.country)"></h4>
+                    <ul class="list-inline list-unstyled">
+                        <!--profile buttons-->
+                        <li class="list-inline-item" ng-if="account.token && account.id != user.id">
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Message [[ user.name ]]" ng-click="messageUser()">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                        <li class="list-inline-item" ng-if="account.token && account.id != user.id">
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Block [[ user.name ]]" ng-click="toggleBlock()">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </button>
+                        </li>
+                        <!--li class="list-inline-item">
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Share [[ user.name ]] profile">
+                                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                            </button>
+                        </li-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="cd-profile-content">
+                <!--Body Content-->
+                <div class="col-xs-12 col-sm-12 cd-project-body">
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">About Me</h4>
+                            <div ng-bind="user.about.length > 0 ? user.about : 'No Description'"></div>
+                        </div>
+                    </div>
+
+                    <!-- User Projects -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">Projects I've Created</h4>
+                            <div class="col-xs-12 clearfix cd-no-padding">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 project-card" ng-repeat="p in user.projects" ng-if="p.status == 'APPROVED'">
+                                    <div class="col-xs-12 cd-no-padding cd-shadow card-holder">
+                                        <div class="card">
+                                            <a ng-href="projects/[[p.id]]" class="project-link" style="background-image: url([[ p.logo ? p.logo : '/assets/img/missing-project.png' ]])">
+                                                <div class="card-img-overlay text-white">
+                                                    <div class="col-xs-12 small-details">
+                                                        <div class="project-funds text-xs-right">
+                                                            Funds raised: <span ng-bind="p.fund.totalIncome ? p.fund.totalIncome : '0.00' | currency:'£'"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="col-xs-12 clearfix card-footer text-muted project-footer">
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <h4 class="card-title text-black">[[ p.title | limitTo:32]]<span ng-if="p.title.length > 32">...</span></h4>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    by [[ p._owner.name ]]
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                    <span data-toggle="tooltip" data-placement="top" title="[[ p.backersCount ]] Supporters">
+                                        <i class="fa fa-users"></i> [[ p.backersCount ]] supporters
+                                    </span>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <i class="fa fa-calendar"></i> <span ng-bind="p.createdDate | date:'longDate' : timezone:'GMT'"></span>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding text-xs-center">
+                                                    <strong>Share this project</strong>
+                                                    <ul class="list-unstyled list-inline">
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                                                <button class="btn btn-social twitter" socialshare
+                                                                        socialshare-provider="twitter"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-hashtags="Shelping.COM" socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]"
+                                                                        socialshare-media="[[ p.logo ]]">
+                                                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                                                <button class="btn btn-social facebook" socialshare
+                                                                        socialshare-provider="facebook" socialshare-text="Share on facebook"
+                                                                        socialshare-type="share" socialshare-via="274676456259523"
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="google"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="linkedin"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="email"
+                                                                        socialshare-subject="Support my project on Shelping.COM."
+                                                                        socialshare-body="I have added a new project, [[ p.title ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <a class="btn btn-white-outline btn-block" href="projects/[[ p.id ]]">View</a>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <button type="button" class="btn btn-white-outline btn-block" ng-bind="p.isBacking ? 'Stop Supporting' : 'Support'" ng-click="backProject($index)"></button> <!-- Todo support function -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Backed Projects -->
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">Projects I'm supporting</h4>
+                            <div class="col-xs-12 clearfix cd-no-padding">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 project-card" ng-repeat="p in user.backed" ng-if="p.status == 'APPROVED'">
+                                    <div class="col-xs-12 cd-no-padding cd-shadow card-holder">
+                                        <div class="card">
+                                            <a ng-href="projects/[[p.id]]" class="project-link" style="background-image: url([[ p.logo ? p.logo : '/assets/img/missing-project.png' ]])">
+                                                <div class="card-img-overlay text-white">
+                                                    <div class="col-xs-12 small-details">
+                                                        <div class="project-funds text-xs-right">
+                                                            Funds raised: <span ng-bind="p.fund.totalIncome ? p.fund.totalIncome : '0.00' | currency:'£'"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <div class="col-xs-12 clearfix card-footer text-muted project-footer">
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <h4 class="card-title text-black">[[ p.title | limitTo:32]]<span ng-if="p.title.length > 32">...</span></h4>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    by [[ p._owner.name ]]
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                    <span data-toggle="tooltip" data-placement="top" title="[[ p.backersCount ]] Supporters">
+                                        <i class="fa fa-users"></i> [[ p.backersCount ]] supporters
+                                    </span>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <i class="fa fa-calendar"></i> <span ng-bind="p.createdDate | date:'longDate' : timezone:'GMT'"></span>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding text-xs-center">
+                                                    <strong>Share this project</strong>
+                                                    <ul class="list-unstyled list-inline">
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Twitter">
+                                                                <button class="btn btn-social twitter" socialshare
+                                                                        socialshare-provider="twitter"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-hashtags="Shelping.COM" socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]"
+                                                                        socialshare-media="[[ p.logo ]]">
+                                                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Facebook">
+                                                                <button class="btn btn-social facebook" socialshare
+                                                                        socialshare-provider="facebook" socialshare-text="Share on facebook"
+                                                                        socialshare-type="share" socialshare-via="274676456259523"
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on Google+">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="google"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-google-plus-g" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share on LinkedIn">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="linkedin"
+                                                                        socialshare-text="Show your support for [[ p.title ]] on Shelping.COM."
+                                                                        socialshare-url="[[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div data-toggle="tooltip" data-placement="top" title="Share via Email">
+                                                                <button class="btn btn-social plusone" socialshare
+                                                                        socialshare-provider="email"
+                                                                        socialshare-subject="Support my project on Shelping.COM."
+                                                                        socialshare-body="I have added a new project, [[ p.title ]] onto the unique crowdfunding site, Shelping.COM. Please take a moment to visit my project page and please offer your support. Thank you. [[ absUrl ]]/projects/[[ p.id ]]">
+                                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 cd-no-padding">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <a class="btn btn-white-outline btn-block" href="projects/[[ p.id ]]">View</a>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                                            <button type="button" class="btn btn-white-outline btn-block" ng-bind="p.isBacking ? 'Stop Supporting' : 'Support'" ng-click="backProject($index)"></button> <!-- Todo support function -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="col-xs-12 col-sm-4 cd-project-body">
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">My Skills</h4>
+                            <div>
+                                <ul class="list-unstyled list-inline">
+                                    <li  class="list-inline-item" ng-repeat="skill in user._skills" style="margin-bottom: 10px;">
+                                        <span class="badge badge-info">[[ skill.name ]]</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card cd-shadow">
+                        <div class="card-block clearfix">
+                            <h4 class="content-heading">My Interests</h4>
+                            <div>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item" ng-repeat="interest in user._interests" style="margin-bottom: 10px;">
+                                        <span class="badge badge-info">[[ interest.name ]]</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</section>
