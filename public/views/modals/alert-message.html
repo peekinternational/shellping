@@ -1,7 +1,11 @@
 <div class="col-xs-12">
-    <div class="col-xs-12 cd-no-padding" ng-bind-html="data.content">
+    <div class="col-xs-12 cd-no-padding">
+    	<ul>
+    		<li ng-repeat="error in data.content" ng-bind="error.name"></li>
+    	</ul>
     </div>
-    <div class="col-xs-12 cd-no-padding text-xs-right">
-        <button class="btn btn-outline-primary" ng-click="cancel()">Close</button>
+
+    <div class="col-xs-12 cd-no-padding center">
+        <button class="btn btn-info" style="width: 200px;" ng-click="cancel()">OK</button>
     </div>
 </div>

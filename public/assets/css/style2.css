@@ -1,6 +1,25 @@
 body {
     background-color: #fff!important;
 }
+.congrats-container{
+    text-align: center;
+    margin-bottom: 15px;
+    background: #ececec;
+    padding: 20px;
+    border: 2px solid #e0dcdc;
+}
+.center{
+    text-align: center;
+}
+.text-grey{
+    color: #a5a5a5;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
 
 .mbr-after-navbar {
 
