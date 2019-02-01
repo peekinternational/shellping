@@ -171,7 +171,7 @@
                     </li>
                     
                 </ul>
-                <p class="text-black" style="margin-top: 3rem;">
+                <p class="text-black copyright-sec" style="margin-top: 3rem;">
                   <strong>Copyright &copy; [[ date| date:'yyyy' ]] Shelping.COM.</strong>
                 </p>
 

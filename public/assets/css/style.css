@@ -1350,7 +1350,12 @@ Navigation
     #base-content .mbr-after-navbar {
         padding-top: 150px;
     }
-
+    .copyright-sec{
+        margin-top: 1rem !important;
+    }
+    .social-likes .col-xs-2{
+        padding: 10px 0 !important;
+    }
     /** Store Front */
     .moodshots {}
 
