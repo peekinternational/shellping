@@ -1026,6 +1026,10 @@ Messages
     color: #3dafe8 !important; 
     font-size: 1.75rem;
 }
+#menu-0 .nav-breadcrumbs .breadcrumb {
+    background: none;
+    margin-bottom: 0!important;
+}
 /**
 Media Views
  */
@@ -1344,7 +1348,7 @@ Navigation
     }
 
     #base-content .mbr-after-navbar {
-        padding-top: 100px!important;
+        padding-top: 150px;
     }
 
     /** Store Front */

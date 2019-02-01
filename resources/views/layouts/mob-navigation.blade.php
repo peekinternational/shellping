@@ -153,6 +153,16 @@
             </div>
 
         </div>
+        <div class="nav-breadcrumbs cd-shadow" ng-if="navUrl != '/'">
+            <div class="container">
+                <ol class="ab-nav breadcrumb">
+                    <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
+                        <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
+                        <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+                    </li>
+                </ol>
+            </div>
+        </div>
     </nav>
 
 </section>
