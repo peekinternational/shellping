@@ -9,16 +9,27 @@
                         <a href="/" class="navbar-logo">
                             <img ng-class="logoHover == true ? 'fa-spin' : ''" src="{{ url('assets/img/logo-ico.png') }}" alt="Shelping.COM">
                         </a>
-                        <a class="navbar-caption" href="/">Shelping.COM</a>
+                        <!-- <a class="navbar-caption" href="/">Shelping.COM</a> -->
                     </div>
                 </div>
                 <div class="mbr-table-cell hidden-md-up">
                     <!-- Toggle -->
-                    <button id="mobNavToggle" class="btn btn-link btn-xs pull-xs-right hidden-md-up text-black cd-no-padding" style="margin-left: 25px;" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" ng-click="MobNav()">
+                    <a class="nav-link link sm-link" data-toggle="dropdown-account" href="users/119290002">
+                      <span>
+                        <i class="fa fa-search fa-2x"></i>
+                      </span>
+                    </a>
+                    <a class="nav-link link sm-link" data-toggle="dropdown-account" href="account/[[account.id]]/edit" style="margin-left: 15px; margin-right: -36px;">
+                      <div class="cd-avatar cd-avatar-sm">
+                          <img ng-src="/assets/img/missing-avatar.png" src="/assets/img/missing-avatar.png">
+                      </div>
+                    </a>
+                    
+                    <button id="mobNavToggle" class="btn btn-link btn-xs pull-xs-right hidden-md-up text-black cd-no-padding" style="margin-left: 15px;" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" ng-click="MobNav()">
                         <i ng-class="!toggleMobNav ? 'fas fa-bars fa-2x' : 'fas fa-times fa-2x'"></i>
                     </button>
                     <!-- Cart -->
-                    <a class="btn btn-link btn-xs pull-xs-right hidden-md-up text-black cd-no-padding" href="store/cart" aria-expanded="false">
+                    <a class="btn btn-link btn-xs pull-xs-right hidden-md-up text-black cd-no-padding" href="store/cart" aria-expanded="false" style="margin-left: -36px;">
                         <span ng-class="cart.getTotalItems() > 0 ? 'text-success' : ''">
                             <i class="fa fa-shopping-cart fa-2x"></i> [[ cart.getItems().length ]]
                         </span>
