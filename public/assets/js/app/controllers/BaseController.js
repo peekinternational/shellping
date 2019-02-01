@@ -2288,7 +2288,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             errors[2] = {name:"Please enter a valid location, "};
         if($scope.formData.categories.length == 0)
             errors[3] = {name:"Please select at least one Category. "};
-        console.log(errors);
+        
         if(errors.length > 0) {
             $rootScope.AlertModal(false, "you should have to be fill the following fields", errors);
             return;
