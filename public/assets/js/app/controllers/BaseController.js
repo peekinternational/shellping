@@ -2257,7 +2257,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             // Open relative modal
             $scope.ne = ModalsService.openModal(
                 'AlertModalController',        // Controller
-                "Are you sure you want to continue?", // Title
+                "You have not filled in the following fields:", // Title
                 'views/modals/alert-modal.html',     // Template
                 'lg',                               // Size
                 {}                                  // Data
@@ -2331,16 +2331,13 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
 
         // Check form validation
         if($scope.formData.title == null)
-            errors[0] = {name:"Please enter a valid title,"};
+            errors[0] = {name:"Name"};
         if($scope.formData.desc == null)
-            errors[1] = {name:"Please enter a valid description, "};
-        if($scope.formData.locationName == null)
-            errors[2] = {name:"Please enter a valid location, "};
-        if($scope.formData.categories.length == 0)
-            errors[3] = {name:"Please select at least one Category. "};
+            errors[1] = {name:"Description"};
+        
         console.log(errors.length);
         if(errors.length > 0) {
-            $rootScope.AlertModal(false, "you should have to be fill the following fields", errors);
+            $rootScope.AlertModal(false, "You must fill in the following requried fields:", errors);
             return;
         }else{
             $scope.tryStore();
@@ -2442,7 +2439,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             'views/modals/map.html',    // Template
             'md',                       // Size
             {
-                subtext: "Enter the location of your project in the box below then click the `set location` buttom. This location is then used to allow people to search for your project making it easier find. Projects that are easier to search for will receive more support. ",
+                subtext: "Enter the location of your project in the box below then click the `set location` buttom." +"\n \n" + "This location is then used to allow people to search for your project making it easier find. Projects that are easier to search for will receive more support. ",
                 location: { name: $scope.formData.locationName }
             }                          // Data
         );

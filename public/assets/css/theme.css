@@ -1034,7 +1034,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 /* modal back color opacity */
 .modal-backdrop.in {
-  opacity: 0.8;
+  opacity: 0 !important;
   filter: alpha(opacity=80); }
 
 @media (max-width: 768px) {

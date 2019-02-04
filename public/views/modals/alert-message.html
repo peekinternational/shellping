@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="col-xs-12 cd-no-padding">
     	<ul>
-    		<li ng-repeat="error in data.content" ng-bind="error.name"></li>
+    		<li ng-if="error" ng-repeat="error in data.content" ng-bind="error.name"></li>
     	</ul>
     </div>
 
