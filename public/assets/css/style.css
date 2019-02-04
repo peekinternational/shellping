@@ -1030,6 +1030,62 @@ Messages
     background: none;
     margin-bottom: 0!important;
 }
+.social-likes{
+    background: #fff; 
+    border-top: 1px solid #ddd;
+}
+.social-likes .col-xs-2{
+    padding: 15px 0 !important;
+}
+.social-likes .col-xs-2 i{
+    font-size: 25px;
+}
+#footer1-6{
+    background-color: #e8e5e5;
+    padding-top: 0rem; 
+    padding-bottom: 1.75rem;
+}
+.bottom-footer{
+    padding-top: 1.75rem;
+}
+.padding-left0{
+    padding-left: 0;
+}
+.padding-right0{
+    padding-right: 0;
+}
+.btn-font{
+    font-size: 1.75rem;
+}
+.margin-bottom15{
+    margin-bottom: 15px;
+}
+.cart-count{
+    background: #0293E1;
+    color: white;
+    border-radius: 50%;
+    padding: 0 2px 2px 4px;
+    text-align: center;
+    position: absolute;
+    top: 15px;
+    width: 18px;
+    height: 18px;
+    right: 30px;
+    font-size: 11px;
+    border: #fff 1px solid;
+}
+.nav-search-container{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    z-index: 99;
+}
+.map-btn{
+    width: 25%;
+}
 /**
 Media Views
  */
@@ -1321,12 +1377,17 @@ Navigation
     .mob-nav .dropdown-item, .mob-nav .link {
         color: #e25041!important;
     }
-
+    .nav-search-container form {
+        margin-top: 22px;
+    }
     .navbar-dropdown-open {
         overflow: hidden;
         position: fixed!important;
     }
-
+    .cd-avatar-sm {
+        width: 30px!important;
+        height: 30px!important;
+    }
     .navbar-dropdown-open #base-content {
         /*display: none;*/
     }
@@ -1350,7 +1411,12 @@ Navigation
     #base-content .mbr-after-navbar {
         padding-top: 150px;
     }
-
+    .copyright-sec{
+        margin-top: 1rem !important;
+    }
+    .social-likes .col-xs-2{
+        padding: 10px 0 !important;
+    }
     /** Store Front */
     .moodshots {}
 
@@ -1438,5 +1504,11 @@ Navigation
     }
     .bottom-footer{
         padding-top: 0.75rem !important;
+    }
+    .map-btn{
+        width: 48%;
+    }
+    .set-loc{
+        width: 51% !important;
     }
 }

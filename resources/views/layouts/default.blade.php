@@ -117,43 +117,43 @@
         </div>
 
         <!-- Footer -->
-        <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-6" style="background-color: #e8e5e5; padding-top: 0rem; padding-bottom: 1.75rem;">
+        <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-6">
             
-          <div class="mbr-social-likes social-likes social-likes_visible row" data-counters="false" style="background: #fff; border-top: 1px solid #ddd;">
+          <div class="mbr-social-likes social-likes social-likes_visible row" data-counters="false">
             <div class="container  text-xs-center">
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social facebook" title="Share link on Facebook" socialshare="" socialshare-provider="facebook" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-type="share" socialshare-via="274676456259523" socialshare-url="http://localhost:9000/projects/create">
                   <i class="fab fa-facebook-f"></i>
                 </span>
               </div>
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social twitter" title="Share link on Twitter" socialshare socialshare-provider="twitter" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-hashtags="Shelping.COM" socialshare-url="[[ sharableUrl ]]" socialshare-media="assets/img/logo-ico.png">
                 <i class="fab fa-twitter"></i>
                 </span>
               </div>
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social plusone" title="Share link on Google+" socialshare socialshare-provider="google" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
                 <i class="fab fa-google-plus-g"></i>
                 </span>
               </div>
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social plusone" title="Share link on Linkedin" socialshare socialshare-provider="linkedin" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
                 <i class="fab fa-linkedin-in"></i>
                 </span>
               </div>
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social plusone" title="Share on others" ng-click="ShareModel()">
                 <i class="fa fa-share-alt"></i>
                 </span>
               </div>
-              <div class="col-md-2 col-xs-2" style="padding: 15px 0;">
+              <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social plusone" title="Share link via Email" socialshare socialshare-provider="email" socialshare-subject="Shelping.COM" socialshare-body="Sky rocket your project on Shelping.COM. [[ sharableUrl ]]">
                   <i class="fa fa-envelope"></i>
                 </span>
               </div>  
             </div>  
           </div>
-            <div class="container text-xs-center bottom-footer" style="padding-top: 1.75rem;">
+            <div class="container text-xs-center bottom-footer">
                 <!-- Share Buttons -->
                 
                 <ul class="list-inline list-unstyled footer-link">
@@ -171,7 +171,7 @@
                     </li>
                     
                 </ul>
-                <p class="text-black" style="margin-top: 3rem;">
+                <p class="text-black copyright-sec" style="margin-top: 3rem;">
                   <strong>Copyright &copy; [[ date| date:'yyyy' ]] Shelping.COM.</strong>
                 </p>
 
