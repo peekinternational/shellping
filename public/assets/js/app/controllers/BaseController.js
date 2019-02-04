@@ -2147,7 +2147,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
         h: 417
     };
 
-    $scope.createStep = 1;
+    $rootScope.createStep = 1;
 
     $scope.shareUrl = $location.absUrl();
 
@@ -2358,15 +2358,15 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
     };
 
     $scope.nextStep = function () {
-        $scope.createStep++;
+        $rootScope.createStep++;
     };
 
     $scope.prevStep = function () {
-        $scope.createStep--;
+        $rootScope.createStep--;
     };
 
     $scope.reset = function() {
-        $scope.createStep = 3;
+        $rootScope.createStep = 3;
     };
 
     $scope.complete = function () {
@@ -2408,7 +2408,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
     };
 
     $scope.setTitle = function () {
-        switch ($scope.createStep) {
+        switch ($rootScope.createStep) {
             case 1:
                 $scope.title = title;
                 break;
@@ -5562,7 +5562,7 @@ app.controller('ProjectCreateModalController', [ '$rootScope', '$scope', '$route
             h: 417
         };
 
-        $scope.createStep = 1;
+        $rootScope.createStep = 1;
 
         $scope.shareUrl = $location.absUrl();
 
@@ -5725,15 +5725,15 @@ app.controller('ProjectCreateModalController', [ '$rootScope', '$scope', '$route
         };
 
         $scope.nextStep = function () {
-            $scope.createStep++;
+            $rootScope.createStep++;
         };
 
         $scope.prevStep = function () {
-            $scope.createStep--;
+            $rootScope.createStep--;
         };
 
         $scope.reset = function() {
-            $scope.createStep = 3;
+            $rootScope.createStep = 3;
         };
 
         $scope.complete = function () {
@@ -5775,7 +5775,7 @@ app.controller('ProjectCreateModalController', [ '$rootScope', '$scope', '$route
         };
 
         $scope.setTitle = function () {
-            switch ($scope.createStep) {
+            switch ($rootScope.createStep) {
                 case 1:
                     $scope.title = title;
                     break;
