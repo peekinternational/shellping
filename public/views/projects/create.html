@@ -1,4 +1,32 @@
-<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 150px!important;">
+<div class="nav-breadcrumbs hidden-sm-up cd-shadow prjct-breadcumb" ng-if="navUrl != '/'">
+    <div class="container">
+        <ol class="ab-nav breadcrumb" ng-if="navUrl == '/projects/create'">
+            <!-- <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
+                <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
+                <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+            </li>-->
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="projects/create">Add Project</a>
+            </li>
+            <li  ng-if="createStep == 3">
+                <a href="">Share on Facebook</a>
+            </li>
+
+            <li  ng-if="createStep == 4">
+                <a href="">Share on Twitter</a>
+            </li>
+
+            <li  ng-if="createStep == 5">
+                <a href="">Share Project</a>
+            </li>
+        </ol>
+    </div>
+</div>
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 155px!important;">
+    
     <div class="container cd-no-padding" style="overflow: hidden;">
         <div class=""> <!-- row -->
             <!-- Create Form -->

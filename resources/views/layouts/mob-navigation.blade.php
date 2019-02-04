@@ -25,7 +25,7 @@
                                 <div class="input-group">
                                     <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search for...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-secondary btn-info cd-no-margin" type="submit" ng-click="search()">
+                                        <button class="btn cd-no-margin" type="submit" ng-click="search()">
                                             <i class="fa fa-search"></i>
                                         </button>
                                         <button class="btn btn-secondary btn-link cd-no-margin" type="button" ng-click="showDiv = !showDiv">
@@ -173,7 +173,7 @@
         </div>
         <div class="nav-breadcrumbs cd-shadow" ng-if="navUrl != '/'">
             <div class="container">
-                <ol class="ab-nav breadcrumb">
+                <ol class="ab-nav breadcrumb" ng-if="navUrl != '/projects/create'">
                     <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
                         <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
                         <span ng-if="$last" ng-bind="breadcrumb.label"></span>
