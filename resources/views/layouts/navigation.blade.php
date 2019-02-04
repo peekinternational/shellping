@@ -146,13 +146,13 @@
                                     <i class="fab fa-twitter" aria-hidden="true"></i> Twitter
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="facebook" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ sharableUrl ]]">
-                                    <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+                                    <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="google" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
                                     <i class="fab fa-google-plus-g" aria-hidden="true"></i> Google+
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="linkedin" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
-                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
                                 </a>
                                 <a class="dropdown-item" href="" ng-click="ShareModel()">
                                     <i class="fa fa-share-alt" aria-hidden="true"></i> Other
@@ -167,7 +167,8 @@
                         <li class="nav-item dropdown" ng-class="navUrl == '/store/cart' ? 'active' : ''">
                             <a class="nav-link link single-link" href="store/cart" aria-expanded="false">
                                 <span ng-class="cart.getTotalItems() > 0 ? 'text-success' : ''">
-                                    <i class="fa fa-2x fa-shopping-cart"></i> [[ cart.getItems().length ]]
+                                    <i class="fa fa-2x fa-shopping-cart"></i> 
+                                    <span class="cart-count">[[ cart.getItems().length ]]</span>
                                 </span>
                             </a>
                         </li>
@@ -180,10 +181,35 @@
 
         <div class="nav-breadcrumbs cd-shadow" ng-if="navUrl != '/'">
             <div class="container">
-                <ol class="ab-nav breadcrumb">
+              
+                <ol class="ab-nav breadcrumb" ng-if="navUrl != '/projects/create'">
                     <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
                         <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
                         <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+                    </li>
+
+                </ol>
+                <ol class="ab-nav breadcrumb create-breadcrmb" ng-if="navUrl == '/projects/create'">
+                    <!-- <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
+                        <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
+                        <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+                    </li>-->
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="projects/create">Add Project</a>
+                    </li>
+                    <li  ng-if="createStep == 3">
+                        <a href="">Share on Facebook</a>
+                    </li>
+
+                    <li  ng-if="createStep == 4">
+                        <a href="">Share on Twitter</a>
+                    </li>
+
+                    <li  ng-if="createStep == 5">
+                        <a href="">Share Project</a>
                     </li>
                 </ol>
             </div>

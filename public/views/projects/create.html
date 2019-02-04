@@ -1,4 +1,32 @@
-<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 150px!important;">
+<div class="nav-breadcrumbs hidden-sm-up cd-shadow prjct-breadcumb" ng-if="navUrl != '/'">
+    <div class="container">
+        <ol class="ab-nav breadcrumb" ng-if="navUrl == '/projects/create'">
+            <!-- <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
+                <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
+                <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+            </li>-->
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="projects/create">Add Project</a>
+            </li>
+            <li  ng-if="createStep == 3">
+                <a href="">Share on Facebook</a>
+            </li>
+
+            <li  ng-if="createStep == 4">
+                <a href="">Share on Twitter</a>
+            </li>
+
+            <li  ng-if="createStep == 5">
+                <a href="">Share Project</a>
+            </li>
+        </ol>
+    </div>
+</div>
+<section class="mbr-section article mbr-section__container mbr-after-navbar" id="content1-2" style="background-color: #eee; padding-top: 155px!important;">
+    
     <div class="container cd-no-padding" style="overflow: hidden;">
         <div class=""> <!-- row -->
             <!-- Create Form -->
@@ -10,7 +38,7 @@
                 <h5>The more you share, the more support your project will receive.</h5>
                 <!-- End -->
                 <br/>
-                <form name="form.createProject" id="createProject" ng-submit="tryStore()" novalidate>
+                <form name="form.createProject" id="createProject" ng-submit="store()" novalidate>
                     <div class="form-group" ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'has-success' : 'has-danger'">
                         <label for="title">Project Name <small>(<span ng-bind="formData.title.length > 0 ? formData.title.length : '0'"></span> / 50)</small>  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is what is displayed when people view your project."></i></label>
                         <input maxlength="50" spellcheck="true" type="text" class="form-control" id="title" name="title" placeholder="Project Title" ng-model="formData.title" required ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'form-control-success' : 'form-control-danger'">
@@ -136,7 +164,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center"">
                     <img style="width: 50%" src="../../assets/img/help/fbHelp.png" class="social-img">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                <div class="col-xs-12 col-sm-12 col-md-12 margin-bottom15">
                     <h4 class="text-black" style="color: #000 !important;">
                         <b>Sharing on Facebook will increase the number of supporters your project has.</b>
                     </h4>
@@ -147,13 +175,13 @@
                     </ul>
                     <!-- Share Button -->
                     
-                    <div class="col-xs-12 text-xs-right" style="padding-left: 0;">
-                        <div class="col-xs-9" style="padding-left: 0;">
-                           <a href="" class="btn btn-block btn-primary btn-font" ng-click="facebookShare()" style="font-size: 1.75rem;">
+                    <div class="col-xs-12 text-xs-right padding-left0">
+                        <div class="col-xs-9 text-xs-left padding-left0">
+                           <a href="" class="btn btn-primary btn-font" ng-click="facebookShare()">
                                 <i class="fab fa-facebook" aria-hidden="true"></i> Share on Facebook
                             </a> 
                         </div>
-                        <div class="col-xs-3" style="padding-right: 0;">
+                        <div class="col-xs-3 padding-right0">
                             <button class="btn btn-font skip-btn" ng-click="nextStep()" ng-class="shareCheck.facebook ? 'btn-info' : 'btn-primary'" ng-bind="shareCheck.facebook ? 'Continue' : 'Skip'"></button>
                         </div>
                     </div>
@@ -166,7 +194,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center">
                     <img style="width: 50%" src="../../assets/img/help/twitterHelp.png" class="social-img">
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                <div class="col-xs-12 col-sm-12 col-md-12 margin-bottom15" >
                     <h4 class="text-black" style="color: #000 !important;">
                         <b>Sharing on Twitter is just as important for increasing the number of supporters your project has.</b>
                     </h4>
@@ -177,13 +205,13 @@
                     </ul>
                     <!-- Share Button -->
                     
-                    <div class="col-xs-12 btn-sectn text-xs-right" style="padding-left: 0;">
-                        <div class="col-xs-9" style="padding-left: 0;">
-                            <a href="#" class="btn btn-block btn-twitter btn-font" ng-click="twitterShare()" style="font-size: 1.75rem;">
+                    <div class="col-xs-12 btn-sectn text-xs-right padding-left0">
+                        <div class="col-xs-9 text-xs-left padding-left0">
+                            <a href="#" class="btn btn-twitter btn-font" ng-click="twitterShare()">
                                 <i class="fab fa-twitter" aria-hidden="true"></i> Share on Twitter
                             </a>
                         </div>
-                        <div class="col-xs-3" style="padding-right: 0;">
+                        <div class="col-xs-3 padding-right0">
                             <button class="btn btn-font skip-btn" ng-click="nextStep()" ng-class="shareCheck.twitter ? 'btn-info' : 'btn-default'" ng-bind="shareCheck.twitter ? 'Continue' : 'Skip'"></button>
                         </div>
                     </div>
@@ -234,10 +262,10 @@
                     </ul>
                 </div>
                 <div class="col-xs-12">
-                    <div class="col-xs-6" style="padding-left: 0;">
-                        <button class="btn btn-info btn-font" ng-click="reset()" style="font-size: 1.75rem">Share Now</button>
+                    <div class="col-xs-6 padding-left0">
+                        <button class="btn btn-info btn-font" ng-click="reset()">Share Now</button>
                     </div>
-                    <div class="col-xs-6" style="padding-left: 0;">
+                    <div class="col-xs-6 padding-left0">
                         <button class="btn btn-primary skip-btn btn-font" ng-click="complete()">View Project</button>
                     </div>
                 </div>

@@ -14,11 +14,28 @@
                 </div>
                 <div class="mbr-table-cell hidden-md-up">
                     <!-- Toggle -->
-                    <a class="nav-link link sm-link" data-toggle="dropdown-account" href="users/119290002">
+                    <a class="nav-link link sm-link" data-toggle="dropdown-account" ng-click="showDiv = !showDiv" style="vertical-align: super;">
                       <span>
                         <i class="fa fa-search fa-2x"></i>
                       </span>
                     </a>
+                    <div class="mbr-table-cell hidden-md-up nav-search-container" ng-show="showDiv">
+                        <div class="col-xs-12">
+                            <form ng-submit="search()">
+                                <div class="input-group">
+                                    <input ng-model="filters.searchTerm" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Search for...">
+                                    <span class="input-group-btn">
+                                        <button class="btn cd-no-margin" type="submit" ng-click="search()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button class="btn btn-secondary btn-link cd-no-margin" type="button" ng-click="showDiv = !showDiv">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <a class="nav-link link sm-link" data-toggle="dropdown-account" href="account/[[account.id]]/edit" style="margin-left: 15px; margin-right: -36px;">
                       <div class="cd-avatar cd-avatar-sm">
                           <img ng-src="/assets/img/missing-avatar.png" src="/assets/img/missing-avatar.png">
@@ -31,7 +48,8 @@
                     <!-- Cart -->
                     <a class="btn btn-link btn-xs pull-xs-right hidden-md-up text-black cd-no-padding" href="store/cart" aria-expanded="false" style="margin-left: -36px;">
                         <span ng-class="cart.getTotalItems() > 0 ? 'text-success' : ''">
-                            <i class="fa fa-shopping-cart fa-2x"></i> [[ cart.getItems().length ]]
+                            <i class="fa fa-shopping-cart fa-2x"></i> 
+                            <span class="cart-count">[[ cart.getItems().length ]]</span>
                         </span>
                     </a>
                 </div>
@@ -155,7 +173,7 @@
         </div>
         <div class="nav-breadcrumbs cd-shadow" ng-if="navUrl != '/'">
             <div class="container">
-                <ol class="ab-nav breadcrumb">
+                <ol class="ab-nav breadcrumb" ng-if="navUrl != '/projects/create'">
                     <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
                         <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
                         <span ng-if="$last" ng-bind="breadcrumb.label"></span>
