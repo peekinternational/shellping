@@ -10,7 +10,7 @@
                 <h5>The more you share, the more support your project will receive.</h5>
                 <!-- End -->
                 <br/>
-                <form name="form.createProject" id="createProject" ng-submit="tryStore()" novalidate>
+                <form name="form.createProject" id="createProject" ng-submit="store()" novalidate>
                     <div class="form-group" ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'has-success' : 'has-danger'">
                         <label for="title">Project Name <small>(<span ng-bind="formData.title.length > 0 ? formData.title.length : '0'"></span> / 50)</small>  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="This is what is displayed when people view your project."></i></label>
                         <input maxlength="50" spellcheck="true" type="text" class="form-control" id="title" name="title" placeholder="Project Title" ng-model="formData.title" required ng-class="form.createProject.title.$valid && !form.createProject.title.$error.required ? 'form-control-success' : 'form-control-danger'">
