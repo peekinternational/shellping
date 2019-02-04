@@ -123,7 +123,7 @@
             <div class="container  text-xs-center">
               <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social facebook" title="Share link on Facebook" socialshare="" socialshare-provider="facebook" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-type="share" socialshare-via="274676456259523" socialshare-url="http://localhost:9000/projects/create">
-                  <i class="fab fa-facebook-f"></i>
+                  <i class="fab fa-facebook"></i>
                 </span>
               </div>
               <div class="col-md-2 col-xs-2">
@@ -138,7 +138,7 @@
               </div>
               <div class="col-md-2 col-xs-2">
                 <span class="btn btn-social plusone" title="Share link on Linkedin" socialshare socialshare-provider="linkedin" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin"></i>
                 </span>
               </div>
               <div class="col-md-2 col-xs-2">

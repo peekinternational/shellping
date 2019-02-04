@@ -146,13 +146,13 @@
                                     <i class="fab fa-twitter" aria-hidden="true"></i> Twitter
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="facebook" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-type="share" socialshare-via="274676456259523" socialshare-url="[[ sharableUrl ]]">
-                                    <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+                                    <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="google" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
                                     <i class="fab fa-google-plus-g" aria-hidden="true"></i> Google+
                                 </a>
                                 <a class="dropdown-item" href="" socialshare socialshare-provider="linkedin" socialshare-text="Sky rocket your project on Shelping.COM." socialshare-url="[[ sharableUrl ]]">
-                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
                                 </a>
                                 <a class="dropdown-item" href="" ng-click="ShareModel()">
                                     <i class="fa fa-share-alt" aria-hidden="true"></i> Other

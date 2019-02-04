@@ -1033,6 +1033,7 @@ Messages
 .social-likes{
     background: #fff; 
     border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .social-likes .col-xs-2{
     padding: 15px 0 !important;
@@ -1041,7 +1042,7 @@ Messages
     font-size: 25px;
 }
 #footer1-6{
-    background-color: #e8e5e5;
+    background-color: #f3f3f3;
     padding-top: 0rem; 
     padding-bottom: 1.75rem;
 }
