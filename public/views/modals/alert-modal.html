@@ -3,9 +3,7 @@
     <div class="col-xs-12 cd-no-padding">
         
         <ul>
-        	<li>Location</li>
-        	<li>Website</li>
-        	<li>Facebook Link</li>
+        	<li ng-repeat="error in data" ng-bind="error.name"></li>
         </ul>
         <p>Click `Go Back` to fill these fields or `Continue` to carry on with them empty </p>
     </div>

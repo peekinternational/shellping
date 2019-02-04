@@ -2253,89 +2253,119 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
 
     // new code
     $scope.tryStore = function() {
-        if(!$scope.formData.fb || !$scope.formData.web || $scope.formData.tags.length == 0) {
+        var errors = [];
+
+        // Check form validation
+        var i = 0;
+        if($scope.formData.fb == null){
+            errors[i] = {name:"fb"};
+            i++;
+        }
+        if($scope.formData.web == null){
+            errors[i] = {name:"web"};
+            i++;
+        }
+        if($scope.formData.tags.length == 0){
+            errors[i] = {name:"tags"};
+            i++;
+        }
+        if($scope.formData.categories.length == 0){
+            errors[i] = {name:"categories"};
+            i++;
+        }
+        if($scope.formData.locationName == null){
+            errors[i] = {name:"location"};
+            i++;
+        }
+        
+        if(errors.length > 0) {
             // Open relative modal
             $scope.ne = ModalsService.openModal(
                 'AlertModalController',        // Controller
                 "You have not filled in the following fields:", // Title
                 'views/modals/alert-modal.html',     // Template
                 'lg',                               // Size
-                {}                                  // Data
+                errors                                  // Data
 
             );
 
             $scope.ne.result.then(function (data) {
                 // Data returned from the modal when closed
                 if(data == true){
-                    //$scope.store();
-                    $scope.modal.loader = true;
-                    // Store all category ids to string
-                    $scope.formData.category = [];
-                    angular.forEach($scope.formData.categories, function (v, k) {
-                        $scope.formData.category.push(v.id);
-                    });
-                    // Set image for project
-                    if($scope.uploader.queue.length > 0) {
-                        $scope.formData.logo = $scope.uploader.queue[0]._file;
-                        $scope.formData.logo = $scope.croppedImage.blob;
-                    }
-
-                    // Check if new or edit
-                    if(!$scope.data.project) {
-                        // Attempt to store project
-                        ApiFactory.projects.store($scope.formData).success(function (response) {
-                            AlertsService.add(200, 'Your project was created.');
-                            // Set project id
-                            $scope.project = response;
-                            // Hide loader
-                            $scope.modal.loader = false;
-                            // Show next step
-                            $scope.nextStep();
-                            // Hide close button
-                            $scope.hideClose = true;
-                            // Hide loading window
-                            $scope.modal.loader = false;
-                        }).error(function (response) {
-                            // Hide loader
-                            AlertsService.add(401, 'Could not create this project, please try again.');
-                            $scope.modal.loader = false;
-                            console.log("Could not save project.");
-                        });
-                    } else {
-                        // Attempt to store project
-                        ApiFactory.projects.edit($scope.formData.id, $scope.formData).success(function (response) {
-                            AlertsService.add(200, 'Your project has been updated.');
-                            // Set project id
-                            $scope.project = response;
-                            // Hide loader
-                            $scope.modal.loader = false;
-                            // Show next step
-                            //$location.path('/projects/'+ $routeParams.id).replace();
-                            $location.url('projects/' + response.id);
-                        }).error(function (response) {
-                            // Hide loader
-                            AlertsService.add(401, 'Could not update this project, please try again.');
-                            $scope.modal.loader = false;
-                        });
-                    }
+                    $scope.saveProject();
                 }
             });
         } else {
-            //$scope.store();
-            //console.log($scope.formData.tags);
+            $scope.saveProject();
         }
     };
+    /* create project if exsist then edit*/
+    $scope.saveProject = function(){
+        $scope.modal.loader = true;
+        // Store all category ids to string
+        $scope.formData.category = [];
+        angular.forEach($scope.formData.categories, function (v, k) {
+            $scope.formData.category.push(v.id);
+        });
+        // Set image for project
+        if($scope.uploader.queue.length > 0) {
+            $scope.formData.logo = $scope.uploader.queue[0]._file;
+            $scope.formData.logo = $scope.croppedImage.blob;
+        }
 
+        // Check if new or edit
+        if(!$scope.data.project) {
+            // Attempt to store project
+            ApiFactory.projects.store($scope.formData).success(function (response) {
+                AlertsService.add(200, 'Your project was created.');
+                // Set project id
+                $scope.project = response;
+                // Hide loader
+                $scope.modal.loader = false;
+                // Show next step
+                $scope.nextStep();
+                // Hide close button
+                $scope.hideClose = true;
+                // Hide loading window
+                $scope.modal.loader = false;
+            }).error(function (response) {
+                // Hide loader
+                AlertsService.add(401, 'Could not create this project, please try again.');
+                $scope.modal.loader = false;
+                console.log("Could not save project.");
+            });
+        } else {
+            // Attempt to store project
+            ApiFactory.projects.edit($scope.formData.id, $scope.formData).success(function (response) {
+                AlertsService.add(200, 'Your project has been updated.');
+                // Set project id
+                $scope.project = response;
+                // Hide loader
+                $scope.modal.loader = false;
+                // Show next step
+                //$location.path('/projects/'+ $routeParams.id).replace();
+                $location.url('projects/' + response.id);
+            }).error(function (response) {
+                // Hide loader
+                AlertsService.add(401, 'Could not update this project, please try again.');
+                $scope.modal.loader = false;
+            });
+        }
+    }
     $scope.store = function () {
         var errors = [];
 
         // Check form validation
-        if($scope.formData.title == null)
-            errors[0] = {name:"Name"};
-        if($scope.formData.desc == null)
-            errors[1] = {name:"Description"};
-        
-        console.log(errors.length);
+        var i = 0;
+        if($scope.formData.title == null){
+            errors[i] = {name:"Name"};
+            i++;
+        }
+        if($scope.formData.desc == null){
+            errors[i] = {name:"Description"};
+            i++;
+        }
+
         if(errors.length > 0) {
             $rootScope.AlertModal(false, "You must fill in the following requried fields:", errors);
             return;

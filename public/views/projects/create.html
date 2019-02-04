@@ -56,7 +56,7 @@
                     
                     <div class="form-group" ng-class="form.createProject.categories.$valid && !form.createProject.categories.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="categories">Project Categories <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Select which category or categories your project fits into from the dropdown list below."></i></label>
-                        <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" required >
+                        <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" >
                             <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
                             <ui-select-choices repeat="c in flatCats | filter: $select.search">
                                 <div ng-bind-html-unsafe="c.id | highlight: $select.search">[[ c.name ]]</div>
