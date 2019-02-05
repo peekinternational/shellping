@@ -395,8 +395,8 @@ h1, h2, h3, h4, .nav-dropdown {
 }
 
 .cd-avatar-lg {
-    width: 85px!important;
-    height: 85px!important;
+    width: 85px;
+    height: 85px;
 }
 
 .cd-avatar-xl {
@@ -1554,15 +1554,14 @@ Navigation
     .user-banner{
         position: absolute;
         z-index:2; 
-        top: 46.5% !important;
+        top: -179px !important;
     }
     .banner-row{
         display: -webkit-box;
         background-color: #9e9e9e;
-        opacity: 0.8;
         border-top-left-radius: 42px 40px !important;
         border-bottom-left-radius:42px 40px !important;
-        margin: 0 -1.4rem !important;
+        margin: 22px 2px 0 7px !important;   
     }
     .user-pic-sec{
         width: 12% !important;
@@ -1572,37 +1571,56 @@ Navigation
         width: 92% !important;
     }
     .title-right{
-        margin-top: 0px !important;
-        margin-right: 0px;
+
     }
     .title-right .card-title{
         margin-bottom: 0.15rem;
         font-size: 1rem;
     }
-    .title-wrap{
-        width: 30%;
-    }
+    
     .title-row {
         height: 52px !important;
+        padding-left: 46px !important;
     }
     .prjct-descrtn {
         height: 55px !important;
+        padding-left: 3rem;
+        width: 98%;
+    }
+    .cd-avatar-lg {
+        width: 82px !important;
+        height: 95px !important;
+        border-radius: 50%;
+    }
+    .prjct-title{
+        margin-top: 4px;
+        font-size: 20px;
+    }
+    .padding-left0{
+        padding-left: 0 !important;
+    }
+    .padding-right0{
+        padding-right: 0 !important;
+    }
+    .title-para{
+        margin-bottom: 0;
     }
 }
 .user-banner{
     position: absolute;
     z-index: 2;
-    top: 65.5%;
-    width: 80%;
-    left: 10%;
+    top: -185px;
+    width: 100%;
+    left: 0;
 }
 .banner-row{
     display: -webkit-box;
-    background-color: #9e9e9e;
-    opacity: 0.9;
-        border-top-left-radius: 73px 72px;
+    /* background-color: #9e9e9e; */
+    border-top-left-radius: 73px 72px;
     border-bottom-left-radius: 79px 83px;
     margin: 0 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid #e4e4e4;
 }
 .user-pic-sec{
     width: 10%;
@@ -1654,8 +1672,8 @@ Navigation
     font-size: 25px;
 }
 .cd-avatar-lg {
-    width: 143px!important;
-    height: 159px!important;
+    width: 123px;
+    height: 141px;
     border-radius: 50%;
 }
 .avatar-sect{
@@ -1670,7 +1688,7 @@ Navigation
     padding-left: 50px;
 }
 .prjct-descrtn{
-    background: white;
+    /*background: white;*/
     height: 78px;
     width: 100%;
     padding-right: 15px;

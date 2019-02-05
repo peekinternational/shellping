@@ -14,46 +14,8 @@
                             <img src="[[ project.logo ? project.logo : '/assets/img/missing-project.png' ]]"/>
                           </div>
                           <!-- Mob -->
-                          <div class="user-banner" style="">
-                            <div class="row banner-row" style="">
-                              <div class="user-pic-sec">
-                                <div class="cd-nav-avatar avatar-sect">
-                                  <a class="text-primary" href="users/[[ project._owner.id ]]">
-                                    <div class="cd-avatar-lg"
-                                    style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="title-sec">
-                                <div class="row title-row">
-                                  <div style="float: left;">
-                                    <h3 class="cd-project-title title-wrap" style="margin-top: 10px;">
-                                    <span ng-bind="project.title"></span>
-                                    </h3>
-                                  </div>
-                                </div>
-                                <div class="row prjct-descrtn">
-                                    <span style="font-size: 15px;">by</span>
-                                    <strong ng-bind="project._owner.name" style="font-size: 15px;"></strong>
-                                  <div class="title-right">
-                                    <!-- Backers -->
-                                    <h4 class="card-title">
-                                    <span ng-bind="project.backersCount"></span>
-                                    <small>Supporters</small>
-                                    </h4>
-                                    <!-- Funds -->
-                                    <h4 class="card-title">
-                                    <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span>
-                                    <small>Funds Raised</small>
-                                    </h4>
-                                  </div>
-                                </div>
-                                
-                                
-                              </div>
-                            </div>
-                          </div>
-                          </div>
+                          
+                    </div>
                 </div>
                 <!-- Header content-->
                 <!-- <div class="container hidden-sm-down">
@@ -69,8 +31,8 @@
     </div>
 
     <!-- Profile Navigation -->
-    <div class="cd-profile-nav cd-shadow" hl-sticky="" offset-top="113" media-query="min-width: 768px">
-        <div class="container">
+    <!-- <div class="cd-profile-nav cd-shadow" hl-sticky="" offset-top="113" media-query="min-width: 768px">
+        <div class="container"> -->
             <!-- User profile pic -->
             <!-- <div class="col-xs-12 col-sm-12 col-md-9 cd-no-padding">
 
@@ -90,12 +52,109 @@
                     <button type="button" class="btn btn-info btn-block" ng-click="backProject()" ng-bind="isBacking ? 'Stop Supporting' : 'Support this project'"></button>
                 </div>
             </div> -->
-        </div>
+        <!-- </div>
 
-    </div>
+    </div> -->
 
     <!-- View -->
-    <div class="container" id="projectContent">
+    <div class="container" id="projectContent" style="margin-top: 115px;">
+      <div class="user-banner" style="">
+        <div class="row banner-row" style="">
+
+          <div class="col-md-2 col-xs-3 padding-left0">
+            <div class="user-pic-sec">
+              <div class="cd-nav-avatar avatar-sect">
+                <a class="text-primary" href="users/[[ project._owner.id ]]">
+                  <div class="cd-avatar-lg"
+                  style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/userImg.png' ]]); background-size: cover; background-position: center;"></div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10 col-xs-9">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="">
+                  <h3 class="cd-project-title title-wrap prjct-title">
+                  <span ng-bind="project.title"></span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-6 padding-right0">
+                <div>
+                  <span style="font-size: 15px;">by</span>
+                  <strong ng-bind="project._owner.name" style="font-size: 15px;"></strong>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-6 hidden-sm-down text-xs-center">
+                <div class="">
+                  <!-- Backers -->
+                  <h4 class="card-title">
+                  <span ng-bind="project.backersCount"></span>
+                  <small>Supporters</small>
+                  </h4>
+                  <!-- Funds -->
+                  <h4 class="card-title">
+                  <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span>
+                  <small>Funds Raised</small>
+                  </h4>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-6 hidden-sm-up padding-left0 padding-right0">
+                <div class="">
+                  <!-- Backers -->
+                  <p class="card-title title-para">
+                  <span ng-bind="project.backersCount"></span>
+                  <small>Supporters</small>
+                  </p>
+                  <!-- Funds -->
+                  <p class="card-title title-para">
+                  <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span>
+                  <small>Funds Raised</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="user-pic-sec">
+            <div class="cd-nav-avatar avatar-sect">
+              <a class="text-primary" href="users/[[ project._owner.id ]]">
+                <div class="cd-avatar-lg"
+                style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
+              </a>
+            </div>
+          </div> -->
+          <!-- <div class="title-sec">
+            <div class="row title-row">
+              <h3 class="cd-project-title title-wrap" style="margin-top: 10px;">
+              <span ng-bind="project.title"></span>
+              </h3>
+            </div>
+            <div class="row prjct-descrtn">
+                <span style="font-size: 15px;">by</span>
+                <strong ng-bind="project._owner.name" style="font-size: 15px;"></strong>
+              <div class="title-right"> -->
+                <!-- Backers -->
+                <!-- <h4 class="card-title">
+                <span ng-bind="project.backersCount"></span>
+                <small>Supporters</small>
+                </h4> -->
+                <!-- Funds -->
+                <!-- <h4 class="card-title">
+                <span ng-bind="project.fund.totalIncome ? project.fund.totalIncome : '0.00' | currency:'£'"></span>
+                <small>Funds Raised</small>
+                </h4>
+              </div>
+            </div> -->
+            
+            
+          <!-- </div> -->
+        </div>
+      </div>
         <div class="row">
             <div class="col-xs-12 lead">
 
@@ -151,7 +210,10 @@
                                   About this project...
                               </h4>-->
                               <div>
-                                  <article ng-bind-html="project.desc ? project.desc : 'No Description'"></article>
+                                  <article ng-bind-html="project.desc ? project.desc : 'No Description'" id="text"></article>
+                                  <div id="more" style="display: none">
+                                    ddddddddv ffffffffffffffffffffffffffffffff f
+                                  </div>
                               </div>
 
                               <div class="row support-btn">

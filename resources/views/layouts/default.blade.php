@@ -246,7 +246,31 @@
             m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-1Rz7K1.js";
             b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
     </script>
-
+    <script type="text/javascript">
+        var toggleVar = true;
+        function toggle(str){
+                document.getElementById('text').textContent = str;
+                if(toggleVar == false){
+                    toggleVar = true;
+                }else{
+                    toggleVar = false;
+                }
+                if(toggleVar == false){
+                    $("#text").append('<a style="cursor:pointer;" onclick="toggle()" class="text-lightblue"   id="btn-More">Read Less > </a>') 
+                }else{
+                     $("#text").append(' ...<a style="cursor:pointer;" onclick="toggle()" class="text-lightblue"   id="btn-More">Read More > </a>')
+                }
+            }
+        window.onload = function() {
+          if(document.getElementById('text').textContent.length > 200){
+                var str = document.getElementById('text').textContent;
+                var substrt = str.substr(1, 200);
+                document.getElementById('text').textContent = substrt;
+                $("#text").append('... <a style="cursor:pointer;" onclick="toggle(str)" class="text-lightblue"   id="btn-More">Read More > </a>');
+            }
+            
+        };
+    </script>
     @section('javascript_bottom')
     @show
 
