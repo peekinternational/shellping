@@ -14,7 +14,7 @@
                 </div>
                 <div class="mbr-table-cell hidden-md-up">
                     <!-- Toggle -->
-                    <a class="nav-link link sm-link" data-toggle="dropdown-account" ng-click="showDiv = !showDiv" style="vertical-align: super;">
+                    <a class="nav-link link sm-link" data-toggle="dropdown-account" ng-click="showDiv = !showDiv" style="vertical-align: super;margin: 16px;">
                       <span>
                         <i class="fa fa-search fa-2x"></i>
                       </span>

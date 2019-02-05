@@ -5,6 +5,8 @@
                 <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
                 <span ng-if="$last" ng-bind="breadcrumb.label"></span>
             </li>-->
+
+            <!-- breadcum change when the process change we hide the dynamic breadcum because we have to show these process and these three process are happing on the same page -->
             <li>
                 <a href="/">Home</a>
             </li>
@@ -56,7 +58,7 @@
                     
                     <div class="form-group" ng-class="form.createProject.categories.$valid && !form.createProject.categories.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="categories">Project Categories <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Select which category or categories your project fits into from the dropdown list below."></i></label>
-                        <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories" >
+                        <ui-select name="categories" id="categories" multiple ng-model="formData.categories" theme="bootstrap" ng-disabled="!categories"  >
                             <ui-select-match placeholder="Select categories...">[[ $item.name ]]</ui-select-match>
                             <ui-select-choices repeat="c in flatCats | filter: $select.search">
                                 <div ng-bind-html-unsafe="c.id | highlight: $select.search">[[ c.name ]]</div>
@@ -71,7 +73,13 @@
                     <button type="button" class="btn btn-info" ng-click="selectFile()">Add A Project Image</button>
                     <p>Adding a project image increase the views your project receives</p>
                     <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;" />
-                   
+                    <div class="col-xs-12 cd-no-padding project-crop-area" ng-show="uploader.queue.length > 0">
+                                        <!--<ui-cropper class="fixed-height" image="previewImage" result-image="croppedImage" result-blob="blobImage" area-type="rectangle" result-image-size="{w: cropImageSize.w, h: cropImageSize.h}" area-min-size="{w: cropSize.w, h: cropSize.h}" init-max-area="false"></ui-cropper>-->
+                                        <ui-cropper class="fixed-height" image="croppedImage.preview" result-image="croppedImage.cropped" result-blob="croppedImage.blob" area-type="rectangle" allow-crop-resize-on-corners="false" area-min-size="{w: cropSize.w, h: cropSize.h}" area-max-size="{w: cropSize.w, h: cropSize.h}" area-init-size="{w: cropSize.w, h: cropSize.h}" result-image-quality="100" result-image-size="{w: cropImageSize.w, h: cropImageSize.h}"></ui-cropper>
+                                    </div>
+                                    
+                                
+                                   
                     <div class="form-group" ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="location">Project Location  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Your location will be displayed as a pin on a map so it shows the 'area' your project is in and doesn't give you any address details."></i></label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="formData.locationName" ng-click="getLocation()" readonly>
@@ -140,12 +148,12 @@
                     <img width="50%" src="../../assets/img/help/congractulation.png">
                 </div>
                <div class="col-xs-12 col-sm-12 col-md-12 congrats-container">
-                   <h4 class="text-capitalize">Congractulation</h4>
+                   <h4 class="text-capitalize">CONGRATULATION!</h4>
                    <p>Your project has been created.</p>
                 </div>
                 <div class="col-xs-12">
                     <h4>
-                        The next and more important thing you can do for your project is to share it on your social media.
+                        The next and most important thing you can do for your project is to share it on your social media.
                     </h4>
                     <p>
                         Sharing your project on social media is the best way to get the people you know involved supporting your project
@@ -220,7 +228,7 @@
             </div>
 
             <!-- Step 5: Finish & View -->
-            <div ng-if="createStep == 5" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
+            <div ng-if="createStep == 6" class="col-xs-12 clearfix cd-no-padding animated fadeIn">
                 <div class="col-xs-12 col-sm-12 col-md-12 center">
                     <img width="50%" src="../../assets/img/help/congractulation.png">
                 </div>
@@ -230,6 +238,8 @@
                 </div>
                 <div class="col-xs-12">
                     <h4>REMEMBER:</h4>
+                    <br>
+                    <br>
                     <h4>
                         Sharing your project on social media is the best way to get your friends involved and supporting your project.
                     </h4>
@@ -239,12 +249,12 @@
                     
                 </div>
                 <div class="col-xs-12 text-xs-right">
-                    <button class="btn btn-info" ng-click="shareCheck.twitter == false || shareCheck.facebook == false ? nextStep() : complete()">View Project</button>
+                    <button class="btn btn-info" ng-click="complete()">View Project</button>
                 </div>
             </div>
 
             <!-- Step 6: No share check -->
-            <div ng-if="createStep == 6" class="col-xs-12 clearfix cd-no-padding animated fadeIn text-xs-center" style="margin-bottom: 10px;">
+            <div ng-if="createStep == 5" class="col-xs-12 clearfix cd-no-padding animated fadeIn text-xs-center" style="margin-bottom: 10px;">
                 <div class="col-xs-12 col-sm-12 col-md-12 text-xs-center">
                     <img style="width: 50%" src="../../assets/img/help/notShare.png" class="social-img">
                 </div>
@@ -253,7 +263,7 @@
                         Hold your horses!
                     </h4> -->
                     <h4 class="text-black" style="color: #000 !important;">
-                        <b>You have not shared your project on </b><span ng-if="!shareCheck.facebook"><b>[Facebook]</b></span> <span ng-if="!shareCheck.twitter"><b>[Twitter]</b></span> <span ng-if="!shareCheck.facebook && !shareCheck.twitter"><b>[Facebook] [Twitter]</b></span> 
+                        <b>You have not shared your project on </b><span ng-if="!shareCheck.facebook" ng-hide="!shareCheck.facebook && !shareCheck.twitter"><b>Facebook</b></span> <span ng-if="!shareCheck.twitter" ng-hide="!shareCheck.facebook && !shareCheck.twitter"><b>Twitter</b></span> <span ng-show="!shareCheck.facebook && !shareCheck.twitter"><b>Facebook or Twitter</b></span> 
                     </h4>
                     <ul class="list-unstyled twiiter-caption">
                         <li>Sharing your project on social media is the best way to get your friends involved and supporting your project.</li>
@@ -266,7 +276,7 @@
                         <button class="btn btn-info btn-font" ng-click="reset()">Share Now</button>
                     </div>
                     <div class="col-xs-6 padding-left0">
-                        <button class="btn btn-primary skip-btn btn-font" ng-click="complete()">View Project</button>
+                        <button class="btn btn-primary skip-btn btn-font"  ng-click="shareCheck.twitter == false || shareCheck.facebook == false ? nextStep() : complete()">View Project</button>
                     </div>
                 </div>
             </div>
