@@ -5,6 +5,8 @@
                 <a ng-if="!$last" ng-href="[[ breadcrumb.path ]]" ng-bind="breadcrumb.label" class="margin-right-xs text-black"></a>
                 <span ng-if="$last" ng-bind="breadcrumb.label"></span>
             </li>-->
+
+            <!-- breadcum change when the process change we hide the dynamic breadcum because we have to show these process and these three process are happing on the same page -->
             <li>
                 <a href="/">Home</a>
             </li>
@@ -71,7 +73,13 @@
                     <button type="button" class="btn btn-info" ng-click="selectFile()">Add A Project Image</button>
                     <p>Adding a project image increase the views your project receives</p>
                     <input id="file-input" type="file" nv-file-select="" uploader="uploader" style="display: none;" />
-                   
+                    <div class="col-xs-12 cd-no-padding project-crop-area" ng-show="uploader.queue.length > 0">
+                                        <!--<ui-cropper class="fixed-height" image="previewImage" result-image="croppedImage" result-blob="blobImage" area-type="rectangle" result-image-size="{w: cropImageSize.w, h: cropImageSize.h}" area-min-size="{w: cropSize.w, h: cropSize.h}" init-max-area="false"></ui-cropper>-->
+                                        <ui-cropper class="fixed-height" image="croppedImage.preview" result-image="croppedImage.cropped" result-blob="croppedImage.blob" area-type="rectangle" allow-crop-resize-on-corners="false" area-min-size="{w: cropSize.w, h: cropSize.h}" area-max-size="{w: cropSize.w, h: cropSize.h}" area-init-size="{w: cropSize.w, h: cropSize.h}" result-image-quality="100" result-image-size="{w: cropImageSize.w, h: cropImageSize.h}"></ui-cropper>
+                                    </div>
+                                    
+                                
+                                   
                     <div class="form-group" ng-class="form.createProject.location.$valid && !form.createProject.location.$error.required ? 'has-success' : 'has-danger'" style="position: relative">
                         <label for="location">Project Location  <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="right" title="Your location will be displayed as a pin on a map so it shows the 'area' your project is in and doesn't give you any address details."></i></label>
                         <input type="text" class="form-control" id="location" name="location" placeholder="location" ng-model="formData.locationName" ng-click="getLocation()" readonly>

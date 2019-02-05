@@ -2255,7 +2255,11 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
     $scope.tryStore = function() {
         var errors = [];
 
-        // Check form validation
+        // Check form validation i is for dynamic index 
+        /*we change static number to dynamic because if on 0 index is error 1 
+        and index 1 is error 2 when we fill first on so the array will start 
+        from one and the 0 index will be empty*/
+
         var i = 0;
         if($scope.formData.fb == null){
             errors[i] = {name:"Facebook Link"};
@@ -2277,7 +2281,7 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             errors[i] = {name:"Location"};
             i++;
         }
-        
+        /* we make optional fields modal dynamic first it was static*/
         if(errors.length > 0) {
             // Open relative modal
             $scope.ne = ModalsService.openModal(
@@ -2285,21 +2289,23 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
                 "You have not filled in the following fields:", // Title
                 'views/modals/alert-modal.html',     // Template
                 'lg',                               // Size
-                errors                                  // Data
+                errors                              // Data pass errors to modal
 
             );
 
             $scope.ne.result.then(function (data) {
                 // Data returned from the modal when closed
                 if(data == true){
+                    /* create project when user click on continue without adding optional fields*/
                     $scope.saveProject();
                 }
             });
         } else {
+            /*create project when use fill all the fields*/
             $scope.saveProject();
         }
     };
-    /* create project if exsist then edit*/
+    /* create project if exsist else edit*/
     $scope.saveProject = function(){
         $scope.modal.loader = true;
         // Store all category ids to string
@@ -2352,10 +2358,14 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             });
         }
     }
+    /* check validation if nessesory fileds empty show error messages*/
     $scope.store = function () {
         var errors = [];
 
         // Check form validation
+        /*we change static number to dynamic because if on 0 index is error 1 
+        and index 1 is error 2 when we fill first on so the array will start 
+        from one and the 0 index will be empty*/
         var i = 0;
         if($scope.formData.title == null){
             errors[i] = {name:"Name"};
@@ -2370,8 +2380,8 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
             $rootScope.AlertModal(false, "You must fill in the following requried fields:", errors);
             return;
         }else{
-            $scope.tryStore();
-            
+            /* check the optional fields if not filled show alert*/
+            $scope.tryStore(); 
         }
 
         /*if(!$scope.validation.checkFormValidity($scope.form.createProject)) {
