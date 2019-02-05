@@ -319,6 +319,31 @@
                         </div>
                     </div>
                     </div>
+
+                    <!-- Backers -->
+                    <div class="row">
+                      <div class="card cd-shadow" ng-if="project._backers.length > 0">
+                          <div class="card-block clearfix cd-backers">
+                              <h4 class="content-heading">
+                                  Backers
+                                  <button class="btn btn-link pull-xs-right" ng-click="backersSortOrder()"
+                                          ng-bind="backersSortDate == true ? 'Sort by Name' : 'Sort by Date'"></button>
+                              </h4>
+                              <div class="col-xs-12 cd-no-padding cd-backer"
+                                   ng-repeat="b in project._backers | orderBy:backersSortBy:backersSortDesc">
+                                  <div class="col-xs-2">
+                                      <div class="cd-avatar cd-avatar-md">
+                                          <img ng-src="[[ b.photo ? b.photo : '/assets/img/missing-avatar.png' ]]"
+                                               alt="[[ b.name ]]">
+                                      </div>
+                                  </div>
+                                  <div class="col-xs-10">
+                                      <h5 ng-bind="b.name"></h5>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="card cd-shadow" ng-show="account.id">
                           <div class="card-block clearfix cd-no-padding" style="margin-top: 0;">
@@ -328,29 +353,6 @@
                               </button>
                           </div>
                       </div>
-                    </div>
-
-                    <!-- Backers -->
-                    <div class="card cd-shadow" ng-if="project._backers.length > 0">
-                        <div class="card-block clearfix cd-backers">
-                            <h4 class="content-heading">
-                                Backers
-                                <button class="btn btn-link pull-xs-right" ng-click="backersSortOrder()"
-                                        ng-bind="backersSortDate == true ? 'Sort by Name' : 'Sort by Date'"></button>
-                            </h4>
-                            <div class="col-xs-12 cd-no-padding cd-backer"
-                                 ng-repeat="b in project._backers | orderBy:backersSortBy:backersSortDesc">
-                                <div class="col-xs-2">
-                                    <div class="cd-avatar cd-avatar-md">
-                                        <img ng-src="[[ b.photo ? b.photo : '/assets/img/missing-avatar.png' ]]"
-                                             alt="[[ b.name ]]">
-                                    </div>
-                                </div>
-                                <div class="col-xs-10">
-                                    <h5 ng-bind="b.name"></h5>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </aside>
 
