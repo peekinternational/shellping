@@ -318,7 +318,7 @@ h1, h2, h3, h4, .nav-dropdown {
 
 .cd-shadow {
     /*box-shadow: 3px 3px 3px #ccc;*/
-    box-shadow: 0 2px 0 0 rgba(5,45,73,0.06999999999999995);
+    /*box-shadow: 0 2px 0 0 rgba(5,45,73,0.06999999999999995);*/
     /*border-top: none;
     border-bottom: none;
     border-left: none;
@@ -906,9 +906,10 @@ Profile View
 
 .content-heading {
     margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #ccc;
-    padding: 10px 0;
+   /*margin-bottom: 15px; */
+    border-top: 2px solid #ddd;
+   
+    padding-top: 31px;
 }
 
 .project-donate-image{
