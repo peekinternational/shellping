@@ -97,7 +97,7 @@
         </header>
 
         <!-- Content -->
-        <main class="ng-cloak" ng-view autoscroll="true" id="base-content" style="padding-bottom: 100px;"></main>
+        <main class="ng-cloak" ng-view autoscroll="true" id="base-content"></main>
 
         <!-- Cookie Policy -->
         <div class="cookie-policy" ng-if="!acceptedCookies">
