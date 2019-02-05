@@ -309,6 +309,7 @@
                         <div class="card-block clearfix">
                             <div>
                                 <!-- Mini Map -->
+                                <h4 class="content-heading">Location/Area</h4>
                                 <div ng-if="project.location.latitude && !hideMap">
                                     <ng-map center="[[ project.location.latitude ]], [[ project.location.longitude ]]">
                                         <marker position="[[ project.location.latitude ]], [[ project.location.longitude ]]"
@@ -321,7 +322,7 @@
                     </div>
                     <div class="row">
                       <div class="card cd-shadow" ng-show="account.id">
-                          <div class="card-block clearfix cd-no-padding" style="margin-top: 0;">
+                          <div class="card-block clearfix cd-no-padding content-heading" style="margin-top: 0;">
                               <button type="button" class="btn btn-block btn-link cd-no-padding text-lightblue" ng-click="reportProject(project)">
                                   
                                   <p><i class="far fa-flag"></i> <strong>Report Project</strong> <i class="fas fa-chevron-right text-lightblue"></i></p>
