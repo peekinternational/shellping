@@ -1273,10 +1273,10 @@ Navigation
 
     .cd-profile-header .cd-nav-avatar {
         margin: 0 auto;
-        width: 75px;
-        height: 75px;
+        width: 79px;
+        height: 108px;
         position: relative;
-        top: 30px;
+        top: 0px;
         border: 2px solid #fff;
         border-radius: 50px;
         overflow: hidden;
@@ -1551,4 +1551,129 @@ Navigation
     .prjct-breadcumb .container .breadcrumb li a{
         color: #484747;
     }
+    .user-banner{
+        position: absolute;
+        z-index:2; 
+        top: 46.5% !important;
+    }
+    .banner-row{
+        display: -webkit-box;
+        background-color: #9e9e9e;
+        opacity: 0.8;
+        border-top-left-radius: 42px 40px !important;
+        border-bottom-left-radius:42px 40px !important;
+        margin: 0 -1.4rem !important;
+    }
+    .user-pic-sec{
+        width: 12% !important;
+    }
+    .title-sec{
+        padding-left: 0;
+        width: 92% !important;
+    }
+    .title-right{
+        margin-top: 0px !important;
+        margin-right: 0px;
+    }
+    .title-right .card-title{
+        margin-bottom: 0.15rem;
+        font-size: 1rem;
+    }
+    .title-wrap{
+        width: 30%;
+    }
+    .title-row {
+        height: 52px !important;
+    }
+    .prjct-descrtn {
+        height: 55px !important;
+    }
+}
+.user-banner{
+    position: absolute;
+    z-index: 2;
+    top: 65.5%;
+    width: 80%;
+    left: 10%;
+}
+.banner-row{
+    display: -webkit-box;
+    background-color: #9e9e9e;
+    opacity: 0.9;
+        border-top-left-radius: 73px 72px;
+    border-bottom-left-radius: 79px 83px;
+    margin: 0 20px;
+}
+.user-pic-sec{
+    width: 10%;
+}
+.title-sec{
+    padding-left: 0;
+    width: 91.5%;
+}
+.cd-nav-avatar{
+    margin: 0;
+     width: 100%; 
+     /*height: 93px; */
+    position: relative;
+    top: 0;
+}
+.title-right{
+    float: right; 
+    margin-top: 5px;
+}
+.text-lightblue{
+    color: #2592d2 !important;
+}
+.text-lightblue i{
+    color: #333;
+}
+.support-btn{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.support-btn .btn{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.projct-btn-sec{
+    box-shadow: none;
+}
+.projct-btn-sec .card-block{
+    background: whitesmoke;
+    border: 1px solid #ccc;
+}
+.title-wrap{
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
+}
+.btn-social i{
+    font-size: 25px;
+}
+.cd-avatar-lg {
+    width: 143px!important;
+    height: 159px!important;
+    border-radius: 50%;
+}
+.avatar-sect{
+    margin: 0;
+    width: 82px;
+    height: 93px;
+    position: relative;
+    top: 0
+}
+.title-row{
+    height: 78px;
+    padding-left: 50px;
+}
+.prjct-descrtn{
+    background: white;
+    height: 78px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 3.3rem;
+    /*padding-top: 1rem;*/
 }
