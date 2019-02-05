@@ -2258,23 +2258,23 @@ app.controller('ProjectCreateController', [ '$rootScope', '$scope', '$routeParam
         // Check form validation
         var i = 0;
         if($scope.formData.fb == null){
-            errors[i] = {name:"fb"};
+            errors[i] = {name:"Facebook Link"};
             i++;
         }
         if($scope.formData.web == null){
-            errors[i] = {name:"web"};
+            errors[i] = {name:"Website"};
             i++;
         }
         if($scope.formData.tags.length == 0){
-            errors[i] = {name:"tags"};
+            errors[i] = {name:"Tags"};
             i++;
         }
         if($scope.formData.categories.length == 0){
-            errors[i] = {name:"categories"};
+            errors[i] = {name:"Categories"};
             i++;
         }
         if($scope.formData.locationName == null){
-            errors[i] = {name:"location"};
+            errors[i] = {name:"Location"};
             i++;
         }
         
