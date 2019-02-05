@@ -15,15 +15,25 @@
                         </div>
                         <!-- Mob -->
                         <div class="hidden-md-up" style="position: relative;z-index:2;">
-                            <div class="cd-nav-avatar">
-                                <a class="text-primary" href="users/[[ project._owner.id ]]">
+                            <div class="row" style="display: -webkit-box;
+    background-color: gray;
+    opacity: 1.5;
+    border-top-left-radius: 50px 50px;
+    border-bottom-left-radius: 50px 50px;">
+                                <div class="col-md-3" style="width: 29%;">
+                                     <div class="cd-nav-avatar">
+                                 <a class="text-primary" href="users/[[ project._owner.id ]]">
                                     <div class="cd-avatar-lg"
                                          style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
                                 </a>
-                            </div>
+                               </div>
+                                    </div>
+                           <div class="col-md-7" style="padding-left: 0;width: 71%;">
                             <h3 class="text-white cd-project-title text-sm-center text-xs-center">
                                 <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
                             </h3>
+                        </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -31,8 +41,9 @@
                 <div class="container hidden-sm-down">
                     <div class="cover-content text-xs-center">
                         <h1 class="text-white cd-project-title" style="margin-left: 115px;">
-                            <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
+                             <span ng-bind="project.title"></span> 
                         </h1>
+                       <h3 class="text-white"> <br> by <strong ng-bind="project._owner.name"></strong> </h3>
                     </div>
                 </div>
             </div>
@@ -44,12 +55,7 @@
         <div class="container">
             <!-- User profile pic -->
             <div class="col-xs-12 col-sm-12 col-md-9 cd-no-padding">
-                <div class="cd-nav-avatar hidden-sm-down pull-left">
-                    <a class="text-primary" href="users/[[ project._owner.id ]]">
-                        <div class="cd-avatar-lg"
-                             style="background-image: url([[ project._owner.photo ? project._owner.photo : '/assets/img/missing-avatar.png' ]])"></div>
-                    </a>
-                </div>
+                
                 <h5 class="text-black cd-nav-title animated fadeInDown">
                     <strong ng-bind="project._owner.name"></strong> <span ng-bind="project.title"></span>
                 </h5>
